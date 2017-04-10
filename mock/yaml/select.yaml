@@ -1,0 +1,19 @@
+mock:
+  type: simple
+  rate: 80
+  option:
+    total: 200
+
+url: /mock/select
+method: post
+request:
+  paras: str
+response-success:
+  code: str(1,1)
+  data [5]:
+      - value: str(uuid,32)
+        name: str(name,32)
+response-error:
+  code: "0"
+  data: []
+  msg: str(desc,2000)

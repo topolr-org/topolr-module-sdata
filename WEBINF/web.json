@@ -1,0 +1,17 @@
+{
+    "page":{
+        "index":"index.nsp"
+    },
+    "service":[
+        {"name":"mockservice","option":{
+            "path": "{project}mock/",
+            "builterPath": "{project}mock/builters/",
+            "parserPath": "{project}mock/parsers/"
+        }},
+        {"name":"mvcservice"}
+    ],
+    "filter":[
+        {"name":"mvcfilter"},
+        {"name":"mockfilter"}
+    ]
+}

@@ -159,10 +159,12 @@ Module({
                _body.push(ths.getRowData(_list[i]));
             }
             ths.data.body=_body;
+            console.log("==> "+_list.length+" -- "+_body.length);
             ths.data.footer=ths.getPagesData(data.current,data.total);
             ths.trigger();
         },function () {
-            this.start();
+            ths.start();
+            ths.trigger();
         })
     },
     service_nextpage:function () {

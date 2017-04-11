@@ -76,7 +76,6 @@ Module({
         this.getService("table").trigger("gotopage",1);
     },
     update:function (a) {
-        console.log(a)
         this.getChildAt(0).update({
             cols:a.header
         });
@@ -88,7 +87,11 @@ Module({
         });
     },
     gotoPage:function (num) {
-        this.getService("table").trigger("gotopage",num);
+        this.getService("table").trigger("gotopage",num).then(function () {
+            console.log("---ok----")
+        },function () {
+            console.log("----error---")
+        });
     },
     nextPage:function () {
         this.getService("table").trigger("nextpage");
@@ -97,7 +100,6 @@ Module({
         this.getService("table").trigger("prevpage");
     },
     event_gotoPage:function (e) {
-        console.log("==>"+e.data)
         this.gotoPage(e.data);
     },
     event_nextPage:function () {

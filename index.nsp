@@ -28,13 +28,13 @@
             "p": {
                 "sdata.list": "7ba1f53ce1",
                 "sdata.service.page": "5ba95069de",
-                "sdata.service.table": "8d586287f2",
-                "sdata.table": "9fda264c5b",
+                "sdata.service.table": "5894ec9126",
+                "sdata.table": "fc8d2c13c2",
                 "sdata.test": "d2b8aec2cc",
                 "sdata.tree": "a1b39efdbd"
             },
             "c": {
-                "sdata.style.tablestyle": "18e38f8728"
+                "sdata.style.tablestyle": "5584c9e704"
             },
             "t": {
                 "sdata.template.tabletemp": "740e8e92ad"

@@ -1,1 +1,81 @@
-.table-base{}
+.table-tableheader{
+    .table-tableheader-rows{
+        border-bottom: 1px solid #D7D7D7;
+    }
+    .table-tableheader-col{
+        display: inline-block;
+        display: inline-block;
+        overflow:hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        text-align: center;
+        border-right:1px solid #D7D7D7;
+        padding:0 5px 0 5px;
+        vertical-align: top;
+    }
+}
+.table-tablebody{
+    .table-tablebody-rows{
+        border-bottom: 1px solid #D7D7D7;
+    }
+    .table-tablebody-col{
+        display: inline-block;
+        overflow:hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        border-right:1px solid #D7D7D7;
+        padding:0 5px 0 5px;
+        vertical-align: top;
+    }
+}
+.table-tablefoot{
+    .table-tablefoot-pages{
+        line-height: 35px;
+        display: inline-block;
+        vertical-align: top;
+    }
+    .table-tablefoot-pages-page{
+        display: inline-block;
+        padding:0 10px 0 10px;
+        vertical-align: top;
+        &.table-page-current{
+            color:green;
+        }
+        &.table-page-disabled{
+            color:#D7D7D7;
+        }
+        &.table-page-none{
+            display: none;
+        }
+    }
+    .table-tablefoot-btns{
+        display: inline-block;
+        vertical-align: top;
+        line-height: 35px;
+        .table-tablefoot-btns-num{
+            display: inline-block;
+            vertical-align: top;
+            input{
+                width:30px;
+            }
+        }
+        .table-tablefoot-btns-btn{
+            display: inline-block;
+            vertical-align: top;
+            padding:0 10px 0 10px;
+        }
+    }
+}
+.table-simple{
+    .table-simple-head{
+        border-top:1px solid #D7D7D7;
+        border-left:1px solid #D7D7D7;
+        border-right:1px solid #D7D7D7;
+    }
+    .table-simple-body{
+        border:1px solid #D7D7D7;
+        border-top:0;
+        height:300px;
+        overflow: auto;
+    }
+}

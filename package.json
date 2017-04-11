@@ -1,0 +1,29 @@
+{
+  "name": "topolr-module-sdata",
+  "version": "1.0.0",
+  "description": "structure data modules of topolr",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/topolr-org/topolr-module-sdata.git"
+  },
+  "keywords": [
+    "topolr",
+    "module"
+  ],
+  "topolr": {
+    "basePath": "./com/topolr/"
+  },
+  "author": "wangjinliang (hou80houzhu)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/topolr-org/topolr-module-sdata/issues"
+  },
+  "homepage": "https://github.com/topolr-org/topolr-module-sdata#readme",
+  "dependencies": {
+    "topolr": "^1.4.1"
+  }
+}

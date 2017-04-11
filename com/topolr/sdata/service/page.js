@@ -8,14 +8,14 @@ Module({
         pageSize:10,
         from:0,
         fromName:"page",
-        sizeName:"size",
+        sizeName:"pagesize",
         url:""
     },
     init:function () {
         this._current=0;
         this._end=false;
     },
-    gotoPage:function (page) {
+    getParameter:function (page) {
         if(page<=0){
             page=1;
         }
@@ -23,7 +23,11 @@ Module({
         paras[this.option.fromName]=this.option.from+(page-1)*this.option.pageSize;
         paras[this.option.sizeName]=this.option.pageSize;
         this._current=page;
-        return this.postRequest(this.option.url,paras).then(function (data) {
+        return paras;
+    },
+    gotoPage:function (page) {
+        var ths=this;
+        return this.postRequest(this.option.url,this.getParameter(page)).then(function (data) {
             if(data.list){
                 if(data.list.length>=ths.option.pageSize){
                     ths._end=false;
@@ -63,14 +67,8 @@ Module({
         this._totalPage=0;
     },
     gotoPage:function (page) {
-        if(page<=0){
-            page=1;
-        }
-        var paras={},ths=this;
-        paras[this.option.fromName]=this.option.from+(page-1)*this.option.pageSize;
-        paras[this.option.sizeName]=this.option.pageSize;
-        this._current=page;
-        return this.postRequest(this.option.url,paras).then(function (data) {
+        var ths=this;
+        return this.postRequest(this.option.url,this.getParameter(page)).then(function (data) {
             if(data.total){
                 ths._total=data.total;
                 var a=data.total%ths.option.pageSize;
@@ -95,5 +93,5 @@ Module({
                 current:ths._current
             };
         });
-    }
+    },
 });

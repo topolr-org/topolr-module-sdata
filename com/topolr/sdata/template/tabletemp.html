@@ -1,1 +1,70 @@
-<!--[base]-->
+<!--[header]-->
+<div class="table-tableheader-rows">
+<%for(var i=0;i<data.cols.length;i++){%>
+    <div class="table-tableheader-col" style="width:<%=data.cols[i].width;%>px;line-height:<%=data.cols[i].height;%>px"><%=data.cols[i].name;%></div>
+<%}%>
+</div>
+<!--[body]-->
+<%for(var i=0;i<data.rows.length;i++){%>
+<div class="table-tablebody-rows" unique="<%=data.rows[i].id;%>">
+    <%for(var t in data.rows[i]){%>
+    <div class="table-tablebody-col" style="width:<%=data.rows[i]["__width__"];%>px;line-height:<%=data.rows[i]["__height__"];%>px"><%=data.rows[i][t];%></div>
+    <%}%>
+</div>
+<%}%>
+<!--[table]-->
+<div class="table-simple-head">
+    <@module type="{{data.headType}}"/>
+</div>
+<div class="table-simple-body">
+    <@module type="{{data.bodyType}}"/>
+</div>
+<div class="table-simple-foot">
+    <@module type="{{data.footType}}"/>
+</div>
+<!--[footer]-->
+<div class="table-tablefoot">
+    <div class="table-tablefoot-pages">
+        <%
+            for(var i=0;i<data.pages.length;i++){
+            var page=data.pages[i];
+        %>
+        <%if(page.name==='prev'){%>
+            <%if(page.disabled===true){%>
+            <div class="table-tablefoot-pages-page table-page-disabled" data-bind="click:prev">prev</div>
+            <%}else{%>
+            <div class="table-tablefoot-pages-page" data-bind="click:prev">prev</div>
+            <%}%>
+        <%}%>
+        <%if(page.name==='next'){%>
+            <%if(page.disabled===true){%>
+            <div class="table-tablefoot-pages-page table-page-disabled" data-bind="click:next">next</div>
+            <%}else{%>
+            <div class="table-tablefoot-pages-page" data-bind="click:next">next</div>
+            <%}%>
+        <%}%>
+        <%if(page.name==='btn'){%>
+            <%if(page.none===true){%>
+            <div class="table-tablefoot-pages-page table-page-none" data-bind="click:goto" @cache(page)><%=page.num;%></div>
+            <%}else{%>
+                <%if(page.iscurrent===true){%>
+                <div class="table-tablefoot-pages-page table-page-current" data-bind="click:goto" @cache(page)><%=page.num;%></div>
+                <%}else{%>
+                <div class="table-tablefoot-pages-page" data-bind="click:goto" @cache(page)><%=page.num;%></div>
+                <%}%>
+            <%}%>
+        <%}%>
+        <%if(page.name==='dot'){%>
+            <%if(page.none===true){%>
+            <div class="table-tablefoot-pages-page table-page-none">...</div>
+            <%}else{%>
+            <div class="table-tablefoot-pages-page">...</div>
+            <%}%>
+        <%}%>
+        <%}%>
+    </div>
+    <div class="table-tablefoot-btns">
+        <div class="table-tablefoot-btns-num"><input type="text"/></div>
+        <div class="table-tablefoot-btns-btn">go</div>
+    </div>
+</div>

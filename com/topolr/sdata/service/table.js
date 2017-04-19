@@ -131,6 +131,24 @@ Module({
         }
         return [prevpage,btns.page0,dots1,btns.page1,btns.page2,btns.page3,dots2,btns.page4,nextpage];
     },
+    then:function (ps) {
+        var ths=this;
+        return ps.then(function (data) {
+            ths.start();
+            var _body=[];
+            var _list=data.list;
+            for(var i=0;i<_list.length;i++){
+                _body.push(ths.getRowData(_list[i]));
+            }
+            ths.data.body=_body;
+            console.log("==> "+_list.length+" -- "+_body.length);
+            ths.data.footer=ths.getPagesData(data.current,data.total);
+            ths.trigger();
+        },function () {
+            ths.start();
+            ths.trigger();
+        });
+    },
     action_set:function (option) {
         this.option=$.extend(true,{},this.option,option);
         var _header=[];
@@ -149,28 +167,13 @@ Module({
         this.start();
     },
     service_gotopage:function (num) {
-        var ths=this;
         this.stop();
-        return this.gotoPage(num).then(function (data) {
-            this.start();
-            var _body=[];
-            var _list=data.list;
-            for(var i=0;i<_list.length;i++){
-               _body.push(ths.getRowData(_list[i]));
-            }
-            ths.data.body=_body;
-            console.log("==> "+_list.length+" -- "+_body.length);
-            ths.data.footer=ths.getPagesData(data.current,data.total);
-            ths.trigger();
-        },function () {
-            ths.start();
-            ths.trigger();
-        })
+        return this.then(this.gotoPage(num));
     },
     service_nextpage:function () {
-        return this.nextPage();
+        return this.then(this.nextPage());
     },
     service_prevpage:function () {
-        return this.prevPage();
+        return this.then(this.prevPage());
     }
 });

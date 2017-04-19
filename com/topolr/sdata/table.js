@@ -103,6 +103,7 @@ Module({
         this.gotoPage(e.data);
     },
     event_nextPage:function () {
+        console.log("------------->>0");
         this.nextPage();
     },
     event_prevPage:function () {

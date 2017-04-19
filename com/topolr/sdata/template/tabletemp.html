@@ -1,3 +1,7 @@
+<!--[tools]-->
+<%for(var i=0;i<data.length;i++){%>
+<div class="table-tabletools-tool" @cache(data[i])><%=data[i].name;%></div>
+<%}%>
 <!--[header]-->
 <div class="table-tableheader-rows">
 <%for(var i=0;i<data.cols.length;i++){%>
@@ -10,6 +14,33 @@
     <%for(var t in data.rows[i]){%>
     <div class="table-tablebody-col" style="width:<%=data.rows[i]["__width__"];%>px;line-height:<%=data.rows[i]["__height__"];%>px"><%=data.rows[i][t];%></div>
     <%}%>
+</div>
+<%}%>
+<!--[bodyfn]-->
+<%for(var i=0;i<data.rows.length;i++){%>
+<div class="table-tablebody-rows" unique="<%=data.rows[i].id;%>">
+    <%if(data.rows[i]["__num__"]){%>
+    <div class="table-tablebody-col" style="width:<%=data.rows[i]["__num__"].width;%>px;line-height:<%=data.rows[i]["__num__"].height;%>px"><%=(i+1);%></div>
+    <%}%>
+    <%if(data.rows[i]["__checkbox__"]){%>
+    <div class="table-tablebody-col"  style="width:<%=data.rows[i]["__checkbox__"].width;%>px;line-height:<%=data.rows[i]["__checkbox__"].height;%>px"><input type="checkbox"/></div>
+    <%}%>
+    <%if(data.rows[i]["__deals__"]){%>
+        <%for(var ed=0;ed<data.rows[i]["__deals__"].length;ed++){%>
+        <div class="table-tablebody-col" style="width:<%=data.rows[i]["__deals__"][ed].width;%>px;line-height:<%=data.rows[i]["__deals__"][ed].height;%>px"><div @cache(data.rows[i]["__deals__"][ed])><%=data.rows[i]["__deals__"][ed].name;%></div></div>
+        <%}%>
+    <%}%>
+    <%for(var t in data.rows[i]){%>
+        <div class="table-tablebody-col" style="width:<%=data.rows[i]["__width__"];%>px;line-height:<%=data.rows[i]["__height__"];%>px"><%=data.rows[i][t];%></div>
+    <%}%>
+</div>
+<%}%>
+<!--[doublebodyfn]-->
+<%for(var i=0;i<data.rows.length;i++){%>
+<div class="table-tablebody-rows" unique="<%=data.rows[i].id;%>">
+    <%for(var t in data.rows[i]){%>
+    <div class="table-tablebody-col" style="width:<%=data.rows[i]["__width__"];%>px;line-height:<%=data.rows[i]["__height__"];%>px"><%=data.rows[i][t];%></div>
+<%}%>
 </div>
 <%}%>
 <!--[table]-->
@@ -67,4 +98,17 @@
         <div class="table-tablefoot-btns-num"><input type="text"/></div>
         <div class="table-tablefoot-btns-btn">go</div>
     </div>
+</div>
+<!--[fntable]-->
+<div class="table-simple-tool">
+    <@module type="{{data.toolType}}"/>
+</div>
+<div class="table-simple-head">
+    <@module type="{{data.headType}}"/>
+</div>
+<div class="table-simple-body">
+    <@module type="{{data.bodyType}}"/>
+</div>
+<div class="table-simple-foot">
+    <@module type="{{data.footType}}"/>
 </div>

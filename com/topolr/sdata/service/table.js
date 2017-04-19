@@ -7,8 +7,6 @@ Module({
     extend:"@page.totalservice",
     option:{
         cols:[],
-        tools:[],
-        deals:[],
         rowHeight: 40,
         checkbox: true,
         num: true
@@ -175,5 +173,116 @@ Module({
     },
     service_prevpage:function () {
         return this.then(this.prevPage());
+    }
+});
+Module({
+    name:"fnnocacheservice",
+    extend:"@.nocacheservice",
+    option:{
+        tools:[],
+        deals:[],
+        checkbox: true,
+        num: true
+    },
+    action_set:function (option) {
+        this.superClass("action_set",option);
+        var et=[];
+        if(this.option.num){
+            et.push({
+                width:30,
+                name:"",
+                height:this.option.rowHeight
+            });
+        }
+        if(this.option.checkbox){
+            et.push({
+                width:30,
+                name:"",
+                height:this.option.rowHeight
+            });
+        }
+        et.push({
+            width:35*this.option.deals.length,
+            name:"tools",
+            height:this.option.rowHeight
+        });
+        this.data.header=et.concat(this.data.header);
+    },
+    then:function (ps) {
+        var ths=this;
+        return ps.then(function (data) {
+            ths.start();
+            var _body=[];
+            var _list=data.list;
+            for(var i=0;i<_list.length;i++){
+                _body.push(ths.getRowData(_list[i]));
+            }
+            for(var i=0;i<_body.length;i++){
+                var r=_body[i];
+                if(ths.option.num){
+                    Object.defineProperty(r, "__num__", {
+                        enumerable: false,
+                        configurable: false,
+                        writable: false,
+                        value: {
+                            width:30,
+                            height:r["__height__"]
+                        }
+                    });
+                }
+                if(ths.option.checkbox){
+                    Object.defineProperty(r, "__checkbox__", {
+                        enumerable: false,
+                        configurable: false,
+                        writable: false,
+                        value: {
+                            width:30,
+                            height:r["__height__"]
+                        }
+                    });
+                }
+                var q=[];
+                for(var m=0;m<ths.option.deals.length;m++){
+                    var cd=ths.option.deals[m];
+                    cd.width=35;
+                    cd.height=r["__height__"];
+                    q.push(cd);
+                }
+                Object.defineProperty(r, "__deals__", {
+                    enumerable: false,
+                    configurable: false,
+                    writable: false,
+                    value: q
+                });
+            }
+            ths.data.body=_body;
+            ths.data.footer=ths.getPagesData(data.current,data.total);
+            ths.trigger();
+        },function () {
+            ths.start();
+            ths.trigger();
+        });
+    }
+});
+Module({
+    name:"doublefnnocacheservice",
+    extend:"@.fnnocacheservice",
+    then:function () {
+        var ths=this;
+        return ps.then(function (data) {
+            ths.start();
+            var _body=[];
+            var _list=data.list;
+            for(var i=0;i<_list.length;i++){
+                _body.push(ths.getRowData(_list[i]));
+            }
+            ths.data.body=_body;
+            console.log("==> "+_list.length+" -- "+_body.length);
+            ths.data.footer=ths.getPagesData(data.current,data.total);
+            ths.trigger();
+        },function () {
+            ths.start();
+            ths.trigger();
+        });
     }
 });

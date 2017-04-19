@@ -28,16 +28,16 @@
             "p": {
                 "sdata.list": "7ba1f53ce1",
                 "sdata.service.page": "5ba95069de",
-                "sdata.service.table": "8e003a8612",
-                "sdata.table": "56a59f9a31",
-                "sdata.test": "d2b8aec2cc",
+                "sdata.service.table": "c0ac574840",
+                "sdata.table": "7eb57cf054",
+                "sdata.test": "267352e938",
                 "sdata.tree": "a1b39efdbd"
             },
             "c": {
-                "sdata.style.tablestyle": "5584c9e704"
+                "sdata.style.tablestyle": "7d8a6737c0"
             },
             "t": {
-                "sdata.template.tabletemp": "740e8e92ad"
+                "sdata.template.tabletemp": "5a03326408"
             }
         },
         "c": {

@@ -9,6 +9,16 @@ Module({
     extend:"viewgroup"
 });
 Module({
+    name:'tabletools',
+    extend:"view",
+    className:"table-tabletools",
+    template:"@tabletemp.tools",
+    option:{
+        tools:[]
+    },
+    autodom:true
+});
+Module({
     name:"tableheader",
     extend:"view",
     className:"table-tableheader",
@@ -27,6 +37,19 @@ Module({
         rows:[]
     },
     autodom:true
+});
+Module({
+    name:"tablebodyfn",
+    extend:"@.tablebody",
+    option:{
+        deals:[]
+    },
+    template:"@tabletemp.bodyfn"
+});
+Module({
+    name:"doublebodyfn",
+    extend:'@.tablebody',
+    template:"@tabletemp.doublebodyfn"
 });
 Module({
     name:"tablefooter",
@@ -58,15 +81,11 @@ Module({
     autodom:true,
     option:{
         url:"",
-        rowHeight: 40,
-        checkbox: true,
-        num: true,
-        tools: [],
-        deals: [],
         cols: [{
             key:"",
             width:100
         }],
+        rowHeight: 40,
         headType:"@.tableheader",
         bodyType:"@.tablebody",
         footType:"@.tablefooter"
@@ -76,13 +95,13 @@ Module({
         this.getService("table").trigger("gotopage",1);
     },
     update:function (a) {
-        this.getChildAt(0).update({
+        this.getChildByType(this.option.headType).update({
             cols:a.header
         });
-        this.getChildAt(1).update({
+        this.getChildByType(this.option.bodyType).update({
             rows:a.body
         });
-        this.getChildAt(2).update({
+        this.getChildByType(this.option.footType).update({
             pages:a.footer
         });
     },
@@ -103,10 +122,35 @@ Module({
         this.gotoPage(e.data);
     },
     event_nextPage:function () {
-        console.log("------------->>0");
         this.nextPage();
     },
     event_prevPage:function () {
         this.prevPage();
     }
+});
+Module({
+    name:"fntable",
+    extend:"@.simpletable",
+    option:{
+        checkbox: true,
+        num: true,
+        deals: [],
+        tools:[],
+        toolType:"@.tabletools",
+        bodyType:"@.tablebodyfn"
+    },
+    services:{"table":"@table.fnnocacheservice"},
+    layout:"@tabletemp.fntable",
+    init:function () {
+        this.superClass("init");
+        this.getChildByType(this.option.toolType).update(this.option.tools);
+    }
+});
+Module({
+    name:"doublefntable",
+    extend:"@.fntable",
+    option:{
+        bodyType:"@.doubletablebodyfn"
+    },
+    services:{"table":"@table.doublefnnocacheservice"}
 });

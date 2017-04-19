@@ -1,6 +1,7 @@
 .table-tableheader{
     .table-tableheader-rows{
         border-bottom: 1px solid #D7D7D7;
+        white-space: nowrap;
     }
     .table-tableheader-col{
         display: inline-block;
@@ -12,11 +13,13 @@
         border-right:1px solid #D7D7D7;
         padding:0 5px 0 5px;
         vertical-align: top;
+        box-sizing: border-box;
     }
 }
 .table-tablebody{
     .table-tablebody-rows{
         border-bottom: 1px solid #D7D7D7;
+        white-space: nowrap;
     }
     .table-tablebody-col{
         display: inline-block;
@@ -26,6 +29,7 @@
         border-right:1px solid #D7D7D7;
         padding:0 5px 0 5px;
         vertical-align: top;
+        box-sizing: border-box;
     }
 }
 .table-tablefoot{

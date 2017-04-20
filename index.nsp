@@ -30,11 +30,11 @@
                 "sdata.service.page": "5ba95069de",
                 "sdata.service.table": "ab30cc26b3",
                 "sdata.table": "bc347be7df",
-                "sdata.test": "1f21608d77",
+                "sdata.test": "bc3dd68e82",
                 "sdata.tree": "a1b39efdbd"
             },
             "c": {
-                "sdata.style.tablestyle": "cbba563ec8"
+                "sdata.style.tablestyle": "7e2c42d9f9"
             },
             "t": {
                 "sdata.template.tabletemp": "0603276ef1"
@@ -62,6 +62,8 @@
     </script>
 </head>
 <body>
-    <div style="width:500px;height:500px;margin:0 auto;position:relative;" data-find="container"></div>
+    <div style="width:500px;height:300px;margin:0 auto;position:relative;" data-find="container"></div>
+    <div style="width:500px;height:300px;margin:0 auto;position:relative;" data-find="container1"></div>
+    <div style="width:500px;height:300px;margin:0 auto;position:relative;" data-find="container2"></div>
 </body>
 </html>

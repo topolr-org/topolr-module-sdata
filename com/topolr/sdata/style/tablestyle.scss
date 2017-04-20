@@ -1,5 +1,7 @@
 $toolHeight:35px;
 $footHeight:35px;
+$lineColor:#F4F4F4;
+$borderColor:#D7D7D7;
 
 .table-tableheader{
     .table-tableheader-left{
@@ -31,15 +33,18 @@ $footHeight:35px;
 }
 .table-tablebody{
     .table-tablebody-rows{
-        border-bottom: 1px solid #D7D7D7;
+        border-bottom: 1px solid $borderColor;
         white-space: nowrap;
+        &:nth-child(even){
+            background:$lineColor;
+        }
     }
     .table-tablebody-col{
         display: inline-block;
         overflow:hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-        border-right:1px solid #D7D7D7;
+        border-right:1px solid $borderColor;
         padding:0 5px 0 5px;
         vertical-align: top;
         box-sizing: border-box;
@@ -71,7 +76,7 @@ $footHeight:35px;
             color:blue;
         }
         &.table-page-disabled{
-            color:#D7D7D7;
+            color:$borderColor;
         }
         &.table-page-none{
             display: none;
@@ -107,22 +112,22 @@ $footHeight:35px;
         top:0;
         right:0;
         bottom:$toolHeight;
-        border:1px solid #D7D7D7;
+        border:1px solid $borderColor;
+        .table-simple-head{
+            position:absolute;
+            left:0;
+            top:0;
+            right:0;
+        }
+        .table-simple-body{
+            overflow: auto;
+            position:absolute;
+            left:0;
+            right:0;
+            bottom:0;
+        }
     }
-    .table-simple-head{
-        border-top:1px solid #D7D7D7;
-        border-left:1px solid #D7D7D7;
-        border-right:1px solid #D7D7D7;
-        position:absolute;
-        left:0;
-        top:0;
-        right:0;
-    }
-    .table-simple-body{
-        border:1px solid #D7D7D7;
-        border-top:0;
-        height:300px;
-        overflow: auto;
+    .table-simple-foot{
         position:absolute;
         left:0;
         right:0;
@@ -140,6 +145,7 @@ $footHeight:35px;
         left:0;
         top:0;
         right:0;
+        height:$toolHeight;
     }
     .table-fn-con {
         position:absolute;
@@ -147,7 +153,7 @@ $footHeight:35px;
         top:$toolHeight;
         right:0;
         bottom:$footHeight;
-        border:1px solid #D7D7D7;
+        border:1px solid $borderColor;
         .table-fn-head {
             position:absolute;
             left:0;
@@ -159,6 +165,7 @@ $footHeight:35px;
             left:0;
             right:0;
             bottom:0;
+            overflow: auto;
         }
     }
     .table-fn-foot{
@@ -186,7 +193,7 @@ $footHeight:35px;
         right:0;
         top:$toolHeight;
         bottom:$footHeight;
-        border:1px solid #D7D7D7;
+        border:1px solid $borderColor;
         .table-double-head {
             position: absolute;
             left: 0;

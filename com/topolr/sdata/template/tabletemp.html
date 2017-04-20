@@ -25,7 +25,7 @@
 </div>
 <!--[body]-->
 <%for(var i=0;i<data.rows.length;i++){%>
-<div class="table-tablebody-rows" unique="<%=data.rows[i].id;%>">
+<div class="table-tablebody-rows<%=(data.rows[i]['__selected__']?' table-row-selected':'');%>" unique="<%=data.rows[i].id;%>" data-bind="click:row" @cache(data.rows[i])>
     <%for(var t in data.rows[i]){%>
     <div class="table-tablebody-col" style="width:<%=data.rows[i]["__width__"];%>px;line-height:<%=data.rows[i]["__height__"];%>px"><%=data.rows[i][t];%></div>
     <%}%>
@@ -33,7 +33,7 @@
 <%}%>
 <!--[bodyfn]-->
 <%for(var i=0;i<data.rows.length;i++){%>
-<div class="table-tablebody-rows" unique="<%=data.rows[i].id;%>">
+<div class="table-tablebody-rows<%=(data.rows[i]['__selected__']?' table-row-selected':'');%>" unique="<%=data.rows[i].id;%>" data-bind="click:row" @cache(data.rows[i])>
     <%if(data.rows[i]["__num__"]){%>
     <div class="table-tablebody-col" style="width:<%=data.rows[i]["__num__"].width;%>px;line-height:<%=data.rows[i]["__num__"].height;%>px"><%=(i+1);%></div>
     <%}%>

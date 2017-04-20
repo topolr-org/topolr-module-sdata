@@ -41,7 +41,10 @@ Module({
     option:{
         rows:[]
     },
-    autodom:true
+    autodom:true,
+    bind_row:function (dom) {
+        this.dispatchEvent("rowclick",dom.cache());
+    }
 });
 Module({
     name:"tablebodyfn",
@@ -132,6 +135,9 @@ Module({
     },
     event_prevPage:function () {
         this.prevPage();
+    },
+    event_rowclick:function (e) {
+        this.getService("table").action("toggleSelected",e.data.id);
     }
 });
 Module({

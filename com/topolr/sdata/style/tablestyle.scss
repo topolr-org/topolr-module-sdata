@@ -38,6 +38,9 @@ $borderColor:#D7D7D7;
         &:nth-child(even){
             background:$lineColor;
         }
+        &.table-row-selected{
+            background:lightgreen;
+        }
     }
     .table-tablebody-col{
         display: inline-block;

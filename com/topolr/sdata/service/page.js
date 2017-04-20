@@ -12,7 +12,7 @@ Module({
         url:""
     },
     init:function () {
-        this._current=0;
+        this._current=1;
         this._end=false;
     },
     getParameter:function (page) {
@@ -22,12 +22,12 @@ Module({
         var paras={},ths=this;
         paras[this.option.fromName]=this.option.from+(page-1)*this.option.pageSize;
         paras[this.option.sizeName]=this.option.pageSize;
-        this._current=page;
         return paras;
     },
     gotoPage:function (page) {
         var ths=this;
         return this.postRequest(this.option.url,this.getParameter(page)).then(function (data) {
+            ths._current=(page<=0?1:page);
             if(data.list){
                 if(data.list.length>=ths.option.pageSize){
                     ths._end=false;

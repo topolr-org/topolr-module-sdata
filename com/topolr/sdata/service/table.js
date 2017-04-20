@@ -269,13 +269,14 @@ Module({
     extend:"@.fnnocacheservice",
     action_set:function (option) {
         this.superClass("action_set",option);
-        var et=[];
+        var et=[],_width=0;
         if(this.option.num){
             et.push({
                 width:30,
                 name:"",
                 height:this.option.rowHeight
             });
+            _width+=30;
         }
         if(this.option.checkbox){
             et.push({
@@ -283,13 +284,20 @@ Module({
                 name:"",
                 height:this.option.rowHeight
             });
+            _width+=30;
         }
         et.push({
             width:35*this.option.deals.length,
             name:"tools",
             height:this.option.rowHeight
         });
-        this.data.header=et.concat(this.data.header);
+        _width+=35*this.option.deals.length;
+        this.data.header={
+            left:et,
+            right:this.data.header,
+            leftWidth:_width,
+            leftHeight:this.option.rowHeight
+        }
     },
     then:function (ps) {
         var ths=this;
@@ -300,46 +308,39 @@ Module({
             for(var i=0;i<_list.length;i++){
                 _body.push(ths.getRowData(_list[i]));
             }
+            var _left=[];
             for(var i=0;i<_body.length;i++){
-                var r=_body[i];
+                var r={},rr=_body[i];
                 if(ths.option.num){
-                    Object.defineProperty(r, "__num__", {
-                        enumerable: false,
-                        configurable: false,
-                        writable: false,
-                        value: {
-                            width:30,
-                            height:r["__height__"]
-                        }
-                    });
+                    r["__num__"]={
+                        width:30,
+                        height:rr["__height__"]
+                    };
                 }
                 if(ths.option.checkbox){
-                    Object.defineProperty(r, "__checkbox__", {
-                        enumerable: false,
-                        configurable: false,
-                        writable: false,
-                        value: {
-                            width:30,
-                            height:r["__height__"]
-                        }
-                    });
+                    r["__checkbox__"]={
+                        width:30,
+                        height:rr["__height__"]
+                    };
                 }
                 var q=[];
                 for(var m=0;m<ths.option.deals.length;m++){
                     var cd=ths.option.deals[m];
                     cd.width=35;
-                    cd.height=r["__height__"];
+                    cd.height=rr["__height__"];
                     q.push(cd);
                 }
-                Object.defineProperty(r, "__deals__", {
-                    enumerable: false,
-                    configurable: false,
-                    writable: false,
-                    value: q
-                });
+                r["__deals__"]=q;
+                _left.push(r);
             }
-            ths.data.body=_body;
+            ths.data.body={
+                left:_left,
+                right:_body,
+                leftWidth:ths.data.header.leftWidth,
+                leftHeight:ths.data.header.leftHeight
+            };
             ths.data.footer=ths.getPagesData(data.current,data.total);
+            console.log(ths.data)
             ths.trigger();
         },function () {
             ths.start();

@@ -8,6 +8,21 @@
     <div class="table-tableheader-col" style="width:<%=data.cols[i].width;%>px;line-height:<%=data.cols[i].height;%>px"><%=data.cols[i].name;%></div>
 <%}%>
 </div>
+<!--[doubleheader]-->
+<div class="table-tableheader-left" style="width:<%=data.cols.leftWidth;%>px">
+    <div class="table-tableheader-rows">
+        <%for(var i=0;i<data.cols.left.length;i++){%>
+        <div class="table-tableheader-col" style="width:<%=data.cols.left[i].width;%>px;line-height:<%=data.cols.left[i].height;%>px"><%=data.cols.left[i].name;%></div>
+        <%}%>
+    </div>
+</div>
+<div class="table-tableheader-right" style="left:<%=data.cols.leftWidth;%>px">
+    <div class="table-tableheader-rows">
+        <%for(var i=0;i<data.cols.right.length;i++){%>
+        <div class="table-tableheader-col" style="width:<%=data.cols.right[i].width;%>px;line-height:<%=data.cols.right[i].height;%>px"><%=data.cols.right[i].name;%></div>
+        <%}%>
+    </div>
+</div>
 <!--[body]-->
 <%for(var i=0;i<data.rows.length;i++){%>
 <div class="table-tablebody-rows" unique="<%=data.rows[i].id;%>">
@@ -36,22 +51,33 @@
 </div>
 <%}%>
 <!--[doublebodyfn]-->
-<%for(var i=0;i<data.rows.length;i++){%>
-<div class="table-tablebody-rows" unique="<%=data.rows[i].id;%>">
-    <%for(var t in data.rows[i]){%>
-    <div class="table-tablebody-col" style="width:<%=data.rows[i]["__width__"];%>px;line-height:<%=data.rows[i]["__height__"];%>px"><%=data.rows[i][t];%></div>
-<%}%>
+<div class="table-tablebody-left" style="width:<%=data.rows.leftWidth;%>px;">
+    <%for(var i=0;i<data.rows.left.length;i++){%>
+    <div class="table-tablebody-rows">
+        <%if(data.rows.left[i]["__num__"]){%>
+            <div class="table-tablebody-col" style="width:<%=data.rows.left[i]["__num__"].width;%>px;line-height:<%=data.rows.left[i]["__num__"].height;%>px"><%=(i+1);%></div>
+        <%}%>
+        <%if(data.rows.left[i]["__checkbox__"]){%>
+            <div class="table-tablebody-col"  style="width:<%=data.rows.left[i]["__checkbox__"].width;%>px;line-height:<%=data.rows.left[i]["__checkbox__"].height;%>px"><input type="checkbox"/></div>
+        <%}%>
+        <%if(data.rows.left[i]["__deals__"]){%>
+            <%for(var ed=0;ed<data.rows.left[i]["__deals__"].length;ed++){%>
+            <div class="table-tablebody-col" style="width:<%=data.rows.left[i]["__deals__"][ed].width;%>px;line-height:<%=data.rows.left[i]["__deals__"][ed].height;%>px"><div @cache(data.rows.left[i]["__deals__"][ed])><%=data.rows.left[i]["__deals__"][ed].name;%></div></div>
+            <%}%>
+        <%}%>
+    </div>
+    <%}%>
 </div>
-<%}%>
-<!--[table]-->
-<div class="table-simple-head">
-    <@module type="{{data.headType}}"/>
-</div>
-<div class="table-simple-body">
-    <@module type="{{data.bodyType}}"/>
-</div>
-<div class="table-simple-foot">
-    <@module type="{{data.footType}}"/>
+<div class="table-tablebody-right" style="left:<%=data.rows.leftWidth;%>px;">
+    <div class="table-tablebody-right-con">
+        <%for(var i=0;i<data.rows.right.length;i++){%>
+        <div class="table-tablebody-rows" unique="<%=data.rows.right[i].id;%>">
+            <%for(var t in data.rows.right[i]){%>
+            <div class="table-tablebody-col" style="width:<%=data.rows.right[i]["__width__"];%>px;line-height:<%=data.rows.right[i]["__height__"];%>px"><%=data.rows.right[i][t];%></div>
+            <%}%>
+        </div>
+        <%}%>
+    </div>
 </div>
 <!--[footer]-->
 <div class="table-tablefoot">
@@ -99,16 +125,45 @@
         <div class="table-tablefoot-btns-btn">go</div>
     </div>
 </div>
-<!--[fntable]-->
-<div class="table-simple-tool">
-    <@module type="{{data.toolType}}"/>
-</div>
-<div class="table-simple-head">
-    <@module type="{{data.headType}}"/>
-</div>
-<div class="table-simple-body">
-    <@module type="{{data.bodyType}}"/>
+<!--[table]-->
+<div class="table-simple-con">
+    <div class="table-simple-head" style="height:<%=data.rowHeight;%>px">
+        <@module type="{{data.headType}}"/>
+    </div>
+    <div class="table-simple-body" style="top:<%=data.rowHeight;%>px">
+        <@module type="{{data.bodyType}}"/>
+    </div>
 </div>
 <div class="table-simple-foot">
+    <@module type="{{data.footType}}"/>
+</div>
+<!--[fntable]-->
+<div class="table-fn-tool">
+    <@module type="{{data.toolType}}"/>
+</div>
+<div class="table-fn-con">
+    <div class="table-fn-head" style="height:<%=data.rowHeight;%>px">
+        <@module type="{{data.headType}}"/>
+    </div>
+    <div class="table-fn-body" style="top:<%=data.rowHeight;%>px">
+        <@module type="{{data.bodyType}}"/>
+    </div>
+</div>
+<div class="table-fn-foot">
+    <@module type="{{data.footType}}"/>
+</div>
+<!--[doublefntable]-->
+<div class="table-double-tool">
+    <@module type="{{data.toolType}}"/>
+</div>
+<div class="table-double-con">
+    <div class="table-double-head" style="height:<%=data.rowHeight;%>px">
+        <@module type="{{data.headType}}"/>
+    </div>
+    <div class="table-double-body" style="top:<%=data.rowHeight;%>px">
+        <@module type="{{data.bodyType}}"/>
+    </div>
+</div>
+<div class="table-double-foot">
     <@module type="{{data.footType}}"/>
 </div>

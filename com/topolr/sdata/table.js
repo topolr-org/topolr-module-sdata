@@ -29,6 +29,11 @@ Module({
     autodom:true
 });
 Module({
+    name:"doubletableheader",
+    extend:"@.tableheader",
+    template:"@tabletemp.doubleheader"
+});
+Module({
     name:"tablebody",
     extend:"view",
     className:"table-tablebody",
@@ -49,6 +54,7 @@ Module({
 Module({
     name:"doublebodyfn",
     extend:'@.tablebody',
+    className:"doublebodyfn",
     template:"@tabletemp.doublebodyfn"
 });
 Module({
@@ -131,6 +137,7 @@ Module({
 Module({
     name:"fntable",
     extend:"@.simpletable",
+    className:"table-fntable",
     option:{
         checkbox: true,
         num: true,
@@ -149,8 +156,11 @@ Module({
 Module({
     name:"doublefntable",
     extend:"@.fntable",
+    className:"table-doublefntable",
+    layout:"@tabletemp.doublefntable",
     option:{
-        bodyType:"@.doubletablebodyfn"
+        bodyType:"@.doublebodyfn",
+        headType:"@.doubletableheader"
     },
     services:{"table":"@table.doublefnnocacheservice"}
 });

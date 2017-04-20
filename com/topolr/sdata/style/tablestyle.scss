@@ -1,4 +1,17 @@
+$toolHeight:35px;
+$footHeight:35px;
+
 .table-tableheader{
+    .table-tableheader-left{
+        position:absolute;
+        left:0;
+        top:0;
+    }
+    .table-tableheader-right{
+        position:absolute;
+        top:0;
+        right:0;
+    }
     .table-tableheader-rows{
         border-bottom: 1px solid #D7D7D7;
         white-space: nowrap;
@@ -31,10 +44,22 @@
         vertical-align: top;
         box-sizing: border-box;
     }
+    .table-tablebody-left{
+        position:absolute;
+        left:0;
+        top:0;
+        bottom:0;
+    }
+    .table-tablebody-right{
+        position:absolute;
+        top:0;
+        right:0;
+        bottom:0;
+    }
 }
 .table-tablefoot{
+    line-height:$footHeight;
     .table-tablefoot-pages{
-        line-height: 35px;
         display: inline-block;
         vertical-align: top;
     }
@@ -55,7 +80,6 @@
     .table-tablefoot-btns{
         display: inline-block;
         vertical-align: top;
-        line-height: 35px;
         .table-tablefoot-btns-num{
             display: inline-block;
             vertical-align: top;
@@ -70,16 +94,117 @@
         }
     }
 }
+
 .table-simple{
+    position:absolute;
+    left:0;
+    top:0;
+    right:0;
+    bottom:0;
+    .table-simple-con{
+        position:absolute;
+        left:0;
+        top:0;
+        right:0;
+        bottom:$toolHeight;
+        border:1px solid #D7D7D7;
+    }
     .table-simple-head{
         border-top:1px solid #D7D7D7;
         border-left:1px solid #D7D7D7;
         border-right:1px solid #D7D7D7;
+        position:absolute;
+        left:0;
+        top:0;
+        right:0;
     }
     .table-simple-body{
         border:1px solid #D7D7D7;
         border-top:0;
         height:300px;
         overflow: auto;
+        position:absolute;
+        left:0;
+        right:0;
+        bottom:0;
+    }
+}
+.table-fntable{
+    position:absolute;
+    left:0;
+    top:0;
+    right:0;
+    bottom:0;
+    .table-fn-tool{
+        position: absolute;
+        left:0;
+        top:0;
+        right:0;
+    }
+    .table-fn-con {
+        position:absolute;
+        left:0;
+        top:$toolHeight;
+        right:0;
+        bottom:$footHeight;
+        border:1px solid #D7D7D7;
+        .table-fn-head {
+            position:absolute;
+            left:0;
+            top:0;
+            right:0;
+        }
+        .table-fn-body {
+            position: absolute;
+            left:0;
+            right:0;
+            bottom:0;
+        }
+    }
+    .table-fn-foot{
+        position: absolute;
+        left:0;
+        right:0;
+        bottom:0;
+    }
+}
+.table-doublefntable {
+    position: absolute;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    .table-double-tool{
+        position:absolute;
+        left:0;
+        top:0;
+        right:0;
+    }
+    .table-double-con {
+        position: absolute;
+        left:0;
+        right:0;
+        top:$toolHeight;
+        bottom:$footHeight;
+        border:1px solid #D7D7D7;
+        .table-double-head {
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+        }
+        .table-double-body {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow: auto;
+        }
+    }
+    .table-double-foot{
+        position:absolute;
+        left:0;
+        right:0;
+        bottom:0;
     }
 }

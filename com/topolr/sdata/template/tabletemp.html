@@ -6,20 +6,33 @@
 <%
     var cols=data.cols;
 %>
-<div class="table-tableheader-rows">
-<%for(var i=0;i<cols.length;i++){%>
-    <%if(data.cols[i].checkbox===true){%>
-    <div class="table-tableheader-col" style="width:<%=cols[i].width;%>px;line-height:<%=data.height;%>px">
-        <%if(cols[i].isall){%>
-        <input type="checkbox" data-bind="click:checkall" checked="true"/>
-        <%}else{%>
-        <input type="checkbox" data-bind="click:checkall"/>
+<div class="table-tableheader-con">
+    <div class="table-tableheader-rows">
+    <%for(var i=0;i<cols.length;i++){%>
+        <%if(data.cols[i].checkbox===true){%>
+        <div class="table-tableheader-col" style="width:<%=cols[i].width;%>px;line-height:<%=data.height;%>px">
+            <%if(cols[i].isall){%>
+            <input type="checkbox" data-bind="click:checkall" checked="true"/>
+            <%}else{%>
+            <input type="checkbox" data-bind="click:checkall"/>
+            <%}%>
+        </div>
+        <%}else if(cols[i].disable!==true){%>
+        <div class="table-tableheader-col" style="width:<%=cols[i].width;%>px;line-height:<%=data.height;%>px"><%=cols[i].value;%></div>
+        <%}%>
+    <%}%>
+    </div>
+</div>
+<div class="table-tableheader-dropdown">
+    <div class="table-tableheader-dropdown-arrow">a</div>
+    <div class="table-tableheader-dropdown-list">
+        <%for(var i=0;i<cols.length;i++){%>
+        <div class="table-tableheader-dropdown-list-item">
+            <div class="table-tableheader-dropdown-list-item-a"><input type="checkbox"/></div>
+            <div class="table-tableheader-dropdown-list-item-b"><%=cols[i].value;%></div>
+        </div>
         <%}%>
     </div>
-    <%}else{%>
-    <div class="table-tableheader-col" style="width:<%=cols[i].width;%>px;line-height:<%=data.height;%>px"><%=cols[i].value;%></div>
-    <%}%>
-<%}%>
 </div>
 <!--[doubleheader]-->
 <%
@@ -55,18 +68,29 @@
 </div>
 <!--[body]-->
 <%
-console.log(data);
+    var twidth=0;
+    if(data[0]){
+        for(var i=0;i<data[0].cols.length;i++){
+            if(data[0].cols[i].disable!==true){
+                twidth+=data[0].cols[i].width;
+            }
+        }
+    }
 %>
-<%for(var i=0;i<data.length;i++){%>
-<%
-    var row=data[i],cols=row.cols;
-%>
-<div class="table-tablebody-rows<%=(row.selected?' table-row-selected':'');%>" unique="<%=row.id;%>" data-bind="click:row" @cache(row)>
-    <%for(var t in cols){%>
-    <div class="table-tablebody-col" style="width:<%=cols[t].width;%>px;line-height:<%=row.height;%>px"><%=cols[t].value;%></div>
+<div style="width:<%=twidth;%>px">
+    <%for(var i=0;i<data.length;i++){%>
+    <%
+        var row=data[i],cols=row.cols;
+    %>
+    <div class="table-tablebody-rows<%=(row.selected?' table-row-selected':'');%>" unique="<%=row.id;%>" data-bind="click:row" @cache(row)>
+        <%for(var t in cols){%>
+            <%if(cols[t].disable!==true){%>
+            <div class="table-tablebody-col" style="width:<%=cols[t].width;%>px;line-height:<%=row.height;%>px"><%=cols[t].value;%></div>
+            <%}%>
+        <%}%>
+    </div>
     <%}%>
 </div>
-<%}%>
 <!--[bodyfn]-->
 <%
 console.log(data);

@@ -4,6 +4,45 @@ $lineColor:#F4F4F4;
 $borderColor:#D7D7D7;
 
 .table-tableheader{
+    display:flex;
+    border-bottom: 1px solid #D7D7D7;
+    .table-tableheader-con{
+        flex:1;
+    }
+    .table-tableheader-dropdown{
+        width:30px;
+        position:relative;
+        .table-tableheader-dropdown-arrow{
+            line-height:40px;
+            text-align: center;
+        }
+        .table-tableheader-dropdown-list{
+            position:absolute;
+            top:100%;
+            right:0;
+            background:white;
+            border:1px solid $borderColor;
+            z-index:99;
+            display:none;
+        }
+        .table-tableheader-dropdown-list-item{
+            line-height:30px;
+            display:flex;
+        }
+        .table-tableheader-dropdown-list-item-a{
+            width:30px;
+            text-align: center;
+        }
+        .table-tableheader-dropdown-list-item-b{
+            flex:1;
+            padding:0 10px 0 0;
+        }
+        &:hover{
+            .table-tableheader-dropdown-list{
+                display:block;
+            }
+        }
+    }
     .table-tableheader-left{
         position:absolute;
         left:0;
@@ -16,7 +55,6 @@ $borderColor:#D7D7D7;
         overflow: hidden;
     }
     .table-tableheader-rows{
-        border-bottom: 1px solid #D7D7D7;
         white-space: nowrap;
     }
     .table-tableheader-col{
@@ -36,7 +74,6 @@ $borderColor:#D7D7D7;
     .table-tablebody-rows{
         border-bottom: 1px solid $borderColor;
         white-space: nowrap;
-        display: inline-block;
         &:nth-child(even){
             background:$lineColor;
         }

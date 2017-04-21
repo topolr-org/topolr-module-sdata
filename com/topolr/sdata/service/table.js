@@ -29,6 +29,7 @@ Module({
             rr.key=a.key;
             rr.value=data[a.key];
             rr.width=a.width;
+            rr.disable=a.disable;
             if(a.key==="id"){
                 r.id=data[a.key];
             }
@@ -197,6 +198,41 @@ Module({
             }
         }
     },
+    getDataFromCols:function(cols){
+        var r={};
+        for(var i=0;i<cols.length;i++){
+            if(!cols[i].none) {
+                r[cols[i].key] = cols[i].value;
+            }
+        }
+        return r;
+    },
+    getRowsByPropTrue:function(key){
+        var r=[];
+        for(var i=0;i<this.data.body.length;i++){
+            var a=this.data.body[i];
+            if(a[key]===true){
+                r.push(this.getDataFromCols(a.cols));
+            }
+        }
+        return r;
+    },
+    getSelectedRows:function(){
+        return this.getRowsByPropTrue("selected");
+    },
+    getWarnRows:function(){
+        return this.getRowsByPropTrue("warn");
+    },
+    getErrorRows:function(){
+        return this.getRowsByPropTrue("error");
+    },
+    getAllRows:function(){
+        var r=[];
+        for(var i=0;i<this.data.body.length;i++){
+            r.push(this.getDataFromCols(this.data.body[i].cols));
+        }
+        return r;
+    },
     action_set: function (option) {
         this.option = $.extend(true, {}, this.option, option);
         var _header = {
@@ -207,7 +243,8 @@ Module({
             _header.cols.push({
                 width: this.option.cols[i].width,
                 value: this.option.cols[i].name,
-                key:this.option.cols[i].action||""
+                key:this.option.cols[i].action||"",
+                disable:this.option.cols[i].disable
             });
         }
         this.data = {
@@ -284,6 +321,18 @@ Module({
     },
     action_setallrowsdata:function(data){
         this.setAllRowsProps(data);
+    },
+    action_getselecteddata:function(){
+        return this.getSelectedRows();
+    },
+    action_getwarndata:function(){
+        return this.getWarnRows();
+    },
+    action_geterrordata:function(){
+        return this.getErrorRows();
+    },
+    action_getallrows:function(){
+        return this.getAllRows();
     }
 });
 Module({
@@ -334,21 +383,24 @@ Module({
                     r.cols.push({
                         width: 30,
                         key:"__num__",
-                        value:"&nbsp;"
+                        value:"&nbsp;",
+                        none:true
                     });
                 }
                 if (ths.option.checkbox) {
                     r.cols.push({
                         width: 30,
                         key:"__checkbox__",
-                        value:false
+                        value:false,
+                        none:true
                     });
                 }
                 for (var m = 0; m < ths.option.deals.length; m++) {
                     r.cols.push({
                         width:35,
                         key:"__deals__",
-                        value:ths.option.deals[m]
+                        value:ths.option.deals[m],
+                        none:true
                     });
                 }
                 rr.cols=r.cols.concat(rr.cols);
@@ -412,21 +464,24 @@ Module({
                     r.cols.push({
                         width: 30,
                         key:"__num__",
-                        value:"&nbsp;"
+                        value:"&nbsp;",
+                        none:true
                     });
                 }
                 if (ths.option.checkbox) {
                     r.cols.push({
                         width: 30,
                         key:"__checkbox__",
-                        value:false
+                        value:false,
+                        none:true
                     });
                 }
                 for (var m = 0; m < ths.option.deals.length; m++) {
                     r.cols.push({
                         width:35,
                         key:"__deals__",
-                        value:ths.option.deals[m]
+                        value:ths.option.deals[m],
+                        none:true
                     });
                 }
                 r.height=rr.height;
@@ -494,5 +549,22 @@ Module({
                 break;
             }
         }
+    },
+    getRowsByPropTrue:function(key){
+        var r=[];
+        for(var i=0;i<this.data.body.right.length;i++){
+            var a=this.data.body.right[i];
+            if(a[key]===true){
+                r.push(this.getDataFromCols(a.cols));
+            }
+        }
+        return r;
+    },
+    getAllRows:function(){
+        var r=[];
+        for(var i=0;i<this.data.body.right.length;i++){
+            r.push(this.getDataFromCols(this.data.body.right[i].cols));
+        }
+        return r;
     }
 });

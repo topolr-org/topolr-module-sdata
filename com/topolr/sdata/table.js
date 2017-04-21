@@ -34,7 +34,10 @@ Module({
 Module({
     name:"doubletableheader",
     extend:"@.tableheader",
-    template:"@tabletemp.doubleheader"
+    template:"@tabletemp.doubleheader",
+    setScroll:function (info) {
+        this.finders("left").scrollLeft(info.left);
+    }
 });
 Module({
     name:"tablebody",
@@ -61,7 +64,18 @@ Module({
     name:"doublebodyfn",
     extend:'@.tablebody',
     className:"doublebodyfn",
-    template:"@tabletemp.doublebodyfn"
+    template:"@tabletemp.doublebodyfn",
+    find_body:function (dom) {
+        var ths=this;
+        dom.bind("scroll",function(e){
+            var top=$(dom).scrollTop(),left=$(dom).scrollLeft();
+            ths.finders("left").scrollTop(top);
+            ths.dispatchEvent("bodyscroll",{
+                left:left,
+                top:top
+            });
+        });
+    }
 });
 Module({
     name:"tablefooter",
@@ -215,5 +229,8 @@ Module({
         bodyType:"@.doublebodyfn",
         headType:"@.doubletableheader"
     },
-    services:{"table":"@table.doublefnnocacheservice"}
+    services:{"table":"@table.doublefnnocacheservice"},
+    event_bodyscroll:function(e){
+        this.getChildByType(this.option.headType).setScroll(e.data);
+    }
 });

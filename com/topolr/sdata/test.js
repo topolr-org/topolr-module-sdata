@@ -46,9 +46,9 @@ Option({
                     option:{
                         url:sitePath+"/test/page",
                         cols:[
-                            {name:"name",key:"name",width:100},
-                            {name:"birth",key:"birth",width:100},
-                            {name:"id",key:"id",width:100}
+                            {name:"name",key:"name",width:200},
+                            {name:"birth",key:"birth",width:200},
+                            {name:"id",key:"id",width:200}
                         ],
                         checkbox: true,
                         num: true,

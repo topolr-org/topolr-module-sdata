@@ -360,7 +360,7 @@ Module({
         if (this.option.num) {
             et.push({
                 width: 30,
-                name: "",
+                name: "&nbsp;",
                 height: this.option.rowHeight
             });
             _width += 30;

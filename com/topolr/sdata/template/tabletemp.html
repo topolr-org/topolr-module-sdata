@@ -37,11 +37,13 @@
         <%}%>
     </div>
 </div>
-<div class="table-tableheader-right" style="left:<%=data.cols.leftWidth;%>px">
-    <div class="table-tableheader-rows">
-        <%for(var i=0;i<data.cols.right.length;i++){%>
-        <div class="table-tableheader-col" style="width:<%=data.cols.right[i].width;%>px;line-height:<%=data.cols.right[i].height;%>px"><%=data.cols.right[i].name;%></div>
-        <%}%>
+<div class="table-tableheader-right" style="left:<%=data.cols.leftWidth;%>px" data-find="left">
+    <div style="width:5000px">
+        <div class="table-tableheader-rows">
+            <%for(var i=0;i<data.cols.right.length;i++){%>
+            <div class="table-tableheader-col" style="width:<%=data.cols.right[i].width;%>px;line-height:<%=data.cols.right[i].height;%>px"><%=data.cols.right[i].name;%></div>
+            <%}%>
+        </div>
     </div>
 </div>
 <!--[body]-->
@@ -76,7 +78,8 @@
 </div>
 <%}%>
 <!--[doublebodyfn]-->
-<div class="table-tablebody-left" style="width:<%=data.rows.leftWidth;%>px;">
+<div class="table-tablebody-left" style="width:<%=data.rows.leftWidth;%>px;" data-find="left">
+    <div style="height:<%=(data.rows.left.length*data.rows.leftHeight+100);%>px">
     <%for(var i=0;i<data.rows.left.length;i++){%>
     <div class="table-tablebody-rows<%=(data.rows.left[i]['__selected__']?' table-row-selected':'');%><%=(data.rows.left[i]['__warned__']?' table-row-warn':'');%><%=(data.rows.left[i]['__error__']?' table-row-error':'');%>"  unique="<%=data.rows.left[i].id;%>" data-bind="click:row" @cache(data.rows.left[i])>
         <%if(data.rows.left[i]["__num__"]){%>
@@ -96,8 +99,9 @@
         <%}%>
     </div>
     <%}%>
+    </div>
 </div>
-<div class="table-tablebody-right" style="left:<%=data.rows.leftWidth;%>px;">
+<div class="table-tablebody-right" style="left:<%=data.rows.leftWidth;%>px;" data-find="body">
     <div class="table-tablebody-right-con">
         <%for(var i=0;i<data.rows.right.length;i++){%>
         <div class="table-tablebody-rows<%=(data.rows.right[i]['__selected__']?' table-row-selected':'');%><%=(data.rows.right[i]['__warned__']?' table-row-warn':'');%><%=(data.rows.right[i]['__error__']?' table-row-error':'');%>" unique="<%=data.rows.right[i].id;%>" data-bind="click:row" @cache(data.rows.left[i])>

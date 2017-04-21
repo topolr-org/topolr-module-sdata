@@ -13,6 +13,7 @@ $borderColor:#D7D7D7;
         position:absolute;
         top:0;
         right:0;
+        overflow: hidden;
     }
     .table-tableheader-rows{
         border-bottom: 1px solid #D7D7D7;
@@ -35,6 +36,7 @@ $borderColor:#D7D7D7;
     .table-tablebody-rows{
         border-bottom: 1px solid $borderColor;
         white-space: nowrap;
+        display: inline-block;
         &:nth-child(even){
             background:$lineColor;
         }
@@ -214,7 +216,12 @@ $borderColor:#D7D7D7;
             left: 0;
             right: 0;
             bottom: 0;
-            overflow: auto;
+            .table-tablebody-left{
+                overflow: hidden;
+            }
+            .table-tablebody-right{
+                overflow: auto;
+            }
         }
     }
     .table-double-foot{

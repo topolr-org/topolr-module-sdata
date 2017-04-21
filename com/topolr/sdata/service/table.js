@@ -27,6 +27,8 @@ Module({
             setProp(r, "__width__", a.width);
             setProp(r, "__height__", this.option.rowHeight);
             setProp(r,"__selected__",false);
+            setProp(r,"__warned__",false);
+            setProp(r,"__error__",false);
         }
         return r;
     },
@@ -145,7 +147,7 @@ Module({
             ths.trigger();
         });
     },
-    getRowById:function (id) {
+    getRowProps:function(id){
         var r=null;
         for(var i=0;i<this.data.body.length;i++){
             if(this.data.body[i].id===id){
@@ -154,6 +156,23 @@ Module({
             }
         }
         return r;
+    },
+    setRowProps:function(id,data){
+        var r=null;
+        for(var i=0;i<this.data.body.length;i++){
+            if(this.data.body[i].id===id){
+                r=this.data.body[i];
+                break;
+            }
+        }
+        if(r){
+            $.extend(r,data);
+        }
+    },
+    setAllRowsProps:function(data){
+        for(var i=0;i<this.data.body.length;i++){
+            $.extend(this.data.body[i],data);
+        }
     },
     action_set: function (option) {
         this.option = $.extend(true, {}, this.option, option);
@@ -185,38 +204,55 @@ Module({
     service_refresh:function () {
         return this.service_gotopage(this.getCurrent());
     },
+    action_rowwarned:function(id){
+        this.setRowProps(id,{"__warned__":true});
+        this.trigger();
+    },
+    action_unrowwarned:function(id){
+        this.setRowProps(id,{"__warned__":false});
+        this.trigger();
+    },
+    action_rowerror:function(id){
+        this.setRowProps(id,{"__error__":true});
+        this.trigger();
+    },
+    action_unrowerror:function(id){
+        this.setRowProps(id,{"__error__":false});
+        this.trigger();
+    },
     action_selected:function (id) {
-        var a=this.getRowById(id);
-        if(a){
-            a["__selected__"]=true;
-            this.trigger();
-        }
+        this.setRowProps(id,{"__selected__":true});
+        this.trigger();
     },
     action_unselected:function (index) {
-        var a=this.getRowById(id);
-        if(a){
-            a["__selected__"]=false;
-            this.trigger();
-        }
+        this.setRowProps(id,{"__selected__":false});
+        this.trigger();
     },
     action_toggleSelected:function (id) {
-        var a=this.getRowById(id);
+        var a=this.getRowProps(id);
         if(a){
-            a["__selected__"]=a["__selected__"]?false:true;
+            this.setRowProps(id,{
+                "__selected__":a["__selected__"]?false:true
+            });
             this.trigger();
         }
     },
     action_selectall:function () {
-        for(var i=0;i<this.data.body.length;i++){
-            this.data.body[i]["__selected__"]=true;
-            this.trigger();
-        }
+        this.setAllRowsProps({"__selected__":true});
+        this.trigger();
     },
     action_unselectall:function () {
-        for(var i=0;i<this.data.body.length;i++){
-            this.data.body[i]["__selected__"]=false;
-            this.trigger();
-        }
+        this.setAllRowsProps({"__selected__":false});
+        this.trigger();
+    },
+    action_getrowdata:function(id){
+        return this.getRowProps(id);
+    },
+    action_setrowdata:function(id,data){
+        this.setRowProps(id,data);
+    },
+    action_setallrowsdata:function(data){
+        this.setAllRowsProps(data);
     }
 });
 Module({
@@ -360,6 +396,10 @@ Module({
                     q.push(cd);
                 }
                 r["__deals__"] = q;
+                r["__selected__"]=rr["__selected__"];
+                r["__warned__"]=rr["__warned__"];
+                r["__error__"]=rr["__error__"];
+                r.id=rr.id;
                 _left.push(r);
             }
             ths.data.body = {
@@ -374,5 +414,35 @@ Module({
             ths.start();
             ths.trigger();
         });
+    },
+    getRowProps:function(id){
+        var r=null;
+        for(var i=0;i<this.data.body.right.length;i++){
+            if(this.data.body.right[i].id===id){
+                r=this.data.body.right[i];
+                break;
+            }
+        }
+        return r;
+    },
+    setRowProps:function(id,data){
+        var r=null,index=null;
+        for(var i=0;i<this.data.body.right.length;i++){
+            if(this.data.body.right[i].id===id){
+                r=this.data.body.right[i];
+                index=i;
+                break;
+            }
+        }
+        if(r){
+            $.extend(this.data.body.left[index],data);
+            $.extend(r,data);
+        }
+    },
+    setAllRowsProps:function(data){
+        for(var i=0;i<this.data.body.right.length;i++){
+            $.extend(this.data.body.right[i],data);
+            $.extend(this.data.body.left[i],data);
+        }
     }
 });

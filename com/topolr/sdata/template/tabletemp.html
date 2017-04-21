@@ -57,12 +57,16 @@
 <!--[doublebodyfn]-->
 <div class="table-tablebody-left" style="width:<%=data.rows.leftWidth;%>px;">
     <%for(var i=0;i<data.rows.left.length;i++){%>
-    <div class="table-tablebody-rows">
+    <div class="table-tablebody-rows<%=(data.rows.left[i]['__selected__']?' table-row-selected':'');%>"  unique="<%=data.rows.left[i].id;%>" data-bind="click:row" @cache(data.rows.left[i])>
         <%if(data.rows.left[i]["__num__"]){%>
             <div class="table-tablebody-col" style="width:<%=data.rows.left[i]["__num__"].width;%>px;line-height:<%=data.rows.left[i]["__num__"].height;%>px"><%=(i+1);%></div>
         <%}%>
         <%if(data.rows.left[i]["__checkbox__"]){%>
+            <%if(data.rows.left[i]["__selected__"]===true){%>
+            <div class="table-tablebody-col"  style="width:<%=data.rows.left[i]["__checkbox__"].width;%>px;line-height:<%=data.rows.left[i]["__checkbox__"].height;%>px"><input type="checkbox" checked="true"/></div>
+            <%}else{%>
             <div class="table-tablebody-col"  style="width:<%=data.rows.left[i]["__checkbox__"].width;%>px;line-height:<%=data.rows.left[i]["__checkbox__"].height;%>px"><input type="checkbox"/></div>
+            <%}%>
         <%}%>
         <%if(data.rows.left[i]["__deals__"]){%>
             <%for(var ed=0;ed<data.rows.left[i]["__deals__"].length;ed++){%>
@@ -75,7 +79,7 @@
 <div class="table-tablebody-right" style="left:<%=data.rows.leftWidth;%>px;">
     <div class="table-tablebody-right-con">
         <%for(var i=0;i<data.rows.right.length;i++){%>
-        <div class="table-tablebody-rows" unique="<%=data.rows.right[i].id;%>">
+        <div class="table-tablebody-rows<%=(data.rows.right[i]['__selected__']?' table-row-selected':'');%>" unique="<%=data.rows.right[i].id;%>" data-bind="click:row" @cache(data.rows.left[i])>
             <%for(var t in data.rows.right[i]){%>
             <div class="table-tablebody-col" style="width:<%=data.rows.right[i]["__width__"];%>px;line-height:<%=data.rows.right[i]["__height__"];%>px"><%=data.rows.right[i][t];%></div>
             <%}%>

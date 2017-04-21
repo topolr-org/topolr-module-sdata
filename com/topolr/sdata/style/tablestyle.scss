@@ -41,6 +41,12 @@ $borderColor:#D7D7D7;
         &.table-row-selected{
             background:lightgreen;
         }
+        &.table-row-warn{
+            background:lightyellow;
+        }
+        &.table-row-error{
+            background:indianred;
+        }
     }
     .table-tablebody-col{
         display: inline-block;

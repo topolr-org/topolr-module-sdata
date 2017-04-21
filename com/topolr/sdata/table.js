@@ -138,6 +138,42 @@ Module({
     },
     event_rowclick:function (e) {
         this.getService("table").action("toggleSelected",e.data.id);
+    },
+    selecRow:function(id){
+        this.getService("table").action("selected",id);
+    },
+    unselectRow:function(id){
+        this.getService("table").action("unselected",id);
+    },
+    toggleSelectRow:function(id){
+        this.getService("table").action("toggleSelected",id);
+    },
+    selectAllRows:function(){
+        this.getService("table").action("selectall");
+    },
+    unselectAllRows:function(){
+        this.getService("table").action("unselectall");
+    },
+    warnRow:function(id){
+        this.getService("table").action("rowwarned",id);
+    },
+    unwarnRow:function(id){
+        this.getService("table").action("unrowwarned",id);
+    },
+    errorRow:function(id){
+        this.getService("table").action("rowerror",id);
+    },
+    unerrorRow:function(id){
+        this.getService("table").action("unrowerror",id);
+    },
+    setRowData:function(id,data){
+        this.getService("table").action("setrowdata",id,data);
+    },
+    getRowData:function(id){
+        return this.getService("table").action("getrowdata",id);
+    },
+    refresh:function(){
+        this.getService("table").trigger("refresh");
     }
 });
 Module({

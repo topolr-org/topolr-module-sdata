@@ -28,7 +28,13 @@
     <div class="table-tableheader-dropdown-list">
         <%for(var i=0;i<cols.length;i++){%>
         <div class="table-tableheader-dropdown-list-item">
-            <div class="table-tableheader-dropdown-list-item-a"><input type="checkbox"/></div>
+            <div class="table-tableheader-dropdown-list-item-a">
+                <%if(cols[i].disable!==true){%>
+                <input type="checkbox" checked="true"/>
+                <%}else{%>
+                <input type="checkbox"/>
+                <%}%>
+            </div>
             <div class="table-tableheader-dropdown-list-item-b"><%=cols[i].value;%></div>
         </div>
         <%}%>

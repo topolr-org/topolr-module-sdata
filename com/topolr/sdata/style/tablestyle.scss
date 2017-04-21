@@ -28,6 +28,10 @@ $borderColor:#D7D7D7;
         .table-tableheader-dropdown-list-item{
             line-height:30px;
             display:flex;
+            cursor:default;
+            &:hover{
+                background:#F4F4F4;
+            }
         }
         .table-tableheader-dropdown-list-item-a{
             width:30px;

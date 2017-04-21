@@ -26,7 +26,10 @@ Module({
     option:{
         cols:[]
     },
-    autodom:true
+    autodom:true,
+    bind_checkall:function (dom) {
+        this.dispatchEvent("checkall",dom.get(0).checked);
+    }
 });
 Module({
     name:"doubletableheader",
@@ -193,6 +196,14 @@ Module({
     init:function () {
         this.superClass("init");
         this.getChildByType(this.option.toolType).update(this.option.tools);
+    },
+    event_checkall:function(e){
+        var a=e.data;
+        if(a){
+            this.selectAllRows();
+        }else{
+            this.unselectAllRows();
+        }
     }
 });
 Module({

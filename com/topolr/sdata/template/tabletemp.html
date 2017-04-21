@@ -5,14 +5,35 @@
 <!--[header]-->
 <div class="table-tableheader-rows">
 <%for(var i=0;i<data.cols.length;i++){%>
+    <%if(data.cols[i].checkbox===true){%>
+    <div class="table-tableheader-col" style="width:<%=data.cols[i].width;%>px;line-height:<%=data.cols[i].height;%>px">
+        <%if(data.cols[i].isall){%>
+        <input type="checkbox" data-bind="click:checkall" checked="true"/>
+        <%}else{%>
+        <input type="checkbox" data-bind="click:checkall"/>
+        <%}%>
+    </div>
+    <%}else{%>
     <div class="table-tableheader-col" style="width:<%=data.cols[i].width;%>px;line-height:<%=data.cols[i].height;%>px"><%=data.cols[i].name;%></div>
+    <%}%>
 <%}%>
 </div>
 <!--[doubleheader]-->
 <div class="table-tableheader-left" style="width:<%=data.cols.leftWidth;%>px">
     <div class="table-tableheader-rows">
         <%for(var i=0;i<data.cols.left.length;i++){%>
-        <div class="table-tableheader-col" style="width:<%=data.cols.left[i].width;%>px;line-height:<%=data.cols.left[i].height;%>px"><%=data.cols.left[i].name;%></div>
+            <%if(data.cols.left[i].checkbox){%>
+            <%console.log(data.cols.left[i]);%>
+            <div class="table-tableheader-col" style="width:<%=data.cols.left[i].width;%>px;line-height:<%=data.cols.left[i].height;%>px">
+                <%if(data.cols.left[i].isall){%>
+                <input type="checkbox" data-bind="click:checkall" checked="true"/>
+                <%}else{%>
+                <input type="checkbox" data-bind="click:checkall"/>
+                <%}%>
+            </div>
+            <%}else{%>
+            <div class="table-tableheader-col" style="width:<%=data.cols.left[i].width;%>px;line-height:<%=data.cols.left[i].height;%>px"><%=data.cols.left[i].name;%></div>
+            <%}%>
         <%}%>
     </div>
 </div>
@@ -33,7 +54,7 @@
 <%}%>
 <!--[bodyfn]-->
 <%for(var i=0;i<data.rows.length;i++){%>
-<div class="table-tablebody-rows<%=(data.rows[i]['__selected__']?' table-row-selected':'');%>" unique="<%=data.rows[i].id;%>" data-bind="click:row" @cache(data.rows[i])>
+<div class="table-tablebody-rows<%=(data.rows[i]['__selected__']?' table-row-selected':'');%><%=(data.rows[i]['__warned__']?' table-row-warn':'');%><%=(data.rows[i]['__error__']?' table-row-error':'');%>" unique="<%=data.rows[i].id;%>" data-bind="click:row" @cache(data.rows[i])>
     <%if(data.rows[i]["__num__"]){%>
     <div class="table-tablebody-col" style="width:<%=data.rows[i]["__num__"].width;%>px;line-height:<%=data.rows[i]["__num__"].height;%>px"><%=(i+1);%></div>
     <%}%>
@@ -57,7 +78,7 @@
 <!--[doublebodyfn]-->
 <div class="table-tablebody-left" style="width:<%=data.rows.leftWidth;%>px;">
     <%for(var i=0;i<data.rows.left.length;i++){%>
-    <div class="table-tablebody-rows<%=(data.rows.left[i]['__selected__']?' table-row-selected':'');%>"  unique="<%=data.rows.left[i].id;%>" data-bind="click:row" @cache(data.rows.left[i])>
+    <div class="table-tablebody-rows<%=(data.rows.left[i]['__selected__']?' table-row-selected':'');%><%=(data.rows.left[i]['__warned__']?' table-row-warn':'');%><%=(data.rows.left[i]['__error__']?' table-row-error':'');%>"  unique="<%=data.rows.left[i].id;%>" data-bind="click:row" @cache(data.rows.left[i])>
         <%if(data.rows.left[i]["__num__"]){%>
             <div class="table-tablebody-col" style="width:<%=data.rows.left[i]["__num__"].width;%>px;line-height:<%=data.rows.left[i]["__num__"].height;%>px"><%=(i+1);%></div>
         <%}%>
@@ -79,7 +100,7 @@
 <div class="table-tablebody-right" style="left:<%=data.rows.leftWidth;%>px;">
     <div class="table-tablebody-right-con">
         <%for(var i=0;i<data.rows.right.length;i++){%>
-        <div class="table-tablebody-rows<%=(data.rows.right[i]['__selected__']?' table-row-selected':'');%>" unique="<%=data.rows.right[i].id;%>" data-bind="click:row" @cache(data.rows.left[i])>
+        <div class="table-tablebody-rows<%=(data.rows.right[i]['__selected__']?' table-row-selected':'');%><%=(data.rows.right[i]['__warned__']?' table-row-warn':'');%><%=(data.rows.right[i]['__error__']?' table-row-error':'');%>" unique="<%=data.rows.right[i].id;%>" data-bind="click:row" @cache(data.rows.left[i])>
             <%for(var t in data.rows.right[i]){%>
             <div class="table-tablebody-col" style="width:<%=data.rows.right[i]["__width__"];%>px;line-height:<%=data.rows.right[i]["__height__"];%>px"><%=data.rows.right[i][t];%></div>
             <%}%>

@@ -174,6 +174,21 @@ Module({
             $.extend(this.data.body[i],data);
         }
     },
+    checkSelectedState:function(){
+        var isall=true;
+        for(var i=0;i<this.data.body.length;i++){
+            if(!this.data.body[i]["__selected__"]){
+                isall=false;
+                break;
+            }
+        }
+        for(var i=0;i<this.data.header.length;i++){
+            if(this.data.header[i].checkbox){
+                this.data.header[i].isall=isall;
+                break;
+            }
+        }
+    },
     action_set: function (option) {
         this.option = $.extend(true, {}, this.option, option);
         var _header = [];
@@ -222,10 +237,12 @@ Module({
     },
     action_selected:function (id) {
         this.setRowProps(id,{"__selected__":true});
+        this.checkSelectedState();
         this.trigger();
     },
     action_unselected:function (index) {
         this.setRowProps(id,{"__selected__":false});
+        this.checkSelectedState();
         this.trigger();
     },
     action_toggleSelected:function (id) {
@@ -234,15 +251,18 @@ Module({
             this.setRowProps(id,{
                 "__selected__":a["__selected__"]?false:true
             });
+            this.checkSelectedState();
             this.trigger();
         }
     },
     action_selectall:function () {
         this.setAllRowsProps({"__selected__":true});
+        this.checkSelectedState();
         this.trigger();
     },
     action_unselectall:function () {
         this.setAllRowsProps({"__selected__":false});
+        this.checkSelectedState();
         this.trigger();
     },
     action_getrowdata:function(id){
@@ -278,7 +298,9 @@ Module({
             et.push({
                 width: 30,
                 name: "",
-                height: this.option.rowHeight
+                height: this.option.rowHeight,
+                checkbox:true,
+                isall:false
             });
         }
         et.push({
@@ -347,7 +369,9 @@ Module({
             et.push({
                 width: 30,
                 name: "",
-                height: this.option.rowHeight
+                height: this.option.rowHeight,
+                checkbox:true,
+                isall:false
             });
             _width += 30;
         }
@@ -443,6 +467,21 @@ Module({
         for(var i=0;i<this.data.body.right.length;i++){
             $.extend(this.data.body.right[i],data);
             $.extend(this.data.body.left[i],data);
+        }
+    },
+    checkSelectedState:function(){
+        var isall=true;
+        for(var i=0;i<this.data.body.right.length;i++){
+            if(!this.data.body.right[i]["__selected__"]){
+                isall=false;
+                break;
+            }
+        }
+        for(var i=0;i<this.data.header.left.length;i++){
+            if(this.data.header.left[i].checkbox){
+                this.data.header.left[i].isall=isall;
+                break;
+            }
         }
     }
 });

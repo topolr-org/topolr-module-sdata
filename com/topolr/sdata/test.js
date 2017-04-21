@@ -19,36 +19,14 @@ Option({
                 //     },
                 //     container:this.finders("container")
                 // });
-                // this.addChild({
-                //     type:"@table.fntable",
-                //     option:{
-                //         url:sitePath+"/test/page",
-                //         cols:[
-                //             {name:"name",key:"name",width:100},
-                //             {name:"birth",key:"birth",width:100},
-                //             {name:"id",key:"id",width:100}
-                //         ],
-                //         checkbox: true,
-                //         num: true,
-                //         deals: [
-                //             {name:"A",action:"a"},
-                //             {name:"B",action:"b"},
-                //             {name:"C",action:"c"}
-                //         ],
-                //         tools:[
-                //             {name:"AA",action:"aa"}
-                //         ]
-                //     },
-                //     container:this.finders("container1")
-                // });
                 this.addChild({
-                    type:"@table.doublefntable",
+                    type:"@table.fntable",
                     option:{
                         url:sitePath+"/test/page",
                         cols:[
-                            {name:"name",key:"name",width:200},
-                            {name:"birth",key:"birth",width:200},
-                            {name:"id",key:"id",width:200}
+                            {name:"name",key:"name",width:100},
+                            {name:"birth",key:"birth",width:100},
+                            {name:"id",key:"id",width:100}
                         ],
                         checkbox: true,
                         num: true,
@@ -61,8 +39,30 @@ Option({
                             {name:"AA",action:"aa"}
                         ]
                     },
-                    container:this.finders("container2")
+                    container:this.finders("container1")
                 });
+                // this.addChild({
+                //     type:"@table.doublefntable",
+                //     option:{
+                //         url:sitePath+"/test/page",
+                //         cols:[
+                //             {name:"name",key:"name",width:200},
+                //             {name:"birth",key:"birth",width:200},
+                //             {name:"id",key:"id",width:200}
+                //         ],
+                //         checkbox: true,
+                //         num: true,
+                //         deals: [
+                //             {name:"A",action:"a"},
+                //             {name:"B",action:"b"},
+                //             {name:"C",action:"c"}
+                //         ],
+                //         tools:[
+                //             {name:"AA",action:"aa"}
+                //         ]
+                //     },
+                //     container:this.finders("container2")
+                // });
             }
         }
     }

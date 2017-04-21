@@ -28,16 +28,16 @@
             "p": {
                 "sdata.list": "7ba1f53ce1",
                 "sdata.service.page": "05d9f7efec",
-                "sdata.service.table": "9ee00db61d",
+                "sdata.service.table": "79bb5272c5",
                 "sdata.table": "72715d4ea8",
-                "sdata.test": "3a1b4daead",
+                "sdata.test": "2583dc550b",
                 "sdata.tree": "a1b39efdbd"
             },
             "c": {
                 "sdata.style.tablestyle": "69c2b7fa35"
             },
             "t": {
-                "sdata.template.tabletemp": "83b9156026"
+                "sdata.template.tabletemp": "237207a601"
             }
         },
         "c": {

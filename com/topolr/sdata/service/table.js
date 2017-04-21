@@ -301,25 +301,23 @@ Module({
         if (this.option.num) {
             et.push({
                 width: 30,
-                name: "",
-                height: this.option.rowHeight
+                key:"__num__",
+                value:"&nbsp;"
             });
         }
         if (this.option.checkbox) {
             et.push({
                 width: 30,
-                name: "",
-                height: this.option.rowHeight,
+                value: "",
                 checkbox:true,
                 isall:false
             });
         }
         et.push({
             width: 35 * this.option.deals.length,
-            name: "tools",
-            height: this.option.rowHeight
+            value: "tools"
         });
-        this.data.header = et.concat(this.data.header);
+        this.data.header.cols = et.concat(this.data.header.cols);
     },
     then: function (ps) {
         var ths = this;
@@ -331,27 +329,29 @@ Module({
                 _body.push(ths.getRowData(_list[i]));
             }
             for (var i = 0; i < _body.length; i++) {
-                var r = _body[i];
+                var r = {cols:[]}, rr = _body[i];
                 if (ths.option.num) {
-                    setProp(r, "__num__", {
+                    r.cols.push({
                         width: 30,
-                        height: r["__height__"]
+                        key:"__num__",
+                        value:"&nbsp;"
                     });
                 }
                 if (ths.option.checkbox) {
-                    setProp(r,"__checkbox__",{
+                    r.cols.push({
                         width: 30,
-                        height: r["__height__"]
+                        key:"__checkbox__",
+                        value:false
                     });
                 }
-                var q = [];
                 for (var m = 0; m < ths.option.deals.length; m++) {
-                    var cd = ths.option.deals[m];
-                    cd.width = 35;
-                    cd.height = r["__height__"];
-                    q.push(cd);
+                    r.cols.push({
+                        width:35,
+                        key:"__deals__",
+                        value:ths.option.deals[m]
+                    });
                 }
-                setProp(r,"__deals__",q);
+                rr.cols=r.cols.concat(rr.cols);
             }
             ths.data.body = _body;
             ths.data.footer = ths.getPagesData(data.current, data.total);

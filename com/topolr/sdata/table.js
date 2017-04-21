@@ -121,12 +121,8 @@ Module({
         this.getService("table").trigger("gotopage",1);
     },
     update:function (a) {
-        this.getChildByType(this.option.headType).update({
-            cols:a.header
-        });
-        this.getChildByType(this.option.bodyType).update({
-            rows:a.body
-        });
+        this.getChildByType(this.option.headType).update(a.header);
+        this.getChildByType(this.option.bodyType).update(a.body);
         this.getChildByType(this.option.footType).update({
             pages:a.footer
         });

@@ -28,8 +28,8 @@
             "p": {
                 "sdata.list": "7ba1f53ce1",
                 "sdata.service.page": "05d9f7efec",
-                "sdata.service.table": "cc740e3165",
-                "sdata.table": "8337115483",
+                "sdata.service.table": "9ee00db61d",
+                "sdata.table": "72715d4ea8",
                 "sdata.test": "3a1b4daead",
                 "sdata.tree": "a1b39efdbd"
             },
@@ -37,7 +37,7 @@
                 "sdata.style.tablestyle": "69c2b7fa35"
             },
             "t": {
-                "sdata.template.tabletemp": "5efca0f066"
+                "sdata.template.tabletemp": "83b9156026"
             }
         },
         "c": {

@@ -19,29 +19,33 @@
 <%}%>
 </div>
 <!--[doubleheader]-->
-<div class="table-tableheader-left" style="width:<%=data.cols.leftWidth;%>px">
+<%
+    var leftWidth=data.leftWidth;
+    var leftHeight=data.left.height,rightHeight=data.right.height;
+    var leftCols=data.left.cols,rightCols=data.right.cols;
+%>
+<div class="table-tableheader-left" style="width:<%=leftWidth;%>px">
     <div class="table-tableheader-rows">
-        <%for(var i=0;i<data.cols.left.length;i++){%>
-            <%if(data.cols.left[i].checkbox){%>
-            <%console.log(data.cols.left[i]);%>
-            <div class="table-tableheader-col" style="width:<%=data.cols.left[i].width;%>px;line-height:<%=data.cols.left[i].height;%>px">
-                <%if(data.cols.left[i].isall){%>
+        <%for(var i=0;i<leftCols.length;i++){%>
+            <%if(leftCols[i].checkbox){%>
+            <div class="table-tableheader-col" style="width:<%=leftCols[i].width;%>px;line-height:<%=leftHeight;%>px">
+                <%if(leftCols[i].isall){%>
                 <input type="checkbox" data-bind="click:checkall" checked="true"/>
                 <%}else{%>
                 <input type="checkbox" data-bind="click:checkall"/>
                 <%}%>
             </div>
             <%}else{%>
-            <div class="table-tableheader-col" style="width:<%=data.cols.left[i].width;%>px;line-height:<%=data.cols.left[i].height;%>px"><%=data.cols.left[i].name;%></div>
+            <div class="table-tableheader-col" style="width:<%=leftCols[i].width;%>px;line-height:<%=leftHeight;%>px"><%=leftCols[i].value;%></div>
             <%}%>
         <%}%>
     </div>
 </div>
-<div class="table-tableheader-right" style="left:<%=data.cols.leftWidth;%>px" data-find="left">
+<div class="table-tableheader-right" style="left:<%=leftWidth;%>px" data-find="left">
     <div style="width:5000px">
         <div class="table-tableheader-rows">
-            <%for(var i=0;i<data.cols.right.length;i++){%>
-            <div class="table-tableheader-col" style="width:<%=data.cols.right[i].width;%>px;line-height:<%=data.cols.right[i].height;%>px"><%=data.cols.right[i].name;%></div>
+            <%for(var i=0;i<rightCols.length;i++){%>
+            <div class="table-tableheader-col" style="width:<%=rightCols[i].width;%>px;line-height:<%=rightHeight;%>px"><%=rightCols[i].value;%></div>
             <%}%>
         </div>
     </div>
@@ -78,35 +82,45 @@
 </div>
 <%}%>
 <!--[doublebodyfn]-->
-<div class="table-tablebody-left" style="width:<%=data.rows.leftWidth;%>px;" data-find="left">
-    <div style="height:<%=(data.rows.left.length*data.rows.leftHeight+100);%>px">
-    <%for(var i=0;i<data.rows.left.length;i++){%>
-    <div class="table-tablebody-rows<%=(data.rows.left[i]['__selected__']?' table-row-selected':'');%><%=(data.rows.left[i]['__warned__']?' table-row-warn':'');%><%=(data.rows.left[i]['__error__']?' table-row-error':'');%>"  unique="<%=data.rows.left[i].id;%>" data-bind="click:row" @cache(data.rows.left[i])>
-        <%if(data.rows.left[i]["__num__"]){%>
-            <div class="table-tablebody-col" style="width:<%=data.rows.left[i]["__num__"].width;%>px;line-height:<%=data.rows.left[i]["__num__"].height;%>px"><%=(i+1);%></div>
-        <%}%>
-        <%if(data.rows.left[i]["__checkbox__"]){%>
-            <%if(data.rows.left[i]["__selected__"]===true){%>
-            <div class="table-tablebody-col"  style="width:<%=data.rows.left[i]["__checkbox__"].width;%>px;line-height:<%=data.rows.left[i]["__checkbox__"].height;%>px"><input type="checkbox" checked="true"/></div>
-            <%}else{%>
-            <div class="table-tablebody-col"  style="width:<%=data.rows.left[i]["__checkbox__"].width;%>px;line-height:<%=data.rows.left[i]["__checkbox__"].height;%>px"><input type="checkbox"/></div>
+<%
+    var leftRows=data.left,rightRows=data.right;
+    var leftWidth=data.leftWidth;
+%>
+<div class="table-tablebody-left" style="width:<%=leftWidth;%>px;" data-find="left">
+    <div style="height:<%=(leftRows.length*leftWidth+100);%>px">
+    <%for(var i=0;i<leftRows.length;i++){%>
+    <div class="table-tablebody-rows<%=(leftRows[i].selected?' table-row-selected':'');%><%=(leftRows[i].warn?' table-row-warn':'');%><%=(leftRows[i].error?' table-row-error':'');%>"  unique="<%=leftRows[i].id;%>" data-bind="click:row" @cache(leftRows[i])>
+        <%
+            var cols=leftRows[i].cols;
+        %>
+        <%for(var d=0;d<cols.length;d++){%>
+            <%if(cols[d].key==="__num__"){%>
+                <div class="table-tablebody-col" style="width:<%=cols[d].width;%>px;line-height:<%=leftRows[i].height;%>px"><%=(i+1);%></div>
             <%}%>
-        <%}%>
-        <%if(data.rows.left[i]["__deals__"]){%>
-            <%for(var ed=0;ed<data.rows.left[i]["__deals__"].length;ed++){%>
-            <div class="table-tablebody-col" style="width:<%=data.rows.left[i]["__deals__"][ed].width;%>px;line-height:<%=data.rows.left[i]["__deals__"][ed].height;%>px"><div @cache(data.rows.left[i]["__deals__"][ed])><%=data.rows.left[i]["__deals__"][ed].name;%></div></div>
+            <%if(cols[d].key==="__checkbox__"){%>
+                <%if(leftRows[i].selected===true){%>
+                <div class="table-tablebody-col"  style="width:<%=cols[d].width;%>px;line-height:<%=leftRows[i].height;%>px"><input type="checkbox" checked="true"/></div>
+                <%}else{%>
+                <div class="table-tablebody-col"  style="width:<%=cols[d].width;%>px;line-height:<%=leftRows[i].height;%>px"><input type="checkbox"/></div>
+                <%}%>
+            <%}%>
+            <%if(cols[d].key==="__deals__"){%>
+                <div class="table-tablebody-col" style="width:<%=cols[d].width;%>px;line-height:<%=leftRows[i].height;%>px"><div @cache(cols[d])><%=cols[d].value.name;%></div></div>
             <%}%>
         <%}%>
     </div>
     <%}%>
     </div>
 </div>
-<div class="table-tablebody-right" style="left:<%=data.rows.leftWidth;%>px;" data-find="body">
+<div class="table-tablebody-right" style="left:<%=leftWidth;%>px;" data-find="body">
     <div class="table-tablebody-right-con">
-        <%for(var i=0;i<data.rows.right.length;i++){%>
-        <div class="table-tablebody-rows<%=(data.rows.right[i]['__selected__']?' table-row-selected':'');%><%=(data.rows.right[i]['__warned__']?' table-row-warn':'');%><%=(data.rows.right[i]['__error__']?' table-row-error':'');%>" unique="<%=data.rows.right[i].id;%>" data-bind="click:row" @cache(data.rows.left[i])>
-            <%for(var t in data.rows.right[i]){%>
-            <div class="table-tablebody-col" style="width:<%=data.rows.right[i]["__width__"];%>px;line-height:<%=data.rows.right[i]["__height__"];%>px"><%=data.rows.right[i][t];%></div>
+        <%for(var i=0;i<rightRows.length;i++){%>
+        <%
+        var rcols=rightRows[i].cols;
+        %>
+        <div class="table-tablebody-rows<%=(rightRows[i].selected?' table-row-selected':'');%><%=(rightRows[i].warn?' table-row-warn':'');%><%=(rightRows[i].error?' table-row-error':'');%>" unique="<%=rightRows[i].id;%>" data-bind="click:row" @cache(rightRows[i])>
+            <%for(var t=0;t<rcols.length;t++){%>
+            <div class="table-tablebody-col" style="width:<%=rcols[t].width;%>px;line-height:<%=rightRows[i].height;%>px"><%=rcols[t].value;%></div>
             <%}%>
         </div>
         <%}%>

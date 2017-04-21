@@ -20,16 +20,24 @@ Module({
         num: true
     },
     getRowData: function (data) {
-        var r = {};
+        var r = {
+            cols:[]
+        };
         for (var i = 0; i < this.option.cols.length; i++) {
+            var rr={};
             var a = this.option.cols[i];
-            r[a.key] = data[a.key];
-            setProp(r, "__width__", a.width);
-            setProp(r, "__height__", this.option.rowHeight);
-            setProp(r,"__selected__",false);
-            setProp(r,"__warned__",false);
-            setProp(r,"__error__",false);
+            rr.key=a.key;
+            rr.value=data[a.key];
+            rr.width=a.width;
+            if(a.key==="id"){
+                r.id=data[a.key];
+            }
+            r.cols.push(rr);
         }
+        r.height=this.option.rowHeight;
+        r.selected=false;
+        r.warn=false;
+        r.error=false;
         return r;
     },
     getPagesData: function (current, total) {
@@ -177,26 +185,29 @@ Module({
     checkSelectedState:function(){
         var isall=true;
         for(var i=0;i<this.data.body.length;i++){
-            if(!this.data.body[i]["__selected__"]){
+            if(!this.data.body[i].selected){
                 isall=false;
                 break;
             }
         }
-        for(var i=0;i<this.data.header.length;i++){
-            if(this.data.header[i].checkbox){
-                this.data.header[i].isall=isall;
+        for(var i=0;i<this.data.header.cols.length;i++){
+            if(this.data.header.cols[i].checkbox){
+                this.data.header.cols[i].isall=isall;
                 break;
             }
         }
     },
     action_set: function (option) {
         this.option = $.extend(true, {}, this.option, option);
-        var _header = [];
+        var _header = {
+            height: this.option.rowHeight,
+            cols: []
+        };
         for (var i = 0; i < this.option.cols.length; i++) {
-            _header.push({
+            _header.cols.push({
                 width: this.option.cols[i].width,
-                name: this.option.cols[i].name,
-                height: this.option.rowHeight
+                value: this.option.cols[i].name,
+                key:this.option.cols[i].action||""
             });
         }
         this.data = {
@@ -220,28 +231,28 @@ Module({
         return this.service_gotopage(this.getCurrent());
     },
     action_rowwarned:function(id){
-        this.setRowProps(id,{"__warned__":true});
+        this.setRowProps(id,{warn:true});
         this.trigger();
     },
     action_unrowwarned:function(id){
-        this.setRowProps(id,{"__warned__":false});
+        this.setRowProps(id,{warn:false});
         this.trigger();
     },
     action_rowerror:function(id){
-        this.setRowProps(id,{"__error__":true});
+        this.setRowProps(id,{error:true});
         this.trigger();
     },
     action_unrowerror:function(id){
-        this.setRowProps(id,{"__error__":false});
+        this.setRowProps(id,{error:false});
         this.trigger();
     },
     action_selected:function (id) {
-        this.setRowProps(id,{"__selected__":true});
+        this.setRowProps(id,{selected:true});
         this.checkSelectedState();
         this.trigger();
     },
     action_unselected:function (index) {
-        this.setRowProps(id,{"__selected__":false});
+        this.setRowProps(id,{selected:false});
         this.checkSelectedState();
         this.trigger();
     },
@@ -249,19 +260,19 @@ Module({
         var a=this.getRowProps(id);
         if(a){
             this.setRowProps(id,{
-                "__selected__":a["__selected__"]?false:true
+                selected:a.selected?false:true
             });
             this.checkSelectedState();
             this.trigger();
         }
     },
     action_selectall:function () {
-        this.setAllRowsProps({"__selected__":true});
+        this.setAllRowsProps({selected:true});
         this.checkSelectedState();
         this.trigger();
     },
     action_unselectall:function () {
-        this.setAllRowsProps({"__selected__":false});
+        this.setAllRowsProps({selected:false});
         this.checkSelectedState();
         this.trigger();
     },
@@ -356,29 +367,26 @@ Module({
     extend: "@.fnnocacheservice",
     action_set: function (option) {
         this.superClass("action_set", option);
-        var et = [], _width = 0;
+        var et = {cols:[],height:this.option.rowHeight}, _width = 0;
         if (this.option.num) {
-            et.push({
+            et.cols.push({
                 width: 30,
-                name: "&nbsp;",
-                height: this.option.rowHeight
+                value: "&nbsp;"
             });
             _width += 30;
         }
         if (this.option.checkbox) {
-            et.push({
+            et.cols.push({
                 width: 30,
-                name: "",
-                height: this.option.rowHeight,
+                value: "",
                 checkbox:true,
                 isall:false
             });
             _width += 30;
         }
-        et.push({
+        et.cols.push({
             width: 35 * this.option.deals.length,
-            name: "tools",
-            height: this.option.rowHeight
+            value: "tools"
         });
         _width += 35 * this.option.deals.length;
         this.data.header = {
@@ -399,30 +407,32 @@ Module({
             }
             var _left = [];
             for (var i = 0; i < _body.length; i++) {
-                var r = {}, rr = _body[i];
+                var r = {cols:[]}, rr = _body[i];
                 if (ths.option.num) {
-                    r["__num__"] = {
+                    r.cols.push({
                         width: 30,
-                        height: rr["__height__"]
-                    };
+                        key:"__num__",
+                        value:"&nbsp;"
+                    });
                 }
                 if (ths.option.checkbox) {
-                    r["__checkbox__"] = {
+                    r.cols.push({
                         width: 30,
-                        height: rr["__height__"]
-                    };
+                        key:"__checkbox__",
+                        value:false
+                    });
                 }
-                var q = [];
                 for (var m = 0; m < ths.option.deals.length; m++) {
-                    var cd = ths.option.deals[m];
-                    cd.width = 35;
-                    cd.height = rr["__height__"];
-                    q.push(cd);
+                    r.cols.push({
+                        width:35,
+                        key:"__deals__",
+                        value:ths.option.deals[m]
+                    });
                 }
-                r["__deals__"] = q;
-                r["__selected__"]=rr["__selected__"];
-                r["__warned__"]=rr["__warned__"];
-                r["__error__"]=rr["__error__"];
+                r.height=rr.height;
+                r.selected=rr.selected;
+                r.warn=rr.warn;
+                r.error=rr.error;
                 r.id=rr.id;
                 _left.push(r);
             }
@@ -433,6 +443,7 @@ Module({
                 leftHeight: ths.data.header.leftHeight
             };
             ths.data.footer = ths.getPagesData(data.current, data.total);
+            console.log(ths.data);
             ths.trigger();
         }, function () {
             ths.start();
@@ -472,14 +483,14 @@ Module({
     checkSelectedState:function(){
         var isall=true;
         for(var i=0;i<this.data.body.right.length;i++){
-            if(!this.data.body.right[i]["__selected__"]){
+            if(!this.data.body.right[i].selected){
                 isall=false;
                 break;
             }
         }
-        for(var i=0;i<this.data.header.left.length;i++){
-            if(this.data.header.left[i].checkbox){
-                this.data.header.left[i].isall=isall;
+        for(var i=0;i<this.data.header.left.cols.length;i++){
+            if(this.data.header.left.cols[i].checkbox){
+                this.data.header.left.cols[i].isall=isall;
                 break;
             }
         }

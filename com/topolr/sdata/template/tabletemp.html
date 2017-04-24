@@ -65,6 +65,7 @@
     </div>
 </div>
 <!--[body]-->
+<%if(data){%>
 <%
     var twidth=0;
     if(data[0]){
@@ -89,7 +90,9 @@
     </div>
     <%}%>
 </div>
+<%}%>
 <!--[bodyfn]-->
+<%if(data){%>
 <%for(var i=0;i<data.length;i++){%>
 <%
     var row=data[i],cols=row.cols;
@@ -114,7 +117,9 @@
     <%}%>
 </div>
 <%}%>
+<%}%>
 <!--[doublebodyfn]-->
+<%if(data){%>
 <%
     var leftRows=data.left,rightRows=data.right;
     var leftWidth=data.leftWidth;
@@ -161,8 +166,10 @@
         <%}%>
     </div>
 </div>
+<%}%>
 <!--[footer]-->
 <div class="table-tablefoot">
+    <%if(data.pages){%>
     <div class="table-tablefoot-pages">
         <%
             for(var i=0;i<data.pages.length;i++){
@@ -206,6 +213,7 @@
         <div class="table-tablefoot-btns-num"><input type="text"/></div>
         <div class="table-tablefoot-btns-btn">go</div>
     </div>
+    <%}%>
 </div>
 <!--[table]-->
 <div class="table-simple-con">

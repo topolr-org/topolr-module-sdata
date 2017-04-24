@@ -11,11 +11,9 @@
     <%for(var i=0;i<cols.length;i++){%>
         <%if(data.cols[i].checkbox===true){%>
         <div class="table-tableheader-col" style="width:<%=cols[i].width;%>px;line-height:<%=data.height;%>px">
-            <%if(cols[i].isall){%>
-            <input type="checkbox" data-bind="click:checkall" checked="true"/>
-            <%}else{%>
-            <input type="checkbox" data-bind="click:checkall"/>
-            <%}%>
+            <div data-bind="click:checkall" @cache(cols[i].isall)>
+                <svg class="icon"><use xlink:href="#<%=(cols[i].isall===true?'icon-checkbox-checked':'icon-checkbox-unchecked');%>"></use></svg>
+            </div>
         </div>
         <%}else if(cols[i].disable!==true){%>
         <div class="table-tableheader-col" style="width:<%=cols[i].width;%>px;line-height:<%=data.height;%>px"><%=cols[i].value;%></div>
@@ -29,11 +27,7 @@
         <%for(var i=0;i<cols.length;i++){%>
         <div class="table-tableheader-dropdown-list-item">
             <div class="table-tableheader-dropdown-list-item-a">
-                <%if(cols[i].disable!==true){%>
-                <input type="checkbox" checked="true"/>
-                <%}else{%>
-                <input type="checkbox"/>
-                <%}%>
+                <svg class="icon"><use xlink:href="#<%=(cols[i].disable!==true?'icon-checkbox-checked':'icon-checkbox-unchecked');%>"></use></svg>
             </div>
             <div class="table-tableheader-dropdown-list-item-b"><%=cols[i].value;%></div>
         </div>
@@ -51,11 +45,9 @@
         <%for(var i=0;i<leftCols.length;i++){%>
             <%if(leftCols[i].checkbox){%>
             <div class="table-tableheader-col" style="width:<%=leftCols[i].width;%>px;line-height:<%=leftHeight;%>px">
-                <%if(leftCols[i].isall){%>
-                <input type="checkbox" data-bind="click:checkall" checked="true"/>
-                <%}else{%>
-                <input type="checkbox" data-bind="click:checkall"/>
-                <%}%>
+                <div data-bind="click:checkall" @cache(leftCols[i].isall)>
+                    <svg class="icon"><use xlink:href="#<%=(leftCols[i].isall===true?'icon-checkbox-checked':'icon-checkbox-unchecked');%>"></use></svg>
+                </div>
             </div>
             <%}else{%>
             <div class="table-tableheader-col" style="width:<%=leftCols[i].width;%>px;line-height:<%=leftHeight;%>px"><%=leftCols[i].value;%></div>
@@ -98,9 +90,6 @@
     <%}%>
 </div>
 <!--[bodyfn]-->
-<%
-console.log(data);
-%>
 <%for(var i=0;i<data.length;i++){%>
 <%
     var row=data[i],cols=row.cols;
@@ -108,15 +97,17 @@ console.log(data);
 <div class="table-tablebody-rows<%=(row.selected?' table-row-selected':'');%><%=(row.warn?' table-row-warn':'');%><%=(row.error?' table-row-error':'');%>" unique="<%=row.id;%>" data-bind="click:row" @cache(row)>
     <%for(var m=0;m<cols.length;m++){%>
         <%if(cols[m].key==="__num__"){%>
-        <div class="table-tablebody-col" style="width:<%=cols[m].width;%>px;line-height:<%=row.height;%>px"><%=(i+1);%></div>
+        <div class="table-tablebody-col table-col-num" style="width:<%=cols[m].width;%>px;line-height:<%=row.height;%>px"><%=(i+1);%></div>
         <%}else if(cols[m].key==="__checkbox__"){%>
-            <%if(row.selected===true){%>
-                <div class="table-tablebody-col"  style="width:<%=cols[m].width;%>px;line-height:<%=row.height;%>px"><input type="checkbox" checked="true"/></div>
-            <%}else{%>
-                <div class="table-tablebody-col"  style="width:<%=cols[m].width;%>px;line-height:<%=row.height;%>px"><input type="checkbox"/></div>
-            <%}%>
+            <div class="table-tablebody-col table-col-checkbox"  style="width:<%=cols[m].width;%>px;line-height:<%=row.height;%>px">
+                <svg class="icon"><use xlink:href="#<%=(row.selected===true?'icon-checkbox-checked':'icon-checkbox-unchecked');%>"></use></svg>
+            </div>
         <%}else if(cols[m].key==="__deals__"){%>
-            <div class="table-tablebody-col" style="width:<%=cols[m].width;%>px;line-height:<%=row.height;%>px"><div @cache(cols[m].value)><%=cols[m].value.name;%></div></div>
+            <div class="table-tablebody-col table-col-deal" style="width:<%=cols[m].width;%>px;line-height:<%=row.height;%>px">
+                <div @cache(cols[m].value)>
+                    <svg class="icon"><use xlink:href="#<%=cols[m].value.icon;%>"></use></svg>
+                </div>
+            </div>
         <%}else{%>
             <div class="table-tablebody-col" style="width:<%=cols[m].width;%>px;line-height:<%=row.height;%>px"><%=cols[m].value;%></div>
         <%}%>
@@ -137,17 +128,19 @@ console.log(data);
         %>
         <%for(var d=0;d<cols.length;d++){%>
             <%if(cols[d].key==="__num__"){%>
-                <div class="table-tablebody-col" style="width:<%=cols[d].width;%>px;line-height:<%=leftRows[i].height;%>px"><%=(i+1);%></div>
+                <div class="table-tablebody-col table-col-num" style="width:<%=cols[d].width;%>px;line-height:<%=leftRows[i].height;%>px"><%=(i+1);%></div>
             <%}%>
             <%if(cols[d].key==="__checkbox__"){%>
-                <%if(leftRows[i].selected===true){%>
-                <div class="table-tablebody-col"  style="width:<%=cols[d].width;%>px;line-height:<%=leftRows[i].height;%>px"><input type="checkbox" checked="true"/></div>
-                <%}else{%>
-                <div class="table-tablebody-col"  style="width:<%=cols[d].width;%>px;line-height:<%=leftRows[i].height;%>px"><input type="checkbox"/></div>
-                <%}%>
+                <div class="table-tablebody-col table-col-checkbox"  style="width:<%=cols[d].width;%>px;line-height:<%=leftRows[i].height;%>px">
+                    <svg class="icon"><use xlink:href="#<%=(leftRows[i].selected===true?'icon-checkbox-checked':'icon-checkbox-unchecked');%>"></use></svg>
+                </div>
             <%}%>
             <%if(cols[d].key==="__deals__"){%>
-                <div class="table-tablebody-col" style="width:<%=cols[d].width;%>px;line-height:<%=leftRows[i].height;%>px"><div @cache(cols[d])><%=cols[d].value.name;%></div></div>
+                <div class="table-tablebody-col table-col-deal" style="width:<%=cols[d].width;%>px;line-height:<%=leftRows[i].height;%>px">
+                    <div @cache(cols[d])>
+                        <svg class="icon"><use xlink:href="#<%=cols[d].value.icon;%>"></use></svg>
+                    </div>
+                </div>
             <%}%>
         <%}%>
     </div>

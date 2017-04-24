@@ -3,9 +3,7 @@
   "version": "1.0.0",
   "description": "structure data modules of topolr",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/topolr-org/topolr-module-sdata.git"
@@ -24,6 +22,7 @@
   },
   "homepage": "https://github.com/topolr-org/topolr-module-sdata#readme",
   "dependencies": {
-    "topolr": "^1.4.1"
+    "topolr": "^1.4.1",
+    "topolr-module-icon": "^1.0.0"
   }
 }

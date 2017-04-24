@@ -3,6 +3,10 @@ $footHeight:35px;
 $lineColor:#F4F4F4;
 $borderColor:#D7D7D7;
 
+.table-col-num,.table-col-deal,.table-col-checkbox{
+    text-align: center;
+}
+
 .table-tableheader{
     display:flex;
     border-bottom: 1px solid #D7D7D7;
@@ -72,6 +76,9 @@ $borderColor:#D7D7D7;
         padding:0 5px 0 5px;
         vertical-align: top;
         box-sizing: border-box;
+    }
+    &.table-doubletableheader{
+        border:0;
     }
 }
 .table-tablebody{
@@ -251,6 +258,7 @@ $borderColor:#D7D7D7;
             left: 0;
             top: 0;
             right: 0;
+            border-bottom: 1px solid #D7D7D7;
         }
         .table-double-body {
             position: absolute;

@@ -26,18 +26,20 @@
         "d": true,
         "m": {
             "p": {
+                "icon.base": "90ca7dc060",
                 "sdata.list": "7ba1f53ce1",
                 "sdata.service.page": "05d9f7efec",
                 "sdata.service.table": "8858420741",
-                "sdata.table": "72715d4ea8",
-                "sdata.test": "e41494a886",
+                "sdata.table": "9644f2de11",
+                "sdata.test": "99a6f7b0f8",
                 "sdata.tree": "a1b39efdbd"
             },
             "c": {
-                "sdata.style.tablestyle": "3e944004d2"
+                "icon.style.icon": "aaa29edfb8",
+                "sdata.style.tablestyle": "54a9f3e3ef"
             },
             "t": {
-                "sdata.template.tabletemp": "4d271cf600"
+                "sdata.template.tabletemp": "93ed80d5f5"
             }
         },
         "c": {
@@ -46,13 +48,15 @@
                     "sdata.test",
                     "sdata.table",
                     "sdata.service.table",
-                    "sdata.service.page"
+                    "sdata.service.page",
+                    "icon.base"
+                ],
+                "c": [
+                    "icon.style.icon",
+                    "sdata.style.tablestyle"
                 ],
                 "t": [
                     "sdata.template.tabletemp"
-                ],
-                "c": [
-                    "sdata.style.tablestyle"
                 ]
             }
         },

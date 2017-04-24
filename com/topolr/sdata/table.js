@@ -1,8 +1,9 @@
 /**
  * @packet sdata.table;
  * @template sdata.template.tabletemp;
- * @css sdata.style.tablestyle;
  * @require sdata.service.table;
+ * @require icon.base;
+ * @css sdata.style.tablestyle;
  */
 Module({
     name:"basetable",
@@ -28,12 +29,13 @@ Module({
     },
     autodom:true,
     bind_checkall:function (dom) {
-        this.dispatchEvent("checkall",dom.get(0).checked);
+        this.dispatchEvent("checkall",dom.cache());
     }
 });
 Module({
     name:"doubletableheader",
     extend:"@.tableheader",
+    className:"table-doubletableheader",
     template:"@tabletemp.doubleheader",
     setScroll:function (info) {
         this.finders("left").scrollLeft(info.left);
@@ -210,9 +212,9 @@ Module({
     event_checkall:function(e){
         var a=e.data;
         if(a){
-            this.selectAllRows();
-        }else{
             this.unselectAllRows();
+        }else{
+            this.selectAllRows();
         }
     }
 });

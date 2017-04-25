@@ -28,9 +28,9 @@
             "p": {
                 "icon.base": "1ef03576bc",
                 "sdata.list": "7ba1f53ce1",
-                "sdata.service.page": "05d9f7efec",
+                "sdata.service.page": "7554ff594f",
                 "sdata.service.table": "d363c642aa",
-                "sdata.table": "72a8198665",
+                "sdata.table": "71673ae12f",
                 "sdata.test": "398a55e032",
                 "sdata.tree": "a1b39efdbd"
             },
@@ -39,7 +39,7 @@
                 "sdata.style.tablestyle": "15e345a58f"
             },
             "t": {
-                "sdata.template.tabletemp": "dc0c39bd2f"
+                "sdata.template.tabletemp": "55463628ed"
             }
         },
         "c": {

@@ -69,6 +69,7 @@ Module({
     gotoPage:function (page) {
         var ths=this;
         return this.postRequest(this.option.url,this.getParameter(page)).then(function (data) {
+            ths._current=(page<=0?1:page);
             if(data.total){
                 ths._total=data.total;
                 var a=data.total%ths.option.pageSize;

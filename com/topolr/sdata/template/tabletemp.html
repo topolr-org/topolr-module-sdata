@@ -173,11 +173,11 @@
 <%}%>
 <!--[footer]-->
 <div class="table-tablefoot">
-    <%if(data.pages){%>
+    <%if(data){%>
     <div class="table-tablefoot-pages">
         <%
-            for(var i=0;i<data.pages.length;i++){
-            var page=data.pages[i];
+            for(var i=0;i<data.length;i++){
+            var page=data[i];
         %>
         <%if(page.name==='prev'){%>
             <%if(page.disabled===true){%>

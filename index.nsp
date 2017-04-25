@@ -30,16 +30,16 @@
                 "sdata.list": "7ba1f53ce1",
                 "sdata.service.page": "7554ff594f",
                 "sdata.service.table": "c0e943d797",
-                "sdata.table": "8543d6f1ff",
-                "sdata.test": "e224a56f18",
+                "sdata.table": "c70ebaee6f",
+                "sdata.test": "d6c22ecbea",
                 "sdata.tree": "a1b39efdbd"
             },
             "c": {
                 "icon.style.icon": "aaa29edfb8",
-                "sdata.style.tablestyle": "fc049907ce"
+                "sdata.style.tablestyle": "d6e2af61a8"
             },
             "t": {
-                "sdata.template.tabletemp": "55463628ed"
+                "sdata.template.tabletemp": "914df0f87e"
             }
         },
         "c": {

@@ -17,7 +17,11 @@ Module({
     option:{
         tools:[]
     },
-    autodom:true
+    autodom:true,
+    bind_btnclick:function (dom,e) {
+        this.dispatchEvent("btnclick",dom.cache());
+        e.stopPropagation();
+    }
 });
 Module({
     name:"tableheader",
@@ -63,11 +67,15 @@ Module({
     option:{
         deals:[]
     },
-    template:"@tabletemp.bodyfn"
+    template:"@tabletemp.bodyfn",
+    bind_deal:function (dom,e) {
+        this.dispatchEvent("dealclick",dom.cache());
+        e.stopPropagation();
+    }
 });
 Module({
     name:"doublebodyfn",
-    extend:'@.tablebody',
+    extend:'@.tablebodyfn',
     className:"doublebodyfn",
     template:"@tabletemp.doublebodyfn",
     find_body:function (dom) {
@@ -125,7 +133,7 @@ Module({
         headType:"@.tableheader",
         bodyType:"@.tablebody",
         footType:"@.tablefooter",
-        selectType:"single"//single,multi
+        selectType:"multi"//single,multi
     },
     init:function () {
         this.getService("table").action('set',this.option);
@@ -234,6 +242,12 @@ Module({
         }else{
             this.selectAllRows();
         }
+    },
+    event_dealclick:function (e) {
+        console.log(e.data);
+    },
+    event_btnclick:function (e) {
+        console.log(e.data);
     }
 });
 Module({

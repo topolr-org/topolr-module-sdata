@@ -1,6 +1,8 @@
 <!--[tools]-->
 <%for(var i=0;i<data.length;i++){%>
-<div class="table-tabletools-tool" @cache(data[i])><%=data[i].name;%></div>
+<div class="table-tabletools-tool" data-bind="click:btnclick" @cache(data[i])>
+    <svg class="icon"><use xlink:href="#<%=data[i].icon;%>"></use></svg>
+</div>
 <%}%>
 <!--[header]-->
 <%
@@ -111,7 +113,7 @@
             </div>
         <%}else if(cols[m].key==="__deals__"){%>
             <div class="table-tablebody-col table-col-deal" style="width:<%=cols[m].width;%>px;">
-                <div @cache(cols[m].value)>
+                <div data-bind="click:deal" @cache(cols[m].value)>
                     <svg class="icon"><use xlink:href="#<%=cols[m].value.icon;%>"></use></svg>
                 </div>
             </div>
@@ -146,7 +148,7 @@
             <%}%>
             <%if(cols[d].key==="__deals__"){%>
                 <div class="table-tablebody-col table-col-deal" style="width:<%=cols[d].width;%>px;">
-                    <div @cache(cols[d])>
+                    <div data-bind="click:deal" @cache(cols[d])>
                         <svg class="icon"><use xlink:href="#<%=cols[d].value.icon;%>"></use></svg>
                     </div>
                 </div>
@@ -180,18 +182,14 @@
             var page=data[i];
         %>
         <%if(page.name==='prev'){%>
-            <%if(page.disabled===true){%>
-            <div class="table-tablefoot-pages-page table-page-disabled" data-bind="click:prev">prev</div>
-            <%}else{%>
-            <div class="table-tablefoot-pages-page" data-bind="click:prev">prev</div>
-            <%}%>
+            <div class="table-tablefoot-pages-page<%=(page.disabled===true?' table-page-disabled':'');%>" data-bind="click:prev">
+                <svg class="icon" style="transform:rotate(-90deg)"><use xlink:href="#icon-chevron-up"></use></svg>
+            </div>
         <%}%>
         <%if(page.name==='next'){%>
-            <%if(page.disabled===true){%>
-            <div class="table-tablefoot-pages-page table-page-disabled" data-bind="click:next">next</div>
-            <%}else{%>
-            <div class="table-tablefoot-pages-page" data-bind="click:next">next</div>
-            <%}%>
+            <div class="table-tablefoot-pages-page<%=(page.disabled===true?' table-page-disabled':'');%>" data-bind="click:next">
+                <svg class="icon" style="transform:rotate(90deg)"><use xlink:href="#icon-chevron-up"></use></svg>
+            </div>
         <%}%>
         <%if(page.name==='btn'){%>
             <%if(page.none===true){%>
@@ -215,17 +213,19 @@
     </div>
     <div class="table-tablefoot-btns">
         <div class="table-tablefoot-btns-num"><input type="text"/></div>
-        <div class="table-tablefoot-btns-btn">go</div>
+        <div class="table-tablefoot-btns-btn">
+            <svg class="icon" style="transform:rotate(90deg)"><use xlink:href="#icon-chevron-up"></use></svg>
+        </div>
     </div>
     <%}%>
 </div>
 <!--[table]-->
 <div class="table-simple-con">
-    <div class="table-simple-head" style="line-height:<%=data.headerHeight;%>px">
-        <@module type="{{data.headType}}"/>
-    </div>
     <div class="table-simple-body" style="top:<%=data.headerHeight;%>px;line-height:<%=data.rowHeight;%>px">
         <@module type="{{data.bodyType}}"/>
+    </div>
+    <div class="table-simple-head" style="line-height:<%=data.headerHeight;%>px">
+        <@module type="{{data.headType}}"/>
     </div>
 </div>
 <div class="table-simple-foot">
@@ -236,11 +236,11 @@
     <@module type="{{data.toolType}}"/>
 </div>
 <div class="table-fn-con">
-    <div class="table-fn-head" style="line-height:<%=data.headerHeight;%>px">
-        <@module type="{{data.headType}}"/>
-    </div>
     <div class="table-fn-body" style="top:<%=data.headerHeight;%>px;line-height:<%=data.rowHeight;%>px">
         <@module type="{{data.bodyType}}"/>
+    </div>
+    <div class="table-fn-head" style="line-height:<%=data.headerHeight;%>px">
+        <@module type="{{data.headType}}"/>
     </div>
 </div>
 <div class="table-fn-foot">
@@ -251,11 +251,11 @@
     <@module type="{{data.toolType}}"/>
 </div>
 <div class="table-double-con">
-    <div class="table-double-head" style="line-height:<%=data.headerHeight;%>px;height:<%=data.headerHeight;%>px">
-        <@module type="{{data.headType}}"/>
-    </div>
     <div class="table-double-body" style="top:<%=data.headerHeight;%>px;line-height:<%=data.rowHeight;%>px;">
         <@module type="{{data.bodyType}}"/>
+    </div>
+    <div class="table-double-head" style="line-height:<%=data.headerHeight;%>px;height:<%=data.headerHeight;%>px">
+        <@module type="{{data.headType}}"/>
     </div>
 </div>
 <div class="table-double-foot">

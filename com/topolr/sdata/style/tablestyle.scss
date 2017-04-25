@@ -3,10 +3,12 @@ $footHeight:35px;
 $lineColor:#F4F4F4;
 $borderColor:#D7D7D7;
 
-.table-col-num,.table-col-deal,.table-col-checkbox{
-    text-align: center;
+.table-tabletools{
+    .table-tabletools-tool{
+        display: inline-block;
+        padding:0 10px 0 10px;
+    }
 }
-
 .table-tableheader{
     border-bottom: 1px solid #D7D7D7;
     position: relative;
@@ -91,17 +93,22 @@ $borderColor:#D7D7D7;
     .table-tablebody-rows{
         border-bottom: 1px solid $borderColor;
         white-space: nowrap;
+        transition:all ease-out .5s;
+        background:white;
         &:nth-child(even){
             background:$lineColor;
         }
         &.table-row-selected{
-            background:lightgreen;
+            background:#5CB85C;
+            color:white;
         }
         &.table-row-warn{
-            background:lightyellow;
+            background:#F0AD4E;
+            color:white;
         }
         &.table-row-error{
-            background:indianred;
+            background:#D9534F;
+            color:white;
         }
     }
     .table-tablebody-col{
@@ -121,6 +128,19 @@ $borderColor:#D7D7D7;
         }
         &.table-col-right{
             text-align: right;
+        }
+        &.table-col-num{
+            text-align: center;
+        }
+        &.table-col-deal{
+            text-align: center;
+            transition:all ease-out .5s;
+            &:hover{
+                background:#EDEDED;
+            }
+        }
+        &.table-col-checkbox{
+            text-align: center;
         }
     }
     .table-tablebody-left{
@@ -180,6 +200,7 @@ $borderColor:#D7D7D7;
     top:0;
     right:0;
     bottom:0;
+    cursor: default;
     .table-simple-con{
         position:absolute;
         left:0;
@@ -200,6 +221,7 @@ $borderColor:#D7D7D7;
             left:0;
             right:0;
             bottom:0;
+            background:#DADADA;
         }
     }
     .table-simple-foot{
@@ -215,12 +237,14 @@ $borderColor:#D7D7D7;
     top:0;
     right:0;
     bottom:0;
+    cursor: default;
     .table-fn-tool{
         position: absolute;
         left:0;
         top:0;
         right:0;
         height:$toolHeight;
+        line-height:$toolHeight;
     }
     .table-fn-con {
         position:absolute;
@@ -241,6 +265,7 @@ $borderColor:#D7D7D7;
             right:0;
             bottom:0;
             overflow: auto;
+            background:#DADADA;
         }
     }
     .table-fn-foot{
@@ -256,11 +281,13 @@ $borderColor:#D7D7D7;
     right:0;
     top:0;
     bottom:0;
+    cursor: default;
     .table-double-tool{
         position:absolute;
         left:0;
         top:0;
         right:0;
+        line-height:$toolHeight;
     }
     .table-double-con {
         position: absolute;
@@ -269,18 +296,21 @@ $borderColor:#D7D7D7;
         top:$toolHeight;
         bottom:$footHeight;
         border:1px solid $borderColor;
+        background:#DADADA;
         .table-double-head {
             position: absolute;
             left: 0;
             top: 0;
             right: 0;
             border-bottom: 1px solid #D7D7D7;
+            background:white;
         }
         .table-double-body {
             position: absolute;
             left: 0;
             right: 0;
             bottom: 0;
+            background:#DADADA;
             .table-tablebody-left{
                 overflow: hidden;
             }

@@ -176,10 +176,19 @@
 <!--[footer]-->
 <div class="table-tablefoot">
     <%if(data){%>
+    <div class="table-tablefoot-sizes">
+        <div class="table-tablefoot-sizes-num"><%=data.size.current;%></div>
+        <div class="table-tablefoot-sizes-list">
+            <%for(var i=0;i<data.size.map.length;i++){%>
+            <div class="table-tablefoot-sizes-list-item" data-bind="click:pagesize" @cache(data.size.map[i])><%=data.size.map[i];%></div>
+            <%}%>
+        </div>
+    </div>
+    <%if(data.pages){%>
     <div class="table-tablefoot-pages">
         <%
-            for(var i=0;i<data.length;i++){
-            var page=data[i];
+            for(var i=0;i<data.pages.length;i++){
+            var page=data.pages[i];
         %>
         <%if(page.name==='prev'){%>
             <div class="table-tablefoot-pages-page<%=(page.disabled===true?' table-page-disabled':'');%>" data-bind="click:prev">
@@ -211,6 +220,7 @@
         <%}%>
         <%}%>
     </div>
+    <%}%>
     <div class="table-tablefoot-btns">
         <div class="table-tablefoot-btns-num"><input type="text"/></div>
         <div class="table-tablefoot-btns-btn">

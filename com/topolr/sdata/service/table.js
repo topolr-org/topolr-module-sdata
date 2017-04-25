@@ -18,7 +18,8 @@ Module({
         headerHeight:40,
         rowHeight: 35,
         checkbox: true,
-        num: true
+        num: true,
+        pageSizes:[10,20,30,40]
     },
     getRowData: function (data) {
         var r = {
@@ -155,7 +156,13 @@ Module({
                 _body.push(ths.getRowData(_list[i]));
             }
             ths.data.body = _body;
-            ths.data.footer = ths.getPagesData(data.current, data.total);
+            ths.data.footer = {
+                pages:ths.getPagesData(data.current, data.total),
+                size:{
+                    map:ths.option.pageSizes,
+                    current:ths.option.pageSize
+                }
+            };
             ths.trigger();
         }, function () {
             ths.start();
@@ -273,6 +280,7 @@ Module({
     },
     action_set: function (option) {
         this.option = $.extend(true, {}, this.option, option);
+        this.option.pageSize=this.option.pageSizes[0];
         var _header = {
             height: this.option.headerHeight,
             cols: []
@@ -386,6 +394,10 @@ Module({
     action_unhidecol:function (key) {
         this.unHideCol(key);
         this.trigger();
+    },
+    service_setpagesize:function (size) {
+        this.stop();
+        return this.then(this.resetPageSize(size));
     }
 });
 Module({
@@ -459,7 +471,13 @@ Module({
                 rr.cols=r.cols.concat(rr.cols);
             }
             ths.data.body = _body;
-            ths.data.footer = ths.getPagesData(data.current, data.total);
+            ths.data.footer = {
+                pages:ths.getPagesData(data.current, data.total),
+                size:{
+                    map:ths.option.pageSizes,
+                    current:ths.option.pageSize
+                }
+            };
             ths.trigger();
         }, function () {
             ths.start();
@@ -550,8 +568,13 @@ Module({
                 leftWidth: ths.data.header.leftWidth,
                 leftHeight: ths.data.header.leftHeight
             };
-            ths.data.footer = ths.getPagesData(data.current, data.total);
-            console.log(ths.data);
+            ths.data.footer = {
+                pages:ths.getPagesData(data.current, data.total),
+                size:{
+                    map:ths.option.pageSizes,
+                    current:ths.option.pageSize
+                }
+            };
             ths.trigger();
         }, function () {
             ths.start();

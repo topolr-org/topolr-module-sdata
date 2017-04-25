@@ -109,6 +109,9 @@ Module({
     },
     bind_goto:function (dom) {
         this.dispatchEvent("gotoPage",dom.cache().num);
+    },
+    bind_pagesize:function (dom) {
+        this.dispatchEvent("pagesize",dom.cache());
     }
 });
 Module({
@@ -133,6 +136,7 @@ Module({
         headType:"@.tableheader",
         bodyType:"@.tablebody",
         footType:"@.tablefooter",
+        pageSizes:[10,20,30,40],
         selectType:"multi"//single,multi
     },
     init:function () {
@@ -215,6 +219,9 @@ Module({
         }else{
             this.getService("table").action("hidecol",e.data.key);
         }
+    },
+    event_pagesize:function (e) {
+        this.getService("table").trigger("setpagesize",e.data);
     }
 });
 Module({

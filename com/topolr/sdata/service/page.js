@@ -56,6 +56,10 @@ Module({
     },
     getCurrent:function() {
         return this._current;
+    },
+    resetPageSize:function (size) {
+        this.option.pageSize=size;
+        return this.gotoPage(1);
     }
 });
 Module({

@@ -28,18 +28,18 @@
             "p": {
                 "icon.base": "1ef03576bc",
                 "sdata.list": "7ba1f53ce1",
-                "sdata.service.page": "7554ff594f",
-                "sdata.service.table": "c0e943d797",
-                "sdata.table": "c70ebaee6f",
-                "sdata.test": "d6c22ecbea",
+                "sdata.service.page": "0957cea550",
+                "sdata.service.table": "7fd4843789",
+                "sdata.table": "91e5467002",
+                "sdata.test": "6ca120e52b",
                 "sdata.tree": "a1b39efdbd"
             },
             "c": {
                 "icon.style.icon": "aaa29edfb8",
-                "sdata.style.tablestyle": "d6e2af61a8"
+                "sdata.style.tablestyle": "3bb32a0a04"
             },
             "t": {
-                "sdata.template.tabletemp": "914df0f87e"
+                "sdata.template.tabletemp": "694ace0b84"
             }
         },
         "c": {

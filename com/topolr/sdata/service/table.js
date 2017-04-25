@@ -352,6 +352,12 @@ Module({
         this.checkSelectedState();
         this.trigger();
     },
+    action_singleSelected:function (id) {
+        this.setAllRowsProps({selected:false});
+        this.setRowProps(id,{selected:true});
+        this.checkSelectedState();
+        this.trigger();
+    },
     action_getrowdata:function(id){
         return this.getRowProps(id);
     },

@@ -29,14 +29,14 @@
                 "icon.base": "1ef03576bc",
                 "sdata.list": "7ba1f53ce1",
                 "sdata.service.page": "7554ff594f",
-                "sdata.service.table": "d363c642aa",
-                "sdata.table": "65df81189a",
-                "sdata.test": "398a55e032",
+                "sdata.service.table": "c0e943d797",
+                "sdata.table": "8543d6f1ff",
+                "sdata.test": "e224a56f18",
                 "sdata.tree": "a1b39efdbd"
             },
             "c": {
                 "icon.style.icon": "aaa29edfb8",
-                "sdata.style.tablestyle": "15e345a58f"
+                "sdata.style.tablestyle": "fc049907ce"
             },
             "t": {
                 "sdata.template.tabletemp": "55463628ed"

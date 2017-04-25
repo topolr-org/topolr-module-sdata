@@ -14,8 +14,11 @@ Option({
                         cols:[
                             {name:"name",key:"name",width:200,disable:false},
                             {name:"birth",key:"birth",width:200,disable:false},
-                            {name:"id",key:"id",width:200,disable:true}
-                        ]
+                            {name:"id",key:"id",width:200,disable:true,hook:function (a,b,c) {
+                                return "--"+a;
+                            }}
+                        ],
+                        selectType:"single"
                     },
                     container:this.finders("container")
                 });

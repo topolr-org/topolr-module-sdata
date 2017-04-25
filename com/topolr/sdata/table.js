@@ -159,7 +159,11 @@ Module({
         this.prevPage();
     },
     event_rowclick:function (e) {
-        this.getService("table").action("toggleSelected",e.data.id);
+        if(this.option.selectType==="single"){
+            this.getService("table").action("singleSelected", e.data.id);
+        }else {
+            this.getService("table").action("toggleSelected", e.data.id);
+        }
     },
     selecRow:function(id){
         this.getService("table").action("selected",id);

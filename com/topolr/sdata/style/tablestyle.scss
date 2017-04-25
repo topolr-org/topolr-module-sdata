@@ -8,14 +8,17 @@ $borderColor:#D7D7D7;
 }
 
 .table-tableheader{
-    display:flex;
     border-bottom: 1px solid #D7D7D7;
+    position: relative;
     .table-tableheader-con{
-        flex:1;
     }
     .table-tableheader-dropdown{
         width:30px;
-        position:relative;
+        position:absolute;
+        top:0;
+        right:0;
+        bottom:0;
+        background:white;
         .table-tableheader-dropdown-arrow{
             text-align: center;
             .icon{
@@ -84,6 +87,7 @@ $borderColor:#D7D7D7;
     }
 }
 .table-tablebody{
+    overflow-x: hidden;
     .table-tablebody-rows{
         border-bottom: 1px solid $borderColor;
         white-space: nowrap;
@@ -183,6 +187,7 @@ $borderColor:#D7D7D7;
         right:0;
         bottom:$toolHeight;
         border:1px solid $borderColor;
+        overflow: hidden;
         .table-simple-head{
             position:absolute;
             left:0;

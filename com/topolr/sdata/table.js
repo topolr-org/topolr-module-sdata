@@ -132,7 +132,6 @@ Module({
         this.getService("table").trigger("gotopage",1);
     },
     update:function (a) {
-        console.log(a)
         this.getChildByType(this.option.headType).update(a.header);
         this.getChildByType(this.option.bodyType).update(a.body);
         this.getChildByType(this.option.footType).update(a.footer);

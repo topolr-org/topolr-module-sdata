@@ -17,8 +17,10 @@ $borderColor:#D7D7D7;
         width:30px;
         position:relative;
         .table-tableheader-dropdown-arrow{
-            line-height:40px;
             text-align: center;
+            .icon{
+                transform: rotate(180deg);
+            }
         }
         .table-tableheader-dropdown-list{
             position:absolute;
@@ -107,6 +109,15 @@ $borderColor:#D7D7D7;
         padding:0 5px 0 5px;
         vertical-align: top;
         box-sizing: border-box;
+        &.table-col-center{
+            text-align: center;
+        }
+        &.table-col-left{
+            text-align: left;
+        }
+        &.table-col-right{
+            text-align: right;
+        }
     }
     .table-tablebody-left{
         position:absolute;
@@ -270,6 +281,9 @@ $borderColor:#D7D7D7;
             }
             .table-tablebody-right{
                 overflow: auto;
+            }
+            .table-tablebody-right-con{
+                float:left;
             }
         }
     }

@@ -15,7 +15,8 @@ Module({
     extend: "@page.totalservice",
     option: {
         cols: [],
-        rowHeight: 40,
+        headerHeight:40,
+        rowHeight: 35,
         checkbox: true,
         num: true
     },
@@ -27,9 +28,14 @@ Module({
             var rr={};
             var a = this.option.cols[i];
             rr.key=a.key;
-            rr.value=data[a.key];
+            if(a.hook) {
+                rr.value = a.hook(a.key,data,data[a.key]);
+            }else{
+                rr.value = data[a.key];
+            }
             rr.width=a.width;
-            rr.disable=a.disable;
+            rr.disable=a.disable||false;
+            rr.textAlign=a.textAlign||"left";
             if(a.key==="id"){
                 r.id=data[a.key];
             }
@@ -166,6 +172,28 @@ Module({
         }
         return r;
     },
+    setColProps:function (key,props) {
+        var index=null;
+        for(var i=0;i<this.data.header.cols.length;i++){
+            var a=this.data.header.cols[i];
+            if(a.key===key){
+                index=i;
+                break;
+            }
+        }
+        if(index!==null) {
+            $.extend(this.data.header.cols[index], props);
+            for (var i = 0; i < this.data.body.length; i++) {
+                var row=this.data.body[i];
+                for(var t=0;t<row.cols.length;t++){
+                    if(row.cols[t].key===key){
+                        $.extend(row.cols[t],props);
+                        break;
+                    }
+                }
+            }
+        }
+    },
     setRowProps:function(id,data){
         var r=null;
         for(var i=0;i<this.data.body.length;i++){
@@ -233,18 +261,29 @@ Module({
         }
         return r;
     },
+    hideCol:function (index) {
+        this.setColProps(index,{
+            disable:true
+        });
+    },
+    unHideCol:function (index) {
+        this.setColProps(index,{
+            disable:false
+        });
+    },
     action_set: function (option) {
         this.option = $.extend(true, {}, this.option, option);
         var _header = {
-            height: this.option.rowHeight,
+            height: this.option.headerHeight,
             cols: []
         };
         for (var i = 0; i < this.option.cols.length; i++) {
             _header.cols.push({
                 width: this.option.cols[i].width,
                 value: this.option.cols[i].name,
-                key:this.option.cols[i].action||"",
-                disable:this.option.cols[i].disable
+                key:this.option.cols[i].key||"",
+                disable:this.option.cols[i].disable,
+                isCol:true
             });
         }
         this.data = {
@@ -333,6 +372,14 @@ Module({
     },
     action_getallrows:function(){
         return this.getAllRows();
+    },
+    action_hidecol:function (key) {
+        this.hideCol(key);
+        this.trigger();
+    },
+    action_unhidecol:function (key) {
+        this.unHideCol(key);
+        this.trigger();
     }
 });
 Module({
@@ -419,7 +466,7 @@ Module({
     extend: "@.fnnocacheservice",
     action_set: function (option) {
         this.superClass("action_set", option);
-        var et = {cols:[],height:this.option.rowHeight}, _width = 0;
+        var et = {cols:[],height:this.option.headerHeight}, _width = 0;
         if (this.option.num) {
             et.cols.push({
                 width: 30,
@@ -445,7 +492,7 @@ Module({
             left: et,
             right: this.data.header,
             leftWidth: _width,
-            leftHeight: this.option.rowHeight
+            leftHeight: this.option.headerHeight
         }
     },
     then: function (ps) {
@@ -566,5 +613,27 @@ Module({
             r.push(this.getDataFromCols(this.data.body.right[i].cols));
         }
         return r;
+    },
+    setColProps:function (index,props) {
+        var index=null;
+        for(var i=0;i<this.data.header.right.cols.length;i++){
+            var a=this.data.header.right.cols[i];
+            if(a.key===key){
+                index=i;
+                break;
+            }
+        }
+        if(index!==null) {
+            $.extend(this.data.header.right.cols[index], props);
+            for (var i = 0; i < this.data.body.right.length; i++) {
+                var row=this.data.body.right[i];
+                for(var t=0;t<row.cols.length;t++){
+                    if(row.cols[t].key===key){
+                        $.extend(row.cols[t],props);
+                        break;
+                    }
+                }
+            }
+        }
     }
 });

@@ -26,20 +26,20 @@
         "d": true,
         "m": {
             "p": {
-                "icon.base": "90ca7dc060",
+                "icon.base": "1ef03576bc",
                 "sdata.list": "7ba1f53ce1",
                 "sdata.service.page": "05d9f7efec",
-                "sdata.service.table": "8858420741",
-                "sdata.table": "9644f2de11",
-                "sdata.test": "99a6f7b0f8",
+                "sdata.service.table": "d363c642aa",
+                "sdata.table": "72a8198665",
+                "sdata.test": "398a55e032",
                 "sdata.tree": "a1b39efdbd"
             },
             "c": {
                 "icon.style.icon": "aaa29edfb8",
-                "sdata.style.tablestyle": "54a9f3e3ef"
+                "sdata.style.tablestyle": "15e345a58f"
             },
             "t": {
-                "sdata.template.tabletemp": "4488cb3a1d"
+                "sdata.template.tabletemp": "dc0c39bd2f"
             }
         },
         "c": {

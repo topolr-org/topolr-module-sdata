@@ -10,27 +10,31 @@
     <div class="table-tableheader-rows">
     <%for(var i=0;i<cols.length;i++){%>
         <%if(data.cols[i].checkbox===true){%>
-        <div class="table-tableheader-col" style="width:<%=cols[i].width;%>px;line-height:<%=data.height;%>px">
+        <div class="table-tableheader-col" style="width:<%=cols[i].width;%>px;">
             <div data-bind="click:checkall" @cache(cols[i].isall)>
                 <svg class="icon"><use xlink:href="#<%=(cols[i].isall===true?'icon-checkbox-checked':'icon-checkbox-unchecked');%>"></use></svg>
             </div>
         </div>
         <%}else if(cols[i].disable!==true){%>
-        <div class="table-tableheader-col" style="width:<%=cols[i].width;%>px;line-height:<%=data.height;%>px"><%=cols[i].value;%></div>
+        <div class="table-tableheader-col" style="width:<%=cols[i].width;%>px;"><%=cols[i].value;%></div>
         <%}%>
     <%}%>
     </div>
 </div>
 <div class="table-tableheader-dropdown">
-    <div class="table-tableheader-dropdown-arrow">a</div>
+    <div class="table-tableheader-dropdown-arrow">
+        <svg class="icon"><use xlink:href="#icon-chevron-up"></use></svg>
+    </div>
     <div class="table-tableheader-dropdown-list">
         <%for(var i=0;i<cols.length;i++){%>
-        <div class="table-tableheader-dropdown-list-item">
-            <div class="table-tableheader-dropdown-list-item-a">
-                <svg class="icon"><use xlink:href="#<%=(cols[i].disable!==true?'icon-checkbox-checked':'icon-checkbox-unchecked');%>"></use></svg>
+            <%if(cols[i].isCol){%>
+            <div class="table-tableheader-dropdown-list-item" data-bind="click:itemclick" @cache({key:cols[i].key,state:cols[i].disable})>
+                <div class="table-tableheader-dropdown-list-item-a">
+                    <svg class="icon"><use xlink:href="#<%=(cols[i].disable!==true?'icon-checkbox-checked':'icon-checkbox-unchecked');%>"></use></svg>
+                </div>
+                <div class="table-tableheader-dropdown-list-item-b"><%=cols[i].value;%></div>
             </div>
-            <div class="table-tableheader-dropdown-list-item-b"><%=cols[i].value;%></div>
-        </div>
+            <%}%>
         <%}%>
     </div>
 </div>
@@ -44,13 +48,13 @@
     <div class="table-tableheader-rows">
         <%for(var i=0;i<leftCols.length;i++){%>
             <%if(leftCols[i].checkbox){%>
-            <div class="table-tableheader-col" style="width:<%=leftCols[i].width;%>px;line-height:<%=leftHeight;%>px">
+            <div class="table-tableheader-col" style="width:<%=leftCols[i].width;%>px;">
                 <div data-bind="click:checkall" @cache(leftCols[i].isall)>
                     <svg class="icon"><use xlink:href="#<%=(leftCols[i].isall===true?'icon-checkbox-checked':'icon-checkbox-unchecked');%>"></use></svg>
                 </div>
             </div>
             <%}else{%>
-            <div class="table-tableheader-col" style="width:<%=leftCols[i].width;%>px;line-height:<%=leftHeight;%>px"><%=leftCols[i].value;%></div>
+            <div class="table-tableheader-col" style="width:<%=leftCols[i].width;%>px;"><%=leftCols[i].value;%></div>
             <%}%>
         <%}%>
     </div>
@@ -59,7 +63,7 @@
     <div style="width:5000px">
         <div class="table-tableheader-rows">
             <%for(var i=0;i<rightCols.length;i++){%>
-            <div class="table-tableheader-col" style="width:<%=rightCols[i].width;%>px;line-height:<%=rightHeight;%>px"><%=rightCols[i].value;%></div>
+            <div class="table-tableheader-col" style="width:<%=rightCols[i].width;%>px;"><%=rightCols[i].value;%></div>
             <%}%>
         </div>
     </div>
@@ -84,7 +88,7 @@
     <div class="table-tablebody-rows<%=(row.selected?' table-row-selected':'');%>" unique="<%=row.id;%>" data-bind="click:row" @cache(row)>
         <%for(var t in cols){%>
             <%if(cols[t].disable!==true){%>
-            <div class="table-tablebody-col" style="width:<%=cols[t].width;%>px;line-height:<%=row.height;%>px"><%=cols[t].value;%></div>
+            <div class="table-tablebody-col<%=(' table-col-'+cols[t].textAlign);%>" style="width:<%=cols[t].width;%>px;"><%=cols[t].value;%></div>
             <%}%>
         <%}%>
     </div>
@@ -100,19 +104,19 @@
 <div class="table-tablebody-rows<%=(row.selected?' table-row-selected':'');%><%=(row.warn?' table-row-warn':'');%><%=(row.error?' table-row-error':'');%>" unique="<%=row.id;%>" data-bind="click:row" @cache(row)>
     <%for(var m=0;m<cols.length;m++){%>
         <%if(cols[m].key==="__num__"){%>
-        <div class="table-tablebody-col table-col-num" style="width:<%=cols[m].width;%>px;line-height:<%=row.height;%>px"><%=(i+1);%></div>
+        <div class="table-tablebody-col table-col-num" style="width:<%=cols[m].width;%>px;"><%=(i+1);%></div>
         <%}else if(cols[m].key==="__checkbox__"){%>
-            <div class="table-tablebody-col table-col-checkbox"  style="width:<%=cols[m].width;%>px;line-height:<%=row.height;%>px">
+            <div class="table-tablebody-col table-col-checkbox"  style="width:<%=cols[m].width;%>px;">
                 <svg class="icon"><use xlink:href="#<%=(row.selected===true?'icon-checkbox-checked':'icon-checkbox-unchecked');%>"></use></svg>
             </div>
         <%}else if(cols[m].key==="__deals__"){%>
-            <div class="table-tablebody-col table-col-deal" style="width:<%=cols[m].width;%>px;line-height:<%=row.height;%>px">
+            <div class="table-tablebody-col table-col-deal" style="width:<%=cols[m].width;%>px;">
                 <div @cache(cols[m].value)>
                     <svg class="icon"><use xlink:href="#<%=cols[m].value.icon;%>"></use></svg>
                 </div>
             </div>
-        <%}else{%>
-            <div class="table-tablebody-col" style="width:<%=cols[m].width;%>px;line-height:<%=row.height;%>px"><%=cols[m].value;%></div>
+        <%}else if(cols[m].disable!==true){%>
+            <div class="table-tablebody-col<%=(' table-col-'+cols[m].textAlign);%>" style="width:<%=cols[m].width;%>px;"><%=cols[m].value;%></div>
         <%}%>
     <%}%>
 </div>
@@ -127,21 +131,21 @@
 <div class="table-tablebody-left" style="width:<%=leftWidth;%>px;" data-find="left">
     <div style="height:<%=(leftRows.length*leftWidth+100);%>px">
     <%for(var i=0;i<leftRows.length;i++){%>
-    <div class="table-tablebody-rows<%=(leftRows[i].selected?' table-row-selected':'');%><%=(leftRows[i].warn?' table-row-warn':'');%><%=(leftRows[i].error?' table-row-error':'');%>"  unique="<%=leftRows[i].id;%>" data-bind="click:row" @cache(leftRows[i])>
+    <div class="table-tablebody-rows<%=(leftRows[i].selected?' table-row-selected':'');%><%=(leftRows[i].warn?' table-row-warn':'');%><%=(leftRows[i].error?' table-row-error':'');%>" unique="<%=leftRows[i].id;%>" data-bind="click:row" @cache(leftRows[i])>
         <%
             var cols=leftRows[i].cols;
         %>
         <%for(var d=0;d<cols.length;d++){%>
             <%if(cols[d].key==="__num__"){%>
-                <div class="table-tablebody-col table-col-num" style="width:<%=cols[d].width;%>px;line-height:<%=leftRows[i].height;%>px"><%=(i+1);%></div>
+                <div class="table-tablebody-col table-col-num" style="width:<%=cols[d].width;%>px;"><%=(i+1);%></div>
             <%}%>
             <%if(cols[d].key==="__checkbox__"){%>
-                <div class="table-tablebody-col table-col-checkbox"  style="width:<%=cols[d].width;%>px;line-height:<%=leftRows[i].height;%>px">
+                <div class="table-tablebody-col table-col-checkbox"  style="width:<%=cols[d].width;%>px;">
                     <svg class="icon"><use xlink:href="#<%=(leftRows[i].selected===true?'icon-checkbox-checked':'icon-checkbox-unchecked');%>"></use></svg>
                 </div>
             <%}%>
             <%if(cols[d].key==="__deals__"){%>
-                <div class="table-tablebody-col table-col-deal" style="width:<%=cols[d].width;%>px;line-height:<%=leftRows[i].height;%>px">
+                <div class="table-tablebody-col table-col-deal" style="width:<%=cols[d].width;%>px;">
                     <div @cache(cols[d])>
                         <svg class="icon"><use xlink:href="#<%=cols[d].value.icon;%>"></use></svg>
                     </div>
@@ -160,7 +164,7 @@
         %>
         <div class="table-tablebody-rows<%=(rightRows[i].selected?' table-row-selected':'');%><%=(rightRows[i].warn?' table-row-warn':'');%><%=(rightRows[i].error?' table-row-error':'');%>" unique="<%=rightRows[i].id;%>" data-bind="click:row" @cache(rightRows[i])>
             <%for(var t=0;t<rcols.length;t++){%>
-            <div class="table-tablebody-col" style="width:<%=rcols[t].width;%>px;line-height:<%=rightRows[i].height;%>px"><%=rcols[t].value;%></div>
+            <div class="table-tablebody-col<%=(' table-col-'+rcols[t].textAlign);%>" style="width:<%=rcols[t].width;%>px;"><%=rcols[t].value;%></div>
             <%}%>
         </div>
         <%}%>
@@ -217,10 +221,10 @@
 </div>
 <!--[table]-->
 <div class="table-simple-con">
-    <div class="table-simple-head" style="height:<%=data.rowHeight;%>px">
+    <div class="table-simple-head" style="line-height:<%=data.headerHeight;%>px">
         <@module type="{{data.headType}}"/>
     </div>
-    <div class="table-simple-body" style="top:<%=data.rowHeight;%>px">
+    <div class="table-simple-body" style="top:<%=data.headerHeight;%>px;line-height:<%=data.rowHeight;%>px">
         <@module type="{{data.bodyType}}"/>
     </div>
 </div>
@@ -232,10 +236,10 @@
     <@module type="{{data.toolType}}"/>
 </div>
 <div class="table-fn-con">
-    <div class="table-fn-head" style="height:<%=data.rowHeight;%>px">
+    <div class="table-fn-head" style="line-height:<%=data.headerHeight;%>px">
         <@module type="{{data.headType}}"/>
     </div>
-    <div class="table-fn-body" style="top:<%=data.rowHeight;%>px">
+    <div class="table-fn-body" style="top:<%=data.headerHeight;%>px;line-height:<%=data.rowHeight;%>px">
         <@module type="{{data.bodyType}}"/>
     </div>
 </div>
@@ -247,10 +251,10 @@
     <@module type="{{data.toolType}}"/>
 </div>
 <div class="table-double-con">
-    <div class="table-double-head" style="height:<%=data.rowHeight;%>px">
+    <div class="table-double-head" style="line-height:<%=data.headerHeight;%>px;height:<%=data.headerHeight;%>px">
         <@module type="{{data.headType}}"/>
     </div>
-    <div class="table-double-body" style="top:<%=data.rowHeight;%>px">
+    <div class="table-double-body" style="top:<%=data.headerHeight;%>px;line-height:<%=data.rowHeight;%>px;">
         <@module type="{{data.bodyType}}"/>
     </div>
 </div>

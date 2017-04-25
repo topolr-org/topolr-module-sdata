@@ -30,6 +30,9 @@ Module({
     autodom:true,
     bind_checkall:function (dom) {
         this.dispatchEvent("checkall",dom.cache());
+    },
+    bind_itemclick:function (dom) {
+        this.dispatchEvent("itemclick",dom.cache());
     }
 });
 Module({
@@ -110,13 +113,19 @@ Module({
     option:{
         url:"",
         cols: [{
-            key:"",
-            width:100
+            name:"key",
+            key:"key",
+            width:100,
+            disable:false,
+            textAlign:"left",
+            hook:null
         }],
-        rowHeight: 40,
+        headerHeight:35,
+        rowHeight: 30,
         headType:"@.tableheader",
         bodyType:"@.tablebody",
-        footType:"@.tablefooter"
+        footType:"@.tablefooter",
+        selectType:"single"//single,multi
     },
     init:function () {
         this.getService("table").action('set',this.option);
@@ -189,6 +198,13 @@ Module({
     },
     refresh:function(){
         this.getService("table").trigger("refresh");
+    },
+    event_itemclick:function (e) {
+        if(e.data.state){
+            this.getService("table").action("unhidecol",e.data.key);
+        }else{
+            this.getService("table").action("hidecol",e.data.key);
+        }
     }
 });
 Module({

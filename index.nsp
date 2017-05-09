@@ -26,20 +26,26 @@
         "d": true,
         "m": {
             "p": {
-                "icon.base": "1ef03576bc",
+                "icon.action": "a0514105bb",
+                "icon.editor": "e40b7acc0a",
+                "icon.files": "6f70429ee0",
+                "icon.loading": "bfb407fe1c",
+                "icon.player": "2f9f8b707c",
+                "icon.tm": "b1eb970f4a",
+                "icon.weather": "77df27ce51",
                 "sdata.list": "7ba1f53ce1",
                 "sdata.service.page": "0957cea550",
                 "sdata.service.table": "7fd4843789",
-                "sdata.table": "91e5467002",
-                "sdata.test": "6ca120e52b",
+                "sdata.table": "2bb8b1156e",
+                "sdata.test": "d6c22ecbea",
                 "sdata.tree": "a1b39efdbd"
             },
             "c": {
-                "icon.style.icon": "aaa29edfb8",
+                "icon.style.icon": "c34b1536de",
                 "sdata.style.tablestyle": "3bb32a0a04"
             },
             "t": {
-                "sdata.template.tabletemp": "884c785d62"
+                "sdata.template.tabletemp": "57811e5525"
             }
         },
         "c": {
@@ -49,7 +55,7 @@
                     "sdata.table",
                     "sdata.service.table",
                     "sdata.service.page",
-                    "icon.base"
+                    "icon.action"
                 ],
                 "c": [
                     "icon.style.icon",

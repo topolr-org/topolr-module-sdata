@@ -2,7 +2,7 @@
  * @packet sdata.table;
  * @template sdata.template.tabletemp;
  * @require sdata.service.table;
- * @require icon.base;
+ * @require icon.action;
  * @css sdata.style.tablestyle;
  */
 Module({

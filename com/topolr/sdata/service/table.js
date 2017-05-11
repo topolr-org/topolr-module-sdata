@@ -2,14 +2,6 @@
  * @packet sdata.service.table;
  * @require sdata.service.page;
  */
-var setProp = function (obj, key, value) {
-    Object.defineProperty(obj, key, {
-        enumerable: false,
-        configurable: false,
-        writable: true,
-        value: value
-    });
-};
 Module({
     name: "nocacheservice",
     extend: "@page.totalservice",

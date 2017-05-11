@@ -27,42 +27,64 @@
         "m": {
             "p": {
                 "icon.action": "a0514105bb",
+                "icon.direct": "1789127aa8",
                 "icon.editor": "e40b7acc0a",
                 "icon.files": "6f70429ee0",
+                "icon.iconpreviewer": "b9176304ec",
                 "icon.loading": "bfb407fe1c",
                 "icon.player": "2f9f8b707c",
+                "icon.test": "2f84e120c7",
                 "icon.tm": "b1eb970f4a",
                 "icon.weather": "77df27ce51",
                 "sdata.list": "7ba1f53ce1",
                 "sdata.service.page": "0957cea550",
-                "sdata.service.table": "7fd4843789",
+                "sdata.service.table": "6c4cb608d7",
+                "sdata.service.tree": "5a9849c730",
                 "sdata.table": "2bb8b1156e",
-                "sdata.test": "d6c22ecbea",
-                "sdata.tree": "a1b39efdbd"
+                "sdata.test": "af5fd23d3e",
+                "sdata.tree": "9bccd61929"
             },
             "c": {
                 "icon.style.icon": "c34b1536de",
-                "sdata.style.tablestyle": "3bb32a0a04"
+                "icon.style.style": "013abbdc57",
+                "sdata.style.tablestyle": "3bb32a0a04",
+                "sdata.style.treestyle": "0c92a64bad"
             },
             "t": {
-                "sdata.template.tabletemp": "57811e5525"
+                "icon.template.temp": "8397de88de",
+                "sdata.template.tabletemp": "57811e5525",
+                "sdata.template.treetemp": "251c1d9156"
             }
         },
         "c": {
-            "sdata-test-c1": {
+            "sdata-test-c3": {
                 "p": [
                     "sdata.test",
                     "sdata.table",
                     "sdata.service.table",
                     "sdata.service.page",
-                    "icon.action"
+                    "icon.action",
+                    "sdata.tree",
+                    "sdata.service.tree",
+                    "icon.direct",
+                    "icon.iconpreviewer",
+                    "icon.editor",
+                    "icon.files",
+                    "icon.loading",
+                    "icon.player",
+                    "icon.tm",
+                    "icon.weather"
                 ],
                 "c": [
                     "icon.style.icon",
-                    "sdata.style.tablestyle"
+                    "sdata.style.tablestyle",
+                    "icon.style.style",
+                    "sdata.style.treestyle"
                 ],
                 "t": [
-                    "sdata.template.tabletemp"
+                    "sdata.template.tabletemp",
+                    "icon.template.temp",
+                    "sdata.template.treetemp"
                 ]
             }
         },

@@ -1,0 +1,42 @@
+.mt-simpletree {
+    position:absolute;
+    left:0;
+    top:0;
+    right:0;
+    bottom:0;
+    overflow:auto;
+    .mt-simpletree-item {
+        .mt-simpletree-item-head {
+            line-height: 30px;
+            .mt-simpletree-item-arrow {
+                display: inline-block;
+                vertical-align: top;
+                width: 15px;
+                text-align: center;
+            }
+            .mt-simpletree-item-select {
+                display: inline-block;
+                vertical-align: top;
+                width: 30px;
+                text-align: center;
+            }
+            .mt-simpletree-item-name {
+                display: inline-block;
+                vertical-align: top;
+            }
+        }
+        .mt-simpletree-item-body {
+            margin-left: 30px;
+        }
+        &.mt-simpletree-item-close {
+            & > .mt-simpletree-item-head {
+                .mt-simpletree-item-arrow {
+                    transform: rotate(-90deg);
+                }
+            }
+            & > .mt-simpletree-item-body {
+                display: none;
+            }
+        }
+    }
+}

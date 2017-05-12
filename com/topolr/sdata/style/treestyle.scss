@@ -5,25 +5,90 @@
     right:0;
     bottom:0;
     overflow:auto;
+    font-size:13px;
+    background:#f9f2f4;
+    padding:10px 0 0 10px;
     .mt-simpletree-item {
         .mt-simpletree-item-head {
-            line-height: 30px;
+            line-height: 25px;
+            display:inline-block;
             .mt-simpletree-item-arrow {
                 display: inline-block;
-                vertical-align: top;
+                vertical-align: middle;
                 width: 15px;
                 text-align: center;
+                transition:all ease-out .3s;
+                color:#337ab7;
             }
             .mt-simpletree-item-select {
                 display: inline-block;
-                vertical-align: top;
-                width: 30px;
+                vertical-align: middle;
+                width: 23px;
                 text-align: center;
+                color:#337ab7;
+            }
+            .mt-simpletree-item-namec {
+                display: inline-block;
+                vertical-align: middle;
+                padding:0 3px 0 3px;
+                cursor: default;
+                .mt-simpletree-item-namec-a{
+                }
+                .mt-simpletree-item-namec-b{
+                    display: inline-block;
+                    vertical-align: baseline;
+                    padding:0 6px 0 6px;
+                    border-radius: 7px;
+                    line-height:14px;
+                    margin-left:5px;
+                    font-size:12px;
+                    background:#337ab7;
+                    color:white;
+                }
+                &.mt-simpletree-item-nameactive{
+                    line-height:22px;
+                    background:#337ab7;
+                    border-radius: 3px;
+                    color:white;
+                    padding:0 7px 0 7px;
+                    .mt-simpletree-item-namec-b{
+                        background:white;
+                        color:black;
+                    }
+                }
             }
             .mt-simpletree-item-name {
                 display: inline-block;
-                vertical-align: top;
+                vertical-align: middle;
+                cursor: default;
+                .mt-simpletree-item-namec-a{
+                }
+                .mt-simpletree-item-namec-b{
+                    display: inline-block;
+                    vertical-align: baseline;
+                    padding:0 6px 0 6px;
+                    border-radius: 7px;
+                    line-height:14px;
+                    margin-left:5px;
+                    font-size:12px;
+                    background:#337ab7;
+                    color:white;
+                }
+                &.mt-simpletree-item-nameactive{
+                    line-height:22px;
+                    background:#337ab7;
+                    border-radius: 3px;
+                    color:white;
+                    padding:0 7px 0 7px;
+                    .mt-simpletree-item-namec-b{
+                        background:white;
+                        color:black;
+                    }
+                }
             }
+        }
+        .mt-simpletree-item-bodyc {
+            margin-left: 18px;
         }
         .mt-simpletree-item-body {
             margin-left: 30px;
@@ -33,6 +98,9 @@
                 .mt-simpletree-item-arrow {
                     transform: rotate(-90deg);
                 }
+            }
+            & > .mt-simpletree-item-bodyc {
+                display: none;
             }
             & > .mt-simpletree-item-body {
                 display: none;

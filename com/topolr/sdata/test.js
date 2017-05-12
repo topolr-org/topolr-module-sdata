@@ -18,7 +18,12 @@ Option({
                 this.addChild({
                     type:"@tree.selecttree",
                     option:{
-                        url:sitePath+"mock/tree"
+                        url:sitePath+"mock/tree",
+                        override:{
+                            event_itemclick:function (e) {
+                                this.setNum(e.data.id,10);
+                            }
+                        }
                     },
                     container:this.finders("container1")
                 });

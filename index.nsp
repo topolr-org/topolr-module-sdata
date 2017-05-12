@@ -36,24 +36,24 @@
                 "icon.test": "2f84e120c7",
                 "icon.tm": "b1eb970f4a",
                 "icon.weather": "77df27ce51",
-                "sdata.list": "7ba1f53ce1",
-                "sdata.service.page": "0957cea550",
-                "sdata.service.table": "6c4cb608d7",
-                "sdata.service.tree": "5a9849c730",
-                "sdata.table": "2bb8b1156e",
-                "sdata.test": "af5fd23d3e",
-                "sdata.tree": "9bccd61929"
+                "sdata.list": "81ef40258b",
+                "sdata.service.page": "2aa843453a",
+                "sdata.service.table": "c96ced39c4",
+                "sdata.service.tree": "bfa0da1a1b",
+                "sdata.table": "aecc7a2341",
+                "sdata.test": "73ae0f7c6f",
+                "sdata.tree": "7c484abe32"
             },
             "c": {
                 "icon.style.icon": "c34b1536de",
-                "icon.style.style": "013abbdc57",
-                "sdata.style.tablestyle": "3bb32a0a04",
-                "sdata.style.treestyle": "0c92a64bad"
+                "icon.style.style": "1a26c51a6b",
+                "sdata.style.tablestyle": "1454801969",
+                "sdata.style.treestyle": "6965058a62"
             },
             "t": {
                 "icon.template.temp": "8397de88de",
                 "sdata.template.tabletemp": "57811e5525",
-                "sdata.template.treetemp": "251c1d9156"
+                "sdata.template.treetemp": "37e5b77b32"
             }
         },
         "c": {
@@ -88,7 +88,7 @@
                 ]
             }
         },
-        "id": "f326c53470c6fca6f1282f9a0ee21746"
+        "id": "90af7e603467da7b197f8b2641760f50"
     }
 }).boot(true);
     </script>

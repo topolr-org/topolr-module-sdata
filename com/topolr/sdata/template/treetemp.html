@@ -4,12 +4,17 @@
         <div class="mt-simpletree-item-head" @cache(data[i])>
             <%if(data[i].list.length>0){%>
             <div class="mt-simpletree-item-arrow" data-bind="click:arrow">
-                <svg class="mt-icon"><use xlink:href="#mt-icon-caret-down"></use></svg>
+                <svg class="mt-icon"><use xlink:href="#mt-icon-chevron-down"></use></svg>
             </div>
             <%}%>
-            <div class="mt-simpletree-item-name"><%=data[i].name;%></div>
+            <div class="mt-simpletree-item-namec<%=(data[i]["__state__"].active?' mt-simpletree-item-nameactive':'');%>" data-bind="click:active">
+                <span class="mt-simpletree-item-namec-a"><%=data[i].name;%></span>
+                <%if(data[i]["__state__"].num!==undefined){%>
+                    <span class="mt-simpletree-item-namec-b"><%=data[i]["__state__"].num;%></span>
+                <%}%>
+            </div>
         </div>
-        <div class="mt-simpletree-item-body">
+        <div class="mt-simpletree-item-bodyc">
             <@self data="{{data[i].list}}"/>
         </div>
     </div>
@@ -20,7 +25,7 @@
     <div class="mt-simpletree-item-head" @cache(data[i])>
         <%if(data[i].list.length>0){%>
         <div class="mt-simpletree-item-arrow" data-bind="click:arrow">
-            <svg class="mt-icon"><use xlink:href="#mt-icon-caret-down"></use></svg>
+            <svg class="mt-icon"><use xlink:href="#mt-icon-chevron-down"></use></svg>
         </div>
         <%}%>
         <div class="mt-simpletree-item-select" data-bind="click:select">
@@ -30,7 +35,12 @@
             <svg class="mt-icon"><use xlink:href="#mt-icon-checkbox-unchecked"></use></svg>
             <%}%>
         </div>
-        <div class="mt-simpletree-item-name"><%=data[i].name;%></div>
+        <div class="mt-simpletree-item-name<%=(data[i]["__state__"].active?' mt-simpletree-item-nameactive':'');%>" data-bind="click:active">
+            <span class="mt-simpletree-item-namec-a"><%=data[i].name;%></span>
+            <%if(data[i]["__state__"].num!==undefined){%>
+                <span class="mt-simpletree-item-namec-b"><%=data[i]["__state__"].num;%></span>
+            <%}%>
+        </div>
     </div>
     <div class="mt-simpletree-item-body">
         <@self data="{{data[i].list}}"/>

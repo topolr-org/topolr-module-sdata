@@ -39,7 +39,9 @@ Module({
                 var item=list[i];
                 setProp(item,"__state__",{
                     select:false,
-                    open:true
+                    open:true,
+                    active:false,
+                    num:undefined
                 });
                 r[item.id]=item;
                 scan(item.list);
@@ -87,6 +89,19 @@ Module({
                 parent["__state__"].select=has;
                 parent=this._map[parent.pid];
             }
+        }
+        this.trigger();
+    },
+    action_active:function (item) {
+        for(var i in this._map){
+            this._map[i]["__state__"].active=false;
+        }
+        item["__state__"].active=true;
+        this.trigger();
+    },
+    action_setnum:function (id,num) {
+        if(this._map[id]){
+            this._map[id]["__state__"].num=num;
         }
         this.trigger();
     }

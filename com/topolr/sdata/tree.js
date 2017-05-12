@@ -23,6 +23,13 @@ Module({
     },
     bind_arrow:function (dom) {
         this.getService("tree").action("toggleopen",dom.parent().cache());
+    },
+    bind_active:function (dom) {
+        this.getService("tree").action("active",dom.parent().cache());
+        this.dispatchEvent("itemclick",dom.parent().cache());
+    },
+    setNum:function (id,num) {
+        this.getService("tree").action("setnum",id,num);
     }
 });
 Module({

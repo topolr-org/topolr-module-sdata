@@ -1,24 +1,24 @@
 <!--[simpletree]-->
-<%for(var i=0;i<data.length;i++){%>
-    <div class="mt-simpletree-item<%=(data[i]['__state__'].open?' mt-simpletree-item-close':'');%>">
-        <div class="mt-simpletree-item-head" @cache(data[i])>
-            <%if(data[i].list.length>0){%>
-            <div class="mt-simpletree-item-arrow" data-bind="click:arrow">
-                <svg class="mt-icon"><use xlink:href="#mt-icon-chevron-down"></use></svg>
-            </div>
-            <%}%>
-            <div class="mt-simpletree-item-namec<%=(data[i]["__state__"].active?' mt-simpletree-item-nameactive':'');%>" data-bind="click:active">
-                <span class="mt-simpletree-item-namec-a"><%=data[i].name;%></span>
-                <%if(data[i]["__state__"].num!==undefined){%>
-                    <span class="mt-simpletree-item-namec-b"><%=data[i]["__state__"].num;%></span>
-                <%}%>
-            </div>
+{{list data as item}}
+<div class="mt-simpletree-item{{item['__state__'].open?' mt-simpletree-item-close':''}}">
+    <div class="mt-simpletree-item-head" @cache(item)>
+        {{if item.list.length>0}}
+        <div class="mt-simpletree-item-arrow" data-bind="click:arrow">
+            <svg class="mt-icon"><use xlink:href="#mt-icon-chevron-down"></use></svg>
         </div>
-        <div class="mt-simpletree-item-bodyc">
-            <@self data="{{data[i].list}}"/>
+        {{/if}}
+        <div class="mt-simpletree-item-namec{{item['__state__'].active?' mt-simpletree-item-nameactive':''}}" data-bind="click:active">
+            <span class="mt-simpletree-item-namec-a">{{item.name}}</span>
+            {{if item['__state__'].num!==undefined}}
+                <span class="mt-simpletree-item-namec-b">{{item['__state__'].num}}</span>
+            {{/if}}
         </div>
     </div>
-<%}%>
+    <div class="mt-simpletree-item-bodyc">
+        <@self data="{{item.list}}"/>
+    </div>
+</div>
+{{/list}}
 <!--[selecttree]-->
 <%for(var i=0;i<data.length;i++){%>
 <div class="mt-simpletree-item<%=(data[i]['__state__'].open?' mt-simpletree-item-close':'');%>">

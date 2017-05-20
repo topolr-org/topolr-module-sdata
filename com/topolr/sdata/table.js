@@ -78,10 +78,10 @@ Module({
     extend:'@.tablebodyfn',
     className:"doublebodyfn",
     template:"@tabletemp.doublebodyfn",
-    find_body:function (dom) {
+    onupdated:function () {
         var ths=this;
-        dom.bind("scroll",function(e){
-            var top=$(dom).scrollTop(),left=$(dom).scrollLeft();
+        this.finders("body").bind("scroll",function(e){
+            var top=$(this).scrollTop(),left=$(this).scrollLeft();
             ths.finders("left").scrollTop(top);
             ths.dispatchEvent("bodyscroll",{
                 left:left,

@@ -20,30 +20,30 @@
 </div>
 {{/list}}
 <!--[selecttree]-->
-<%for(var i=0;i<data.length;i++){%>
-<div class="mt-simpletree-item<%=(data[i]['__state__'].open?' mt-simpletree-item-close':'');%>">
-    <div class="mt-simpletree-item-head" @cache(data[i])>
-        <%if(data[i].list.length>0){%>
+{{list data as item}}
+<div class="mt-simpletree-item{{item['__state__'].open?' mt-simpletree-item-close':''}}">
+    <div class="mt-simpletree-item-head" @cache(item)>
+        {{if item.list.length>0}}
         <div class="mt-simpletree-item-arrow" data-bind="click:arrow">
             <svg class="mt-icon"><use xlink:href="#mt-icon-chevron-down"></use></svg>
         </div>
-        <%}%>
+        {{/if}}
         <div class="mt-simpletree-item-select" data-bind="click:select">
-            <%if(data[i]['__state__'].select){%>
+            {{if item['__state__'].select}}
             <svg class="mt-icon"><use xlink:href="#mt-icon-checkbox-checked"></use></svg>
-            <%}else{%>
+            {{else}}
             <svg class="mt-icon"><use xlink:href="#mt-icon-checkbox-unchecked"></use></svg>
-            <%}%>
+            {{/if}}
         </div>
-        <div class="mt-simpletree-item-name<%=(data[i]["__state__"].active?' mt-simpletree-item-nameactive':'');%>" data-bind="click:active">
-            <span class="mt-simpletree-item-namec-a"><%=data[i].name;%></span>
-            <%if(data[i]["__state__"].num!==undefined){%>
-                <span class="mt-simpletree-item-namec-b"><%=data[i]["__state__"].num;%></span>
-            <%}%>
+        <div class="mt-simpletree-item-name{{item['__state__'].active?' mt-simpletree-item-nameactive':''}}" data-bind="click:active">
+            <span class="mt-simpletree-item-namec-a">{{item.name}}</span>
+            {{if item['__state__'].num!==undefined}}
+                <span class="mt-simpletree-item-namec-b">{{item["__state__"].num}}</span>
+            {{/if}}
         </div>
     </div>
     <div class="mt-simpletree-item-body">
-        <@self data="{{data[i].list}}"/>
+        <@self data="{{item.list}}"/>
     </div>
 </div>
-<%}%>
+{{/list}}

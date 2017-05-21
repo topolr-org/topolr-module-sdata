@@ -79,14 +79,22 @@ Module({
     className:"doublebodyfn",
     template:"@tabletemp.doublebodyfn",
     onupdated:function () {
-        var ths=this;
-        this.finders("body").bind("scroll",function(e){
-            var top=$(this).scrollTop(),left=$(this).scrollLeft();
-            ths.finders("left").scrollTop(top);
-            ths.dispatchEvent("bodyscroll",{
-                left:left,
-                top:top
-            });
+        // var ths=this;
+        // this.dom.bind("scroll",function(e){
+        //     var top=$(this).scrollTop(),left=$(this).scrollLeft();
+        //     ths.finders("left").scrollTop(top);
+        //     ths.dispatchEvent("bodyscroll",{
+        //         left:left,
+        //         top:top
+        //     });
+        // },true);
+    },
+    bind_body:function (dom,e) {
+        var top=dom.scrollTop(),left=dom.scrollLeft();
+        this.finders("left").scrollTop(top);
+        this.dispatchEvent("bodyscroll",{
+            left:left,
+            top:top
         });
     }
 });

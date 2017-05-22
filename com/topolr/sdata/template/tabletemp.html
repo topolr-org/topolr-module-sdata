@@ -1,26 +1,23 @@
 <!--[tools]-->
-<%for(var i=0;i<data.length;i++){%>
-<div class="table-tabletools-tool" data-bind="click:btnclick" @cache(data[i])>
-    <svg class="mt-icon"><use xlink:href="#<%=data[i].icon;%>"></use></svg>
+{{list data as item}}
+<div class="table-tabletools-tool" data-bind="click:btnclick" @cache(item)>
+    <svg class="mt-icon"><use xlink:href="#{{item.icon}}"></use></svg>
 </div>
-<%}%>
+{{/list}}
 <!--[header]-->
-<%
-    var cols=data.cols;
-%>
 <div class="table-tableheader-con">
     <div class="table-tableheader-rows">
-    <%for(var i=0;i<cols.length;i++){%>
-        <%if(data.cols[i].checkbox===true){%>
-        <div class="table-tableheader-col" style="width:<%=cols[i].width;%>px;">
-            <div data-bind="click:checkall" @cache(cols[i].isall)>
-                <svg class="mt-icon"><use xlink:href="#<%=(cols[i].isall===true?'mt-icon-checkbox-checked':'mt-icon-checkbox-unchecked');%>"></use></svg>
+    {{list data.cols as item}}
+        {{if item.checkbox===true}}
+        <div class="table-tableheader-col" style="width:{{item.width}}px;">
+            <div data-bind="click:checkall" @cache(item.isall)>
+                <svg class="mt-icon"><use xlink:href="#{{item.isall===true?'mt-icon-checkbox-checked':'mt-icon-checkbox-unchecked'}}"></use></svg>
             </div>
         </div>
-        <%}else if(cols[i].disable!==true){%>
-        <div class="table-tableheader-col" style="width:<%=cols[i].width;%>px;"><%=cols[i].value;%></div>
-        <%}%>
-    <%}%>
+        {{elseif item.disable!==true}}
+        <div class="table-tableheader-col" style="width:{{item.width}}px;">{{item.value}}</div>
+        {{/if}}
+    {{/list}}
     </div>
 </div>
 <div class="table-tableheader-dropdown">
@@ -28,45 +25,40 @@
         <svg class="mt-icon"><use xlink:href="#mt-icon-chevron-up"></use></svg>
     </div>
     <div class="table-tableheader-dropdown-list">
-        <%for(var i=0;i<cols.length;i++){%>
-            <%if(cols[i].isCol){%>
-            <div class="table-tableheader-dropdown-list-item" data-bind="click:itemclick" @cache({key:cols[i].key,state:cols[i].disable})>
+        {{list data.cols as item}}
+            {{if item.isCol}}
+            <div class="table-tableheader-dropdown-list-item" data-bind="click:itemclick" @cache({key:item.key,state:item.disable})>
                 <div class="table-tableheader-dropdown-list-item-a">
-                    <svg class="mt-icon"><use xlink:href="#<%=(cols[i].disable!==true?'mt-icon-checkbox-checked':'mt-icon-checkbox-unchecked');%>"></use></svg>
+                    <svg class="mt-icon"><use xlink:href="#{{item.disable!==true?'mt-icon-checkbox-checked':'mt-icon-checkbox-unchecked'}}"></use></svg>
                 </div>
-                <div class="table-tableheader-dropdown-list-item-b"><%=cols[i].value;%></div>
+                <div class="table-tableheader-dropdown-list-item-b">{{item.value}}</div>
             </div>
-            <%}%>
-        <%}%>
+            {{/if}}
+        {{/list}}
     </div>
 </div>
 <!--[doubleheader]-->
-<%
-    var leftWidth=data.leftWidth;
-    var leftHeight=data.left.height,rightHeight=data.right.height;
-    var leftCols=data.left.cols,rightCols=data.right.cols;
-%>
-<div class="table-tableheader-left" style="width:<%=leftWidth;%>px">
+<div class="table-tableheader-left" style="width:{{data.leftWidth}}px">
     <div class="table-tableheader-rows">
-        <%for(var i=0;i<leftCols.length;i++){%>
-            <%if(leftCols[i].checkbox){%>
-            <div class="table-tableheader-col" style="width:<%=leftCols[i].width;%>px;">
-                <div data-bind="click:checkall" @cache(leftCols[i].isall)>
-                    <svg class="mt-icon"><use xlink:href="#<%=(leftCols[i].isall===true?'mt-icon-checkbox-checked':'mt-icon-checkbox-unchecked');%>"></use></svg>
+        {{list data.left.cols as item}}
+            {{if item.checkbox}}
+            <div class="table-tableheader-col" style="width:{{item.width}}px;">
+                <div data-bind="click:checkall" @cache(item.isall)>
+                    <svg class="mt-icon"><use xlink:href="#{{item.isall===true?'mt-icon-checkbox-checked':'mt-icon-checkbox-unchecked'}}"></use></svg>
                 </div>
             </div>
-            <%}else{%>
-            <div class="table-tableheader-col" style="width:<%=leftCols[i].width;%>px;"><%=leftCols[i].value;%></div>
-            <%}%>
-        <%}%>
+            {{else}}
+            <div class="table-tableheader-col" style="width:{{item.width}}px;">{{item.value}}</div>
+            {{/if}}
+        {{/list}}
     </div>
 </div>
-<div class="table-tableheader-right" style="left:<%=leftWidth;%>px" data-find="left">
+<div class="table-tableheader-right" style="left:{{data.leftWidth}}px" data-find="left">
     <div style="width:5000px">
         <div class="table-tableheader-rows">
-            <%for(var i=0;i<rightCols.length;i++){%>
-            <div class="table-tableheader-col" style="width:<%=rightCols[i].width;%>px;"><%=rightCols[i].value;%></div>
-            <%}%>
+            {{list data.right.cols as item}}
+            <div class="table-tableheader-col" style="width:{{item.width}}px;">{{item.value}}</div>
+            {{/list}}
         </div>
     </div>
 </div>
@@ -98,136 +90,115 @@
 </div>
 <%}%>
 <!--[bodyfn]-->
-<%if(data){%>
-<%for(var i=0;i<data.length;i++){%>
-<%
-    var row=data[i],cols=row.cols;
-%>
-<div class="table-tablebody-rows<%=(row.selected?' table-row-selected':'');%><%=(row.warn?' table-row-warn':'');%><%=(row.error?' table-row-error':'');%>" unique="<%=row.id;%>" data-bind="click:row" @cache(row)>
-    <%for(var m=0;m<cols.length;m++){%>
-        <%if(cols[m].key==="__num__"){%>
-        <div class="table-tablebody-col table-col-num" style="width:<%=cols[m].width;%>px;"><%=(i+1);%></div>
-        <%}else if(cols[m].key==="__checkbox__"){%>
-            <div class="table-tablebody-col table-col-checkbox"  style="width:<%=cols[m].width;%>px;">
-                <svg class="mt-icon"><use xlink:href="#<%=(row.selected===true?'mt-icon-checkbox-checked':'mt-icon-checkbox-unchecked');%>"></use></svg>
-            </div>
-        <%}else if(cols[m].key==="__deals__"){%>
-            <div class="table-tablebody-col table-col-deal" style="width:<%=cols[m].width;%>px;">
-                <div data-bind="click:deal" @cache(cols[m].value)>
-                    <svg class="mt-icon"><use xlink:href="#<%=cols[m].value.icon;%>"></use></svg>
+{{if data}}
+    {{list data as row}}
+    <div class="table-tablebody-rows{{row.selected?' table-row-selected':''}}{{row.warn?' table-row-warn':''}}{{row.error?' table-row-error':''}}" unique="{{row.id}}" data-bind="click:row" @cache(row)>
+        {{list row.cols as col t}}
+            {{if col.key==='__num__'}}
+                <div class="table-tablebody-col table-col-num" style="width:{{col.width}}px;">{{$index+1}}</div>
+            {{elseif col.key==='__checkbox__'}}
+                <div class="table-tablebody-col table-col-checkbox"  style="width:{{col.width}}px;">
+                    <svg class="mt-icon"><use xlink:href="#{{row.selected===true?'mt-icon-checkbox-checked':'mt-icon-checkbox-unchecked'}}"></use></svg>
                 </div>
-            </div>
-        <%}else if(cols[m].disable!==true){%>
-            <div class="table-tablebody-col<%=(' table-col-'+cols[m].textAlign);%>" style="width:<%=cols[m].width;%>px;"><%=cols[m].value;%></div>
-        <%}%>
-    <%}%>
-</div>
-<%}%>
-<%}%>
-<!--[doublebodyfn]-->
-<%if(data){%>
-<%
-    var leftRows=data.left,rightRows=data.right;
-    var leftWidth=data.leftWidth;
-%>
-<div class="table-tablebody-left" style="width:<%=leftWidth;%>px;" data-find="left">
-    <div style="height:<%=(leftRows.length*leftWidth+100);%>px">
-    <%for(var i=0;i<leftRows.length;i++){%>
-    <div class="table-tablebody-rows<%=(leftRows[i].selected?' table-row-selected':'');%><%=(leftRows[i].warn?' table-row-warn':'');%><%=(leftRows[i].error?' table-row-error':'');%>" unique="<%=leftRows[i].id;%>" data-bind="click:row" @cache(leftRows[i])>
-        <%
-            var cols=leftRows[i].cols;
-        %>
-        <%for(var d=0;d<cols.length;d++){%>
-            <%if(cols[d].key==="__num__"){%>
-                <div class="table-tablebody-col table-col-num" style="width:<%=cols[d].width;%>px;"><%=(i+1);%></div>
-            <%}%>
-            <%if(cols[d].key==="__checkbox__"){%>
-                <div class="table-tablebody-col table-col-checkbox"  style="width:<%=cols[d].width;%>px;">
-                    <svg class="mt-icon"><use xlink:href="#<%=(leftRows[i].selected===true?'mt-icon-checkbox-checked':'mt-icon-checkbox-unchecked');%>"></use></svg>
-                </div>
-            <%}%>
-            <%if(cols[d].key==="__deals__"){%>
-                <div class="table-tablebody-col table-col-deal" style="width:<%=cols[d].width;%>px;">
-                    <div data-bind="click:deal" @cache(cols[d])>
-                        <svg class="mt-icon"><use xlink:href="#<%=cols[d].value.icon;%>"></use></svg>
+            {{elseif col.key==='__deals__'}}
+                <div class="table-tablebody-col table-col-deal" style="width:{{col.width}}px;">
+                    <div data-bind="click:deal" @cache(col.value)>
+                        <svg class="mt-icon"><use xlink:href="#{{col.value.icon}}"></use></svg>
                     </div>
                 </div>
-            <%}%>
-        <%}%>
+            {{elseif col.disable!==true}}
+                <div class="table-tablebody-col{{' table-col-'+col.textAlign}}" style="width:{{col.width}}px;">{{col.value}}</div>
+            {{/if}}
+        {{/list}}
     </div>
-    <%}%>
-    </div>
-</div>
-<div class="table-tablebody-right" style="left:<%=leftWidth;%>px;" data-find="body">
-    <div class="table-tablebody-right-con">
-        <%for(var i=0;i<rightRows.length;i++){%>
-        <%
-        var rcols=rightRows[i].cols;
-        %>
-        <div class="table-tablebody-rows<%=(rightRows[i].selected?' table-row-selected':'');%><%=(rightRows[i].warn?' table-row-warn':'');%><%=(rightRows[i].error?' table-row-error':'');%>" unique="<%=rightRows[i].id;%>" data-bind="click:row" @cache(rightRows[i])>
-            <%for(var t=0;t<rcols.length;t++){%>
-            <div class="table-tablebody-col<%=(' table-col-'+rcols[t].textAlign);%>" style="width:<%=rcols[t].width;%>px;"><%=rcols[t].value;%></div>
-            <%}%>
+    {{/list}}
+{{/if}}
+<!--[doublebodyfn]-->
+{{if data}}
+    <div class="table-tablebody-left" style="width:{{data.leftWidth}}px;" data-find="left">
+        <div style="height:{{data.left.length*data.leftWidth+100}}px">
+        {{list data.left as row}}
+        <div class="table-tablebody-rows{{row.selected?' table-row-selected':''}}{{row.warn?' table-row-warn':''}}{{row.error?' table-row-error':''}}" unique="{{row.id}}" data-bind="click:row" @cache(row)>
+            {{list row.cols as col m}}
+                {{if col.key==='__num__'}}
+                    <div class="table-tablebody-col table-col-num" style="width:{{col.width}}px;">{{$index+1}}</div>
+                {{elseif col.key==='__checkbox__'}}
+                    <div class="table-tablebody-col table-col-checkbox"  style="width:{{col.width}}px;">
+                        <svg class="mt-icon"><use xlink:href="#{{row.selected===true?'mt-icon-checkbox-checked':'mt-icon-checkbox-unchecked'}}"></use></svg>
+                    </div>
+                {{elseif col.key==='__deals__'}}
+                    <div class="table-tablebody-col table-col-deal" style="width:{{col.width}}px;">
+                        <div data-bind="click:deal" @cache(col)>
+                            <svg class="mt-icon"><use xlink:href="#{{col.value.icon}}"></use></svg>
+                        </div>
+                    </div>
+                {{/if}}
+            {{/list}}
         </div>
-        <%}%>
+        {{/list}}
+        </div>
     </div>
-</div>
-<%}%>
+    <div class="table-tablebody-right" style="left:{{data.leftWidth}}px;" data-find="body" data-bind="scroll:body">
+        <div class="table-tablebody-right-con">
+            {{list data.right as row}}
+            <div class="table-tablebody-rows{{row.selected?' table-row-selected':''}}{{row.warn?' table-row-warn':''}}{{row.error?' table-row-error':''}}" unique="{{row.id}}" data-bind="click:row" @cache(row)>
+                {{list row.cols as col}}
+                <div class="table-tablebody-col{{' table-col-'+col.textAlign}}" style="width:{{col.width}}px;">{{col.value}}</div>
+                {{/list}}
+            </div>
+            {{/list}}
+        </div>
+    </div>
+{{/if}}
 <!--[footer]-->
 <div class="table-tablefoot">
-    <%if(data){%>
-    <div class="table-tablefoot-sizes" title="每页显示条数">
-        <div class="table-tablefoot-sizes-num"><%=data.size.current;%></div>
-        <div class="table-tablefoot-sizes-list">
-            <%for(var i=0;i<data.size.map.length;i++){%>
-            <div class="table-tablefoot-sizes-list-item" data-bind="click:pagesize" @cache(data.size.map[i])><%=data.size.map[i];%></div>
-            <%}%>
-        </div>
-    </div>
-    <%if(data.pages){%>
-    <div class="table-tablefoot-pages">
-        <%
-            for(var i=0;i<data.pages.length;i++){
-            var page=data.pages[i];
-        %>
-        <%if(page.name==='prev'){%>
-            <div class="table-tablefoot-pages-page<%=(page.disabled===true?' table-page-disabled':'');%>" data-bind="click:prev">
-                <svg class="mt-icon" style="transform:rotate(-90deg)"><use xlink:href="#mt-icon-chevron-up"></use></svg>
+    {{if data}}
+        <div class="table-tablefoot-sizes" title="每页显示条数">
+            <div class="table-tablefoot-sizes-num">{{data.size.current}}</div>
+            <div class="table-tablefoot-sizes-list">
+                {{list data.size.map as item}}
+                <div class="table-tablefoot-sizes-list-item" data-bind="click:pagesize" @cache(item)>{{item}}</div>
+                {{/list}}
             </div>
-        <%}%>
-        <%if(page.name==='next'){%>
-            <div class="table-tablefoot-pages-page<%=(page.disabled===true?' table-page-disabled':'');%>" data-bind="click:next">
+        </div>
+        {{if data.pages}}
+        <div class="table-tablefoot-pages">
+            {{list data.pages as page}}
+                {{if page.name==='prev'}}
+                    <div class="table-tablefoot-pages-page{{page.disabled===true?' table-page-disabled':''}}" data-bind="click:prev">
+                        <svg class="mt-icon" style="transform:rotate(-90deg)"><use xlink:href="#mt-icon-chevron-up"></use></svg>
+                    </div>
+                {{elseif page.name==='next'}}
+                    <div class="table-tablefoot-pages-page{{page.disabled===true?' table-page-disabled':''}}" data-bind="click:next">
+                        <svg class="mt-icon" style="transform:rotate(90deg)"><use xlink:href="#mt-icon-chevron-up"></use></svg>
+                    </div>
+                {{elseif page.name==='btn'}}
+                    {{if page.none===true}}
+                    <div class="table-tablefoot-pages-page table-page-none" data-bind="click:goto" @cache(page)>{{page.num}}</div>
+                    {{else}}
+                        {{if page.iscurrent===true}}
+                        <div class="table-tablefoot-pages-page table-page-current" data-bind="click:goto" @cache(page)>{{page.num}}</div>
+                        {{else}}
+                        <div class="table-tablefoot-pages-page" data-bind="click:goto" @cache(page)>{{page.num}}</div>
+                        {{/if}}
+                    {{/if}}
+                {{elseif page.name==='dot'}}
+                    {{if page.none===true}}
+                    <div class="table-tablefoot-pages-page table-page-none">...</div>
+                    {{else}}
+                    <div class="table-tablefoot-pages-page">...</div>
+                    {{/if}}
+                {{/if}}
+            {{/list}}
+        </div>
+        {{/if}}
+        <div class="table-tablefoot-btns">
+            <div class="table-tablefoot-btns-num"><input type="text"/></div>
+            <div class="table-tablefoot-btns-btn">
                 <svg class="mt-icon" style="transform:rotate(90deg)"><use xlink:href="#mt-icon-chevron-up"></use></svg>
             </div>
-        <%}%>
-        <%if(page.name==='btn'){%>
-            <%if(page.none===true){%>
-            <div class="table-tablefoot-pages-page table-page-none" data-bind="click:goto" @cache(page)><%=page.num;%></div>
-            <%}else{%>
-                <%if(page.iscurrent===true){%>
-                <div class="table-tablefoot-pages-page table-page-current" data-bind="click:goto" @cache(page)><%=page.num;%></div>
-                <%}else{%>
-                <div class="table-tablefoot-pages-page" data-bind="click:goto" @cache(page)><%=page.num;%></div>
-                <%}%>
-            <%}%>
-        <%}%>
-        <%if(page.name==='dot'){%>
-            <%if(page.none===true){%>
-            <div class="table-tablefoot-pages-page table-page-none">...</div>
-            <%}else{%>
-            <div class="table-tablefoot-pages-page">...</div>
-            <%}%>
-        <%}%>
-        <%}%>
-    </div>
-    <%}%>
-    <div class="table-tablefoot-btns">
-        <div class="table-tablefoot-btns-num"><input type="text"/></div>
-        <div class="table-tablefoot-btns-btn">
-            <svg class="mt-icon" style="transform:rotate(90deg)"><use xlink:href="#mt-icon-chevron-up"></use></svg>
         </div>
-    </div>
-    <%}%>
+    {{/if}}
 </div>
 <!--[table]-->
 <div class="table-simple-con">

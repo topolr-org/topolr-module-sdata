@@ -26,64 +26,55 @@
         "d": true,
         "m": {
             "p": {
-                "icon.action": "a0514105bb",
-                "icon.direct": "1789127aa8",
-                "icon.editor": "e40b7acc0a",
-                "icon.files": "6f70429ee0",
-                "icon.iconpreviewer": "b9176304ec",
-                "icon.loading": "bfb407fe1c",
-                "icon.player": "2f9f8b707c",
-                "icon.test": "2f84e120c7",
-                "icon.tm": "b1eb970f4a",
-                "icon.weather": "77df27ce51",
+                "icon.action": "5e38646005",
+                "icon.direct": "6a838ec33c",
+                "icon.editor": "d3f12ab642",
+                "icon.files": "ad163495d5",
+                "icon.iconpreviewer": "0d79a6d356",
+                "icon.loading": "40745a51c2",
+                "icon.player": "3f93170ca6",
+                "icon.test": "6cf91847ad",
+                "icon.tm": "e56fe701bb",
+                "icon.weather": "a0fbd27b12",
                 "sdata.list": "81ef40258b",
                 "sdata.service.page": "2aa843453a",
                 "sdata.service.table": "c96ced39c4",
                 "sdata.service.tree": "bfa0da1a1b",
-                "sdata.table": "aecc7a2341",
-                "sdata.test": "73ae0f7c6f",
-                "sdata.tree": "7c484abe32"
+                "sdata.table": "2e2ba3d085",
+                "sdata.test": "8679916459",
+                "sdata.tree": "f63c7ddee5"
             },
             "c": {
-                "icon.style.icon": "c34b1536de",
+                "icon.style.icon": "312bbc92d8",
                 "icon.style.style": "1a26c51a6b",
-                "sdata.style.tablestyle": "1454801969",
+                "sdata.style.tablestyle": "257fbe1c1a",
                 "sdata.style.treestyle": "6965058a62"
             },
             "t": {
                 "icon.template.temp": "8397de88de",
-                "sdata.template.tabletemp": "57811e5525",
-                "sdata.template.treetemp": "37e5b77b32"
+                "sdata.template.tabletemp": "4da4f92e20",
+                "sdata.template.treetemp": "568cf230dc"
             }
         },
         "c": {
-            "sdata-test-c3": {
+            "sdata-test-c2": {
                 "p": [
                     "sdata.test",
                     "sdata.table",
                     "sdata.service.table",
                     "sdata.service.page",
                     "icon.action",
-                    "sdata.tree",
-                    "sdata.service.tree",
                     "icon.direct",
-                    "icon.iconpreviewer",
-                    "icon.editor",
-                    "icon.files",
-                    "icon.loading",
-                    "icon.player",
-                    "icon.tm",
-                    "icon.weather"
+                    "sdata.tree",
+                    "sdata.service.tree"
                 ],
                 "c": [
                     "icon.style.icon",
                     "sdata.style.tablestyle",
-                    "icon.style.style",
                     "sdata.style.treestyle"
                 ],
                 "t": [
                     "sdata.template.tabletemp",
-                    "icon.template.temp",
                     "sdata.template.treetemp"
                 ]
             }

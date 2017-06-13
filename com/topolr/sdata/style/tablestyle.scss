@@ -23,8 +23,9 @@ $borderColor:#D7D7D7;
         background:white;
         .table-tableheader-dropdown-arrow{
             text-align: center;
-            .icon{
+            .mt-icon{
                 transform: rotate(180deg);
+                transition:all ease-out .3s;
             }
         }
         .table-tableheader-dropdown-list{
@@ -53,6 +54,11 @@ $borderColor:#D7D7D7;
             padding:0 10px 0 0;
         }
         &:hover{
+            .table-tableheader-dropdown-arrow{
+                .mt-icon{
+                    transform: rotate(0deg);
+                }
+            }
             .table-tableheader-dropdown-list{
                 display:block;
             }

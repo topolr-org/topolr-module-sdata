@@ -3,6 +3,7 @@
  * @template sdata.template.tabletemp;
  * @require sdata.service.table;
  * @require icon.action;
+ * @require icon.direct;
  * @css sdata.style.tablestyle;
  */
 Module({

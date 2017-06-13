@@ -32,21 +32,21 @@ Option({
                 // }).then(function (a) {
                 //     console.log(a)
                 // });
-                // this.addChild({addChild
-                //     type:"@table.simpletable",
-                //     option:{
-                //         url:sitePath+"/test/page",
-                //         cols:[
-                //             {name:"name",key:"name",width:200,disable:false},
-                //             {name:"birth",key:"birth",width:200,disable:false},
-                //             {name:"id",key:"id",width:200,disable:true,hook:function (a,b,c) {
-                //                 return "--"+a;
-                //             }}
-                //         ],
-                //         selectType:"single"
-                //     },
-                //     container:this.finders("container")
-                // });
+                this.addChild({
+                    type:"@table.simpletable",
+                    option:{
+                        url:sitePath+"/test/page",
+                        cols:[
+                            {name:"name",key:"name",width:200,disable:false},
+                            {name:"birth",key:"birth",width:200,disable:false},
+                            {name:"id",key:"id",width:200,disable:true,hook:function (a,b,c) {
+                                return "--"+a;
+                            }}
+                        ],
+                        selectType:"single"
+                    },
+                    container:this.finders("container")
+                });
                 // this.addChild({
                 //     type:"@table.fntable",
                 //     option:{

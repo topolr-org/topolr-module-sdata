@@ -5,7 +5,6 @@
  * @require sdata.service.tree;
  * @require icon.action;
  * @require icon.direct;
- * @require icon.iconpreviewer;
  */
 Module({
     name:'simpletree',

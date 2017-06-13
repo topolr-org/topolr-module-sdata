@@ -1,6 +1,6 @@
 mock:
   type: pagecount
-  rate: 80
+  rate: 95
   option:
     total: 210
     num: page

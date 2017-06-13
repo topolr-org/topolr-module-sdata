@@ -38,6 +38,7 @@
     </div>
 </div>
 <!--[doubleheader]-->
+{{if data.left&&data.right}}
 <div class="table-tableheader-left" style="width:{{data.leftWidth}}px">
     <div class="table-tableheader-rows">
         {{list data.left.cols as item}}
@@ -62,33 +63,21 @@
         </div>
     </div>
 </div>
+{{/if}}
 <!--[body]-->
-<%if(data){%>
-<%
-    var twidth=0;
-    if(data[0]){
-        for(var i=0;i<data[0].cols.length;i++){
-            if(data[0].cols[i].disable!==true){
-                twidth+=data[0].cols[i].width;
-            }
-        }
-    }
-%>
-<div style="width:<%=twidth;%>px">
-    <%for(var i=0;i<data.length;i++){%>
-    <%
-        var row=data[i],cols=row.cols;
-    %>
-    <div class="table-tablebody-rows<%=(row.selected?' table-row-selected':'');%>" unique="<%=row.id;%>" data-bind="click:row" @cache(row)>
-        <%for(var t in cols){%>
-            <%if(cols[t].disable!==true){%>
-            <div class="table-tablebody-col<%=(' table-col-'+cols[t].textAlign);%>" style="width:<%=cols[t].width;%>px;"><%=cols[t].value;%></div>
-            <%}%>
-        <%}%>
+{{if data}}
+<div style="width:{{data[0].width}}px">
+    {{list data as row}}
+    <div class="table-tablebody-rows{{row.selected?' table-row-selected':''}}" unique="{{row.id}}" data-bind="click:row" @cache(row)>
+        {{list row.cols as col}}
+            {{if col.disable!=true}}
+            <div class="table-tablebody-col{{' table-col-'+col.textAlign}}" style="width:{{col.width}}px;">{{col.value}}</div>
+            {{/if}}
+        {{/list}}
     </div>
-    <%}%>
+    {{/list}}
 </div>
-<%}%>
+{{/if}}
 <!--[bodyfn]-->
 {{if data}}
     {{list data as row}}

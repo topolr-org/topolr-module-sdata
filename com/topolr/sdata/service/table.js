@@ -17,6 +17,7 @@ Module({
         var r = {
             cols:[]
         };
+        var width=0;
         for (var i = 0; i < this.option.cols.length; i++) {
             var rr={};
             var a = this.option.cols[i];
@@ -33,11 +34,15 @@ Module({
                 r.id=data[a.key];
             }
             r.cols.push(rr);
+            if(!rr.disable){
+                width+=rr.width;
+            }
         }
         r.height=this.option.rowHeight;
         r.selected=false;
         r.warn=false;
         r.error=false;
+        r.width=width;
         return r;
     },
     getPagesData: function (current, total) {
@@ -181,15 +186,29 @@ Module({
             }
         }
         if(index!==null) {
+            for(var i=0;i<this.option.cols.length;i++){
+                if(this.option.cols[i].key===key){
+                    $.extend(this.option.cols[i],props);
+                }
+            }
             $.extend(this.data.header.cols[index], props);
             for (var i = 0; i < this.data.body.length; i++) {
-                var row=this.data.body[i];
+                var row=this.data.body[i],width=0;
                 for(var t=0;t<row.cols.length;t++){
+                    var has=false;
                     if(row.cols[t].key===key){
                         $.extend(row.cols[t],props);
+                        has=false;
+                    }
+                    if(!row.cols[t].disable){
+                        width+=row.cols[t].width;
+                    }
+                    if(has){
                         break;
                     }
                 }
+                console.log(width)
+                row.width=width;
             }
         }
     },
@@ -291,6 +310,7 @@ Module({
             body: null,
             footer: null
         };
+        this.trigger();
         this.start();
     },
     service_gotopage: function (num) {

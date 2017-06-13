@@ -5,6 +5,7 @@
  * @require icon.action;
  * @require icon.direct;
  * @css sdata.style.tablestyle;
+ * @require baseui.loading;
  */
 Module({
     name:"basetable",
@@ -150,7 +151,7 @@ Module({
     },
     init:function () {
         this.getService("table").action('set',this.option);
-        this.getService("table").trigger("gotopage",1);
+        this.gotoPage(1);
     },
     update:function (a) {
         this.getChildByType(this.option.headType).update(a.header);
@@ -158,10 +159,16 @@ Module({
         this.getChildByType(this.option.footType).update(a.footer);
     },
     gotoPage:function (num) {
-        this.getService("table").trigger("gotopage",num).then(function () {
-            console.log("---ok----")
-        },function () {
-            console.log("----error---")
+        this.addChild({
+            type:"@loading.area",
+            container:this.dom
+        }).then(function (area) {
+            area.showLoading("loading...");
+            this.getService("table").trigger("gotopage",num).then(function () {
+                area.remove();
+            },function () {
+                area.remove();
+            });
         });
     },
     nextPage:function () {

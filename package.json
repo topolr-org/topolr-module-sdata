@@ -23,6 +23,7 @@
   "homepage": "https://github.com/topolr-org/topolr-module-sdata#readme",
   "dependencies": {
     "topolr": "^1.4.1",
+    "topolr-module-baseui": "^1.0.1",
     "topolr-module-icon": "^1.0.0"
   }
 }

@@ -177,7 +177,7 @@ Module({
                 btns.page1.num = (total - 3);
                 btns.page2.num = (total - 2);
                 btns.page3.num = (total - 1);
-                btns["page" + (4 - (total - num))].addClass("success");
+                btns["page" + (4 - (total - num))].iscurrent=true;
             }
         }
         if (num === 1) {

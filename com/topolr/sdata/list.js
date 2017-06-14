@@ -30,7 +30,8 @@ Module({
             area.showLoading("loading...");
             this.triggerService("list.gotopage", num).then(function () {
                 area.remove();
-            },function () {
+            },function (a) {
+                console.log(a);
                 area.remove();
             });
         });

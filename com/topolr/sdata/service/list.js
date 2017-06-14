@@ -17,20 +17,27 @@ Module({
         this.trigger();
     },
     then: function (info) {
-        this.data = {
-            list: info.list,
-            total: info.total,
-            current: info.current,
-            pages: this.getPagesData(info.current, info.total)
-        };
-        this.start();
-        this.trigger();
+        try {
+            this.data = {
+                list: info.list,
+                total: info.total,
+                current: info.current,
+                pages: this.getPagesData(info.current, info.total)
+            };
+            this.start();
+            this.trigger();
+        }catch (e){
+            this.trigger();
+        }
     },
     service_gotopage: function (num) {
         var ths = this;
         this.stop();
         return this.gotoPage(num).then(function (info) {
             return ths.then(info);
+        },function (a) {
+            ths.start();
+            console.log(a)
         });
     },
     service_prev: function () {
@@ -38,6 +45,8 @@ Module({
         this.stop();
         return this.prevPage().then(function (info) {
             return ths.then(info);
+        },function () {
+            ths.start();
         });
     },
     service_next: function () {
@@ -45,6 +54,8 @@ Module({
         this.stop();
         return this.nextPage().then(function (info) {
             return ths.then(info);
+        },function (a) {
+            ths.start();
         });
     }
 });

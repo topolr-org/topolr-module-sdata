@@ -41,7 +41,7 @@ Module({
             container:this.dom
         }).then(function (area) {
             area.showLoading("loading...");
-            this.triggerService("list.next", num).then(function () {
+            this.triggerService("list.next").then(function () {
                 area.remove();
             },function () {
                 area.remove();
@@ -54,7 +54,7 @@ Module({
             container:this.dom
         }).then(function (area) {
             area.showLoading("loading...");
-            this.triggerService("list.prev", num).then(function () {
+            this.triggerService("list.prev").then(function () {
                 area.remove();
             },function () {
                 area.remove();

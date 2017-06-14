@@ -2,12 +2,14 @@
  * @packet sdata.list;
  * @require sdata.service.list;
  * @template sdata.template.listtemp;
+ * @require icon.direct;
+ * @require baseui.loading;
  */
 Module({
     name:'simplelist',
-    extend:"view",
+    extend:"viewgroup",
     services:{"list":"@list.nocacheservice"},
-    template:"@listtemp.simplelist",
+    layout:"@listtemp.simplelist",
     autodom:true,
     option:{
         pageSize: 10,
@@ -21,8 +23,51 @@ Module({
         this.gotoPage(1);
     },
     gotoPage:function (num) {
-        this.triggerService("list.gotopage",num).then(function () {
-            console.log("done")
+        this.addChild({
+            type:"@loading.area",
+            container:this.dom
+        }).then(function (area) {
+            area.showLoading("loading...");
+            this.triggerService("list.gotopage", num).then(function () {
+                area.remove();
+            },function () {
+                area.remove();
+            });
         });
+    },
+    nextPage:function () {
+        this.addChild({
+            type:"@loading.area",
+            container:this.dom
+        }).then(function (area) {
+            area.showLoading("loading...");
+            this.triggerService("list.next", num).then(function () {
+                area.remove();
+            },function () {
+                area.remove();
+            });
+        });
+    },
+    prevPage:function () {
+        this.addChild({
+            type:"@loading.area",
+            container:this.dom
+        }).then(function (area) {
+            area.showLoading("loading...");
+            this.triggerService("list.prev", num).then(function () {
+                area.remove();
+            },function () {
+                area.remove();
+            });
+        });
+    },
+    bind_prev:function () {
+        this.prevPage();
+    },
+    bind_next:function () {
+        this.nextPage();
+    },
+    bind_goto:function (dom) {
+        this.gotoPage(dom.cache().num);
     }
 });

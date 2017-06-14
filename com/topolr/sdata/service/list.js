@@ -29,5 +29,11 @@ Module({
             this.start();
             this.trigger();
         });
+    },
+    service_prev:function(){
+        return this.prevPage();
+    },
+    service_next:function () {
+        return this.nextPage();
     }
 });

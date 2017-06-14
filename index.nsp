@@ -38,16 +38,17 @@
                 "icon.test": "6cf91847ad",
                 "icon.tm": "e56fe701bb",
                 "icon.weather": "a0fbd27b12",
-                "sdata.list": "81ef40258b",
-                "sdata.service.page": "2aa843453a",
-                "sdata.service.table": "a54865c09e",
-                "sdata.service.tree": "bfa0da1a1b",
-                "sdata.table": "6b548b8379",
-                "sdata.test": "4e70d86ebd",
-                "sdata.tree": "f63c7ddee5"
+                "sdata.list": "b2dd36c95e",
+                "sdata.service.list": "b2051e7d07",
+                "sdata.service.page": "68a4a6324f",
+                "sdata.service.table": "490ee9dec8",
+                "sdata.service.tree": "bfec32f7a1",
+                "sdata.table": "b0c8eaf048",
+                "sdata.test": "9f1b65342e",
+                "sdata.tree": "725c703049"
             },
             "c": {
-                "baseui.style.ui": "a35df5d2ad",
+                "baseui.style.ui": "c6c0b2181e",
                 "icon.style.icon": "312bbc92d8",
                 "icon.style.style": "1a26c51a6b",
                 "sdata.style.tablestyle": "257fbe1c1a",
@@ -56,12 +57,13 @@
             "t": {
                 "baseui.template.temp": "4008446770",
                 "icon.template.temp": "8397de88de",
+                "sdata.template.listtemp": "9962050eea",
                 "sdata.template.tabletemp": "249c52d751",
                 "sdata.template.treetemp": "568cf230dc"
             }
         },
         "c": {
-            "sdata-test-c3": {
+            "sdata-test-c4": {
                 "p": [
                     "sdata.test",
                     "sdata.table",
@@ -72,7 +74,9 @@
                     "baseui.loading",
                     "icon.loading",
                     "sdata.tree",
-                    "sdata.service.tree"
+                    "sdata.service.tree",
+                    "sdata.list",
+                    "sdata.service.list"
                 ],
                 "c": [
                     "icon.style.icon",
@@ -83,11 +87,12 @@
                 "t": [
                     "baseui.template.temp",
                     "sdata.template.tabletemp",
-                    "sdata.template.treetemp"
+                    "sdata.template.treetemp",
+                    "sdata.template.listtemp"
                 ]
             }
         },
-        "id": "90af7e603467da7b197f8b2641760f50"
+        "id": "f326c53470c6fca6f1282f9a0ee21746"
     }
 }).boot(true);
     </script>

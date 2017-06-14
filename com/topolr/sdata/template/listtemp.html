@@ -1,0 +1,39 @@
+<!--[simplelist]-->
+<div>
+    {{list data.list as item}}
+    <div>{{item.name}}</div>
+    {{/list}}
+</div>
+<div>
+    {{if data.pages}}
+    <div class="table-tablefoot-pages">
+        {{list data.pages as page}}
+        {{if page.name==='prev'}}
+        <div class="table-tablefoot-pages-page{{page.disabled===true?' table-page-disabled':''}}" data-bind="click:prev">
+            <svg class="mt-icon" style="transform:rotate(-90deg)"><use xlink:href="#mt-icon-chevron-up"></use></svg>
+        </div>
+        {{elseif page.name==='next'}}
+        <div class="table-tablefoot-pages-page{{page.disabled===true?' table-page-disabled':''}}" data-bind="click:next">
+            <svg class="mt-icon" style="transform:rotate(90deg)"><use xlink:href="#mt-icon-chevron-up"></use></svg>
+        </div>
+        {{elseif page.name==='btn'}}
+        {{if page.none===true}}
+        <div class="table-tablefoot-pages-page table-page-none" data-bind="click:goto" @cache(page)>{{page.num}}</div>
+        {{else}}
+        {{if page.iscurrent===true}}
+        <div class="table-tablefoot-pages-page table-page-current" data-bind="click:goto" @cache(page)>{{page.num}}</div>
+        {{else}}
+        <div class="table-tablefoot-pages-page" data-bind="click:goto" @cache(page)>{{page.num}}</div>
+        {{/if}}
+        {{/if}}
+        {{elseif page.name==='dot'}}
+        {{if page.none===true}}
+        <div class="table-tablefoot-pages-page table-page-none">...</div>
+        {{else}}
+        <div class="table-tablefoot-pages-page">...</div>
+        {{/if}}
+        {{/if}}
+        {{/list}}
+    </div>
+    {{/if}}
+</div>

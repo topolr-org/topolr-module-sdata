@@ -82,7 +82,8 @@ Module({
     option: {
         cols: [],
         tools: [],
-        deals: []
+        deals: [],
+        parsefn:null
     },
     init: function () {
         this.superClass("init");
@@ -98,6 +99,9 @@ Module({
         this.dispatchEvent("deal_" + deal.action, data);
     },
     service_schange: function (data) {
+        if(this.option.parsefn){
+            data=this.option.parsefn(data);
+        }
         $.extend(data, this.option);
         this.update(data);
     }

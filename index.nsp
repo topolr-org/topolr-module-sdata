@@ -26,9 +26,10 @@
         "d": true,
         "m": {
             "p": {
-                "baseui.loading": "0ca65860ec",
-                "baseui.test": "9ca1306723",
-                "icon.action": "5e38646005",
+                "baseui.loading": "2ff6e99a89",
+                "baseui.popup": "340634b1bd",
+                "baseui.test": "7018b3070b",
+                "icon.action": "2aeea686c3",
                 "icon.direct": "6a838ec33c",
                 "icon.editor": "d3f12ab642",
                 "icon.files": "ad163495d5",
@@ -38,14 +39,18 @@
                 "icon.test": "6cf91847ad",
                 "icon.tm": "e56fe701bb",
                 "icon.weather": "a0fbd27b12",
-                "sdata.list": "79f0627b1d",
+                "sdata.list": "32151af24f",
                 "sdata.service.list": "e6dbef3ea7",
                 "sdata.service.page": "43918f959d",
                 "sdata.service.table": "490ee9dec8",
                 "sdata.service.tree": "bfec32f7a1",
                 "sdata.table": "b0c8eaf048",
-                "sdata.test": "9f1b65342e",
+                "sdata.test": "4f39dadac6",
                 "sdata.tree": "725c703049"
+            },
+            "y": {
+                "baseui.style.msgbox": "2110f52f70",
+                "sdata.style.liststyle": "143e81e3df"
             },
             "c": {
                 "baseui.style.ui": "c6c0b2181e",
@@ -55,15 +60,15 @@
                 "sdata.style.treestyle": "6965058a62"
             },
             "t": {
-                "baseui.template.temp": "4008446770",
+                "baseui.template.temp": "0ba5726be9",
                 "icon.template.temp": "8397de88de",
-                "sdata.template.listtemp": "9962050eea",
+                "sdata.template.listtemp": "475d28b54b",
                 "sdata.template.tabletemp": "249c52d751",
                 "sdata.template.treetemp": "568cf230dc"
             }
         },
         "c": {
-            "sdata-test-c4": {
+            "sdata-test-c1": {
                 "p": [
                     "sdata.test",
                     "sdata.table",
@@ -76,19 +81,30 @@
                     "sdata.tree",
                     "sdata.service.tree",
                     "sdata.list",
-                    "sdata.service.list"
+                    "sdata.service.list",
+                    "icon.iconpreviewer",
+                    "icon.editor",
+                    "icon.files",
+                    "icon.player",
+                    "icon.tm",
+                    "icon.weather"
                 ],
                 "c": [
                     "icon.style.icon",
                     "baseui.style.ui",
                     "sdata.style.tablestyle",
-                    "sdata.style.treestyle"
+                    "sdata.style.treestyle",
+                    "icon.style.style"
                 ],
                 "t": [
                     "baseui.template.temp",
                     "sdata.template.tabletemp",
                     "sdata.template.treetemp",
-                    "sdata.template.listtemp"
+                    "sdata.template.listtemp",
+                    "icon.template.temp"
+                ],
+                "y": [
+                    "sdata.style.liststyle"
                 ]
             }
         },

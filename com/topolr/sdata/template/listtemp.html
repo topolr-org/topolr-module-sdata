@@ -37,3 +37,87 @@
     </div>
     {{/if}}
 </div>
+
+<!--[traditionlist]-->
+<div class="btnscon">
+    <div class="btns">
+    {{list data.tools as item}}
+    <div class="btn" data-bind="click:tool" @cache(item)>
+        <div class="label"><svg class=":mt-icon"><use xlink:href="#{{item.icon}}"></use></svg></div>
+        <div class="title">{{item.name}}</div>
+    </div>
+    {{/list}}
+    </div>
+</div>
+<div class="table">
+    <div class="srow">
+        <div class="row header">
+            {{list data.cols as item}}
+            <div class="col" style="width:{{item.width}}%">{{item.name}}</div>
+            {{/list}}
+        </div>
+        <div class="deals header" style="width:{{data.deals.length*40}}px"></div>
+    </div>
+    {{if data.list&&data.list.length>0}}
+        {{list data.list as item}}
+        <div class="srow">
+            <div class="row">
+                {{list data.cols as sub}}
+                <div class="col" style="width:{{sub.width}}%">{{item[sub.key]}}</div>
+                {{/list}}
+            </div>
+            <div class="deals" style="width:{{data.deals.length*40}}px" @cache(item)>
+                {{list data.deals as deal}}
+                <div class="deal" title="{{deal.name}}" data-bind="click:deal" @cache(deal)>
+                    <svg class=":mt-icon"><use xlink:href="#{{deal.icon}}"></use></svg>
+                </div>
+                {{/list}}
+            </div>
+        </div>
+        {{/list}}
+    {{else}}
+        <div class="nodata">
+            <div class="desc">
+                <div class="a"><svg class=":mt-icon"><use xlink:href="#mt-icon-eye-slash"></use></svg></div>
+                <div class="b">没有用于显示的数据</div>
+            </div>
+        </div>
+    {{/if}}
+</div>
+<div class="footer">
+    {{if data.pages}}
+    <div class="pages">
+        {{list data.pages as page}}
+        {{if page.name==='prev'}}
+        <div class="page{{page.disabled===true?' disabled':''}}" data-bind="click:prev">
+            <svg class=":mt-icon" style="transform:rotate(-90deg)">
+                <use xlink:href="#mt-icon-chevron-up"></use>
+            </svg>
+        </div>
+        {{elseif page.name==='next'}}
+        <div class="page{{page.disabled===true?' disabled':''}}" data-bind="click:next">
+            <svg class=":mt-icon" style="transform:rotate(90deg)">
+                <use xlink:href="#mt-icon-chevron-up"></use>
+            </svg>
+        </div>
+        {{elseif page.name==='btn'}}
+        {{if page.none===true}}
+        <div class="page none" data-bind="click:goto" @cache(page)>{{page.num}}</div>
+        {{else}}
+        {{if page.iscurrent===true}}
+        <div class="page current" data-bind="click:goto" @cache(page)>{{page.num}}</div>
+        {{else}}
+        <div class="page" data-bind="click:goto" @cache(page)>{{page.num}}</div>
+        {{/if}}
+        {{/if}}
+        {{elseif page.name==='dot'}}
+        {{if page.none===true}}
+        <div class="page none">...</div>
+        {{else}}
+        <div class="page">...</div>
+        {{/if}}
+        {{/if}}
+        {{/list}}
+    </div>
+    {{/if}}
+</div>

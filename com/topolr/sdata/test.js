@@ -3,6 +3,7 @@
  * @require sdata.table;
  * @require sdata.tree;
  * @require sdata.list;
+ * @require icon.iconpreviewer;
  */
 Option({
     name:"boot",
@@ -10,9 +11,29 @@ Option({
         override:{
             onendinit:function () {
                 this.addChild({
-                    type:"@list.simplelist",
+                    type:"@list.traditionlist",
                     option:{
-                        url:sitePath+"/test/page"
+                        url:sitePath+"/test/page",
+                        tools: [
+                            {name:"btn-a",action:"a",icon:"mt-icon-ban"},
+                            {name:"btn-a",action:"b",icon:"mt-icon-ban"}
+                        ],
+                        cols: [
+                            {key:"id",name:"ID",width:50},
+                            {key:"name",name:"Name",width:50}
+                        ],
+                        deals: [
+                            {name:"A",action:"a",icon:"mt-icon-ban"},
+                            {name:"B",action:"b",icon:"mt-icon-ban"}
+                        ],
+                        override:{
+                            event_tool_a:function (e) {
+                                console.log("===>",e);
+                            },
+                            event_deal_a:function (e) {
+                                console.log(e.data);
+                            }
+                        }
                     },
                     container:this.finders("container")
                 });

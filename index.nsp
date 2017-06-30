@@ -39,14 +39,14 @@
                 "icon.test": "6cf91847ad",
                 "icon.tm": "e56fe701bb",
                 "icon.weather": "a0fbd27b12",
-                "sdata.list": "32151af24f",
-                "sdata.service.list": "e6dbef3ea7",
-                "sdata.service.page": "43918f959d",
-                "sdata.service.table": "490ee9dec8",
-                "sdata.service.tree": "bfec32f7a1",
-                "sdata.table": "b0c8eaf048",
-                "sdata.test": "4f39dadac6",
-                "sdata.tree": "725c703049"
+                "sdata.list": "1b7c55ef1a",
+                "sdata.service.list": "edc4c6b052",
+                "sdata.service.page": "80d210fdf6",
+                "sdata.service.table": "bf3e839ba9",
+                "sdata.service.tree": "bfa0da1a1b",
+                "sdata.table": "6b548b8379",
+                "sdata.test": "34b7ccfc9f",
+                "sdata.tree": "f63c7ddee5"
             },
             "y": {
                 "baseui.style.msgbox": "2110f52f70",
@@ -108,7 +108,7 @@
                 ]
             }
         },
-        "id": "f326c53470c6fca6f1282f9a0ee21746"
+        "id": "90af7e603467da7b197f8b2641760f50"
     }
 }).boot(true);
     </script>

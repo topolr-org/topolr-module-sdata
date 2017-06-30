@@ -41,7 +41,7 @@
         display: flex;
     }
     .row{
-        flex:1;
+        flex-grow: 1;
         line-height:40px;
         border-bottom: 1px solid #F1F1F1;
         display: flex;

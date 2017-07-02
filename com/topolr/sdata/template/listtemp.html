@@ -40,14 +40,16 @@
 
 <!--[traditionlist]-->
 <div class="btnscon">
+    {{if data.tools.length>0}}
     <div class="btns">
-    {{list data.tools as item}}
-    <div class="btn" data-bind="click:tool" @cache(item)>
-        <div class="label"><svg class=":mt-icon"><use xlink:href="#{{item.icon}}"></use></svg></div>
-        <div class="title">{{item.name}}</div>
+        {{list data.tools as item}}
+        <div class="btn" data-bind="click:tool" @cache(item)>
+            <div class="label"><svg class=":mt-icon"><use xlink:href="#{{item.icon}}"></use></svg></div>
+            <div class="title">{{item.name}}</div>
+        </div>
+        {{/list}}
     </div>
-    {{/list}}
-    </div>
+    {{/if}}
 </div>
 <div class="table">
     <div class="srow">
@@ -59,31 +61,35 @@
         <div class="deals header" style="width:{{data.deals.length*40}}px"></div>
     </div>
     {{if data.list&&data.list.length>0}}
-        {{list data.list as item}}
-        <div class="srow">
-            <div class="row">
-                {{list data.cols as sub}}
-                <div class="col" style="width:{{sub.width}}%">{{item[sub.key]}}</div>
-                {{/list}}
+    {{list data.list as item}}
+    <div class="srow">
+        <div class="row">
+            {{list data.cols as sub subindex}}
+            <div class="col" style="width:{{data.winwidth?sub.width:100}}%">
+                <span class="colname">{{data.cols[subindex].name}}:</span>
+                <span class="colvalue">{{item[sub.key]}}</span>
             </div>
-            <div class="deals" style="width:{{data.deals.length*40}}px" @cache(item)>
-                {{list data.deals as deal}}
-                <div class="deal" title="{{deal.name}}" data-bind="click:deal" @cache(deal)>
-                    <svg class=":mt-icon"><use xlink:href="#{{deal.icon}}"></use></svg>
-                </div>
-                {{/list}}
-            </div>
+            {{/list}}
         </div>
-        {{/list}}
+        <div class="deals" style="width:{{data.deals.length*40}}px" @cache(item)>
+            {{list data.deals as deal}}
+            <div class="deal" title="{{deal.name}}" data-bind="click:deal" @cache(deal)>
+                <svg class=":mt-icon"><use xlink:href="#{{deal.icon}}"></use></svg>
+            </div>
+            {{/list}}
+        </div>
+    </div>
+    {{/list}}
     {{else}}
-        <div class="nodata">
-            <div class="desc">
-                <div class="a"><svg class=":mt-icon"><use xlink:href="#mt-icon-eye-slash"></use></svg></div>
-                <div class="b">没有用于显示的数据</div>
-            </div>
+    <div class="nodata">
+        <div class="desc">
+            <div class="a"><svg class=":mt-icon"><use xlink:href="#mt-icon-eye-slash"></use></svg></div>
+            <div class="b">没有用于显示的数据</div>
         </div>
+    </div>
     {{/if}}
 </div>
+{{if data.list&&data.list.length>0}}
 <div class="footer">
     {{if data.pages}}
     <div class="pages">
@@ -121,3 +127,4 @@
     </div>
     {{/if}}
 </div>
+{{/if}}

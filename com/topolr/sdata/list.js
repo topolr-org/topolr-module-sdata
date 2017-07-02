@@ -83,7 +83,7 @@ Module({
         cols: [],
         tools: [],
         deals: [],
-        parsefn:null
+        parsefn: null
     },
     init: function () {
         this.superClass("init");
@@ -99,10 +99,10 @@ Module({
         this.dispatchEvent("deal_" + deal.action, data);
     },
     service_schange: function (data) {
-        if(this.option.parsefn){
-            data=this.option.parsefn(data);
+        if (this.option.parsefn) {
+            data = this.option.parsefn(data);
         }
-        $.extend(data, this.option);
+        $.extend(data, this.option, {winwidth: $(window).width() > 480});
         this.update(data);
     }
 });

@@ -39,17 +39,21 @@
     overflow: hidden;
     .srow{
         display: flex;
+        border-bottom: 1px solid #F1F1F1;
     }
     .row{
         flex-grow: 1;
         line-height:40px;
-        border-bottom: 1px solid #F1F1F1;
         display: flex;
         .col{
             padding:0 10px 0 10px;
             overflow: hidden;
             white-space: nowrap;
             text-overflow: ellipsis;
+            .colname{
+                display: none;
+            }
+            .colvalue{}
         }
         &.header{
             line-height:30px;
@@ -60,7 +64,6 @@
     .deals{
         display: flex;
         line-height:40px;
-        border-bottom: 1px solid #F1F1F1;
         .deal{
             width:40px;
             text-align: center;
@@ -126,11 +129,92 @@
             display:none;
         }
         &.current{
-            background:#3169FF;
+            background:#1f8ca4;;
             color:white;
             &:hover{
-                background:#3169FF;
+                background:#1f8ca4;;
             }
+        }
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .btnscon{
+        margin:0;
+        padding:8px 5px 0 0;
+        text-align: right;
+        .btns{
+            display: inline-block;
+            line-height:30px;
+            border:1px solid #E5E3E3;
+            border-right:0;
+            border-radius: 5px;
+            overflow: hidden;
+            background:white;
+        }
+        .btn{
+            display:inline-block;
+            vertical-align: top;
+            border-right:1px solid #E5E3E3;
+            cursor:default;
+            .label{
+                width:30px;
+                text-align: center;
+                display: inline-block;
+            }
+            .title{
+                display: inline-block;
+                padding:0 10px 0 0;
+                font-size:12px;
+            }
+            &:hover{
+                background:#F7F7F7;
+            }
+            &:active{
+                background:#E5E3E3;
+            }
+        }
+    }
+    .table{
+        text-align: right;
+        .srow{
+            display: block;
+            background:#fffbfb;
+            margin:5px 0 5px 0;
+            &:first-child{
+                display: none;
+            }
+        }
+        .row{
+            text-align: left;
+            background: white;
+            border-bottom: 1px solid #F1F1F1;
+            display: block;
+            padding:5px 0 5px 0;
+            .col{
+                padding:0 10px 0 10px;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                line-height: 25px;
+                .colname{
+                    display: inline-block;
+                }
+            }
+            &.header{
+                display: none;
+            }
+        }
+        .deals{
+            text-align: right;
+            display: inline-block;
+            .deal{
+                display: inline-block;
+                vertical-align: top;
+            }
+        }
+        .nodata{
+            background:white;
         }
     }
 }

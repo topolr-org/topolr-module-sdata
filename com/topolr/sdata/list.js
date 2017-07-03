@@ -5,6 +5,7 @@
  * @require icon.action;
  * @require baseui.loading;
  * @style sdata.style.liststyle;
+ * @style sdata.style.listcon;
  */
 Module({
     name: 'simplelist',
@@ -141,9 +142,9 @@ Module({
                 }
             }
         };
-        window.addEventListener("scroll", et);
+        this.dom.parent().parent().get(0).addEventListener("scroll", et);
         this.onunload = function () {
-            window.removeEventListener("scroll", et);
+            ths.dom.parent().parent().get(0).removeEventListener("scroll", et);
         }
     },
     gotoPage: function (num) {
@@ -173,7 +174,7 @@ Module({
             this.dispatchEvent("errorloading");
         });
     },
-    retry:function(){
+    retry: function () {
         this.dispatchEvent("startloading");
         this.triggerService("list.retry").scope(this).then(function () {
             this.dispatchEvent("endloading", {
@@ -208,8 +209,8 @@ Module({
     extend: "viewgroup",
     autodom: true,
     layout: "@listtemp.appendlist",
-    className: "appendlist",
-    style: "@liststyle",
+    className: "appendlistcon",
+    style: "@listcon",
     option: {},
     init: function () {
         this.addChild({

@@ -1,0 +1,23 @@
+.appendlistcon{
+  position:absolute;
+  left:0;
+  top:0;
+  right:0;
+  bottom:0;
+  overflow:auto;
+}
+.loading{
+  line-height:40px;
+  background:#F1F1F1;
+  text-align: center;
+  .licon{
+    width:30px;
+    text-align: center;
+    display: inline-block;
+    vertical-align: top;
+  }
+  .ldesc{
+    display: inline-block;
+    vertical-align: top;
+  }
+}

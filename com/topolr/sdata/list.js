@@ -125,7 +125,7 @@ Module({
         deals: [],
         parsefn: null,
         offsetHeight: 0,
-        scrollTop:true
+        scrollTop: true
     },
     init: function () {
         this.excuteService("list.set", this.option);
@@ -143,7 +143,7 @@ Module({
         }
     },
     gotoPage: function (num) {
-        if(this.option.scrollTop) {
+        if (this.option.scrollTop) {
             $(window).scrollTop(0);
         }
         this.excuteService("list.clean");
@@ -159,7 +159,6 @@ Module({
     bind_deal: function (dom) {
         var deal = dom.cache();
         var data = dom.parent().cache();
-        console.log(deal)
         this.dispatchEvent("deal_" + deal.action, data);
     },
     service_schange: function (data) {
@@ -193,5 +192,8 @@ Module({
                 container: this.dom
             });
         }
+    },
+    gotoPage: function (num) {
+        this.getChildAt(0).gotoPage(num);
     }
 });

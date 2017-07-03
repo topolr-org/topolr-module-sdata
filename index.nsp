@@ -47,8 +47,8 @@
                 "icon.test": "6cf91847ad",
                 "icon.tm": "e56fe701bb",
                 "icon.weather": "a0fbd27b12",
-                "sdata.list": "70217d96a4",
-                "sdata.service.list": "897c67e2b0",
+                "sdata.list": "7129df0f46",
+                "sdata.service.list": "ed53475eb1",
                 "sdata.service.page": "016b6b4be6",
                 "sdata.service.table": "490ee9dec8",
                 "sdata.service.tree": "bfec32f7a1",
@@ -70,7 +70,7 @@
             "t": {
                 "baseui.template.temp": "0ba5726be9",
                 "icon.template.temp": "8397de88de",
-                "sdata.template.listtemp": "be1eedacb7",
+                "sdata.template.listtemp": "976d648fb7",
                 "sdata.template.tabletemp": "249c52d751",
                 "sdata.template.treetemp": "568cf230dc"
             }

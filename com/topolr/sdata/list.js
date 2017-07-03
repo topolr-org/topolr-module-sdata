@@ -124,7 +124,8 @@ Module({
         tools: [],
         deals: [],
         parsefn: null,
-        offsetHeight: 0
+        offsetHeight: 0,
+        scrollTop:true
     },
     init: function () {
         this.excuteService("list.set", this.option);
@@ -142,6 +143,9 @@ Module({
         }
     },
     gotoPage: function (num) {
+        if(this.option.scrollTop) {
+            $(window).scrollTop(0);
+        }
         this.excuteService("list.clean");
         this.triggerService("list.gotopage", num);
     },

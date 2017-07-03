@@ -65,6 +65,7 @@ Module({
     action_clean: function () {
         this.data.list = [];
         this.data.current = 1;
+        this._end=false;
     },
     then: function (info) {
         try {

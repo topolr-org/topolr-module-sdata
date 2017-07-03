@@ -144,7 +144,7 @@
 <div class="table">
     {{if data.list&&data.list.length>0}}
         {{list data.list as item}}
-        <div class="srow">
+        <div class="srow" unquie="{{item.id}}">
             <div class="row">
                 {{list data.cols as sub subindex}}
                 <div class="col" style="width:{{data.winwidth?sub.width:100}}%">

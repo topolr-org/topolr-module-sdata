@@ -131,10 +131,13 @@ Module({
         this.excuteService("list.set", this.option);
         this.gotoPage(1);
         var ths = this;
+        this._end=false;
         var et = function () {
-            var b = ths.dom.get(0).getBoundingClientRect().bottom;
-            if (b <= $(window).height() - ths.option.offsetHeight) {
-                ths.nextPage();
+            if(!ths._end) {
+                var b = ths.dom.get(0).getBoundingClientRect().bottom;
+                if (b <= $(window).height() - ths.option.offsetHeight) {
+                    ths.nextPage();
+                }
             }
         };
         window.addEventListener("scroll", et);
@@ -143,6 +146,7 @@ Module({
         }
     },
     gotoPage: function (num) {
+        this._end=false;
         if (this.option.scrollTop) {
             $(window).scrollTop(0);
         }
@@ -165,6 +169,7 @@ Module({
         if (this.option.parsefn) {
             data = this.option.parsefn(data);
         }
+        this._end=data.isend;
         $.extend(data, this.option, {winwidth: $(window).width() > 480});
         this.update(data);
     }

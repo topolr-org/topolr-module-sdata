@@ -40,6 +40,9 @@ Module({
             console.log(a)
         });
     },
+    service_retry:function () {
+        return this.service_gotopage(this._current);
+    },
     service_prev: function () {
         var ths = this;
         this.stop();

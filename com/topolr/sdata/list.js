@@ -107,10 +107,10 @@ Module({
     }
 });
 Module({
-    name: 'appendlist',
+    name: 'appendlistinner',
     extend: "viewgroup",
     services: {"list": "@list.cacheservice"},
-    layout: "@listtemp.appendlist",
+    layout: "@listtemp.appendlistinner",
     style: "@liststyle",
     className: "appendlist",
     autodom: true,
@@ -131,9 +131,10 @@ Module({
         this.excuteService("list.set", this.option);
         this.gotoPage(1);
         var ths = this;
-        this._end=false;
+        this._end = false;
+        this._size = 0;
         var et = function () {
-            if(!ths._end) {
+            if (!ths._end) {
                 var b = ths.dom.get(0).getBoundingClientRect().bottom;
                 if (b <= $(window).height() - ths.option.offsetHeight) {
                     ths.nextPage();
@@ -146,15 +147,42 @@ Module({
         }
     },
     gotoPage: function (num) {
-        this._end=false;
+        this._end = false;
         if (this.option.scrollTop) {
             $(window).scrollTop(0);
         }
         this.excuteService("list.clean");
-        this.triggerService("list.gotopage", num);
+        this.dispatchEvent("startloading");
+        this.triggerService("list.gotopage", num).scope(this).then(function () {
+            this.dispatchEvent("endloading", {
+                size: this._size,
+                isend: this._end
+            });
+        }, function () {
+            this.dispatchEvent("errorloading");
+        });
     },
     nextPage: function () {
-        this.triggerService("list.next");
+        this.dispatchEvent("startloading");
+        this.triggerService("list.next").scope(this).then(function () {
+            this.dispatchEvent("endloading", {
+                size: this._size,
+                isend: this._end
+            });
+        }, function () {
+            this.dispatchEvent("errorloading");
+        });
+    },
+    retry:function(){
+        this.dispatchEvent("startloading");
+        this.triggerService("list.retry").scope(this).then(function () {
+            this.dispatchEvent("endloading", {
+                size: this._size,
+                isend: this._end
+            });
+        }, function () {
+            this.dispatchEvent("errorloading");
+        });
     },
     bind_tool: function (dom) {
         var data = dom.cache();
@@ -169,9 +197,46 @@ Module({
         if (this.option.parsefn) {
             data = this.option.parsefn(data);
         }
-        this._end=data.isend;
         $.extend(data, this.option, {winwidth: $(window).width() > 480});
+        this._end = data.isend;
+        this._size += data.list.length;
         this.update(data);
+    }
+});
+Module({
+    name: "appendlist",
+    extend: "viewgroup",
+    autodom: true,
+    layout: "@listtemp.appendlist",
+    className: "appendlist",
+    style: "@liststyle",
+    option: {},
+    init: function () {
+        this.addChild({
+            type: "@.appendlistinner",
+            option: this.option,
+            container: this.finders("list")
+        });
+    },
+    bind_refresh: function () {
+        this.getChildAt(0).retry(1);
+    },
+    event_startloading: function (e) {
+        this.update({state: "loading"});
+        e.stopPropagation();
+    },
+    event_endloading: function (e) {
+        if (e.data.isend) {
+            this.update({state: "nomore", size: e.data.size});
+        }
+        e.stopPropagation();
+    },
+    event_errorloading: function (e) {
+        this.update({state: "error"});
+        e.stopPropagation();
+    },
+    gotoPage: function (num) {
+        this.getChildAt(0).gotoPage(num);
     }
 });
 Module({

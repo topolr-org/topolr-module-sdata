@@ -128,7 +128,7 @@
     {{/if}}
 </div>
 {{/if}}
-<!--[appendlist]-->
+<!--[appendlistinner]-->
 <div class="btnscon">
     {{if data.tools.length>0}}
     <div class="btns">
@@ -162,22 +162,25 @@
             </div>
         </div>
         {{/list}}
-    {{else}}
-        <div class="nodata">
-            <div class="desc">
-                <div class="a"><svg class=":mt-icon"><use xlink:href="#mt-icon-eye-slash"></use></svg></div>
-                <div class="b">没有用于显示的数据</div>
-            </div>
-        </div>
     {{/if}}
 </div>
-{{if !data.isend&&data.list&&data.list.length}}
+<!--[appendlist]-->
+<div data-find="list"></div>
+{{if data.state==="loading"}}
 <div class="loading" data-find="loading">
     <div class="licon"><svg class=":mt-icon :mt-icon-spin"><use xlink:href="#mt-icon-spinner10"></use></svg></div>
     <div class="ldesc">正在加载数据...</div>
 </div>
-{{else}}
+{{elseif data.state==="error"}}
 <div class="loading" data-find="loading">
-    <div class="ldesc">全部数据加载完成</div>
+    <div class="ldesc" data-bind="click:refresh">加载数据出错,点击重试</div>
 </div>
+{{else}}
+    {{if data.size>0}}
+    <div class="loading" data-find="loading">
+        <div class="ldesc">全部数据加载完成</div>
+    </div>
+    {{else}}
+    <div class="loading" data-find="loading"></div>
+    {{/if}}
 {{/if}}

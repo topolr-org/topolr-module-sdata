@@ -123,7 +123,8 @@ Module({
         cols: [],
         tools: [],
         deals: [],
-        parsefn: null
+        parsefn: null,
+        offsetHeight: 0
     },
     init: function () {
         this.excuteService("list.set", this.option);
@@ -131,7 +132,7 @@ Module({
         var ths = this;
         var et = function () {
             var b = ths.dom.get(0).getBoundingClientRect().bottom;
-            if (b <= $(window).height()) {
+            if (b <= $(window).height() - ths.option.offsetHeight) {
                 ths.nextPage();
             }
         };

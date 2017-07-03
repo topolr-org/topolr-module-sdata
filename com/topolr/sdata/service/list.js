@@ -26,7 +26,7 @@ Module({
             };
             this.start();
             this.trigger();
-        }catch (e){
+        } catch (e) {
             this.trigger();
         }
     },
@@ -35,27 +35,49 @@ Module({
         this.stop();
         return this.gotoPage(num).then(function (info) {
             return ths.then(info);
-        },function (a) {
+        }, function (a) {
             ths.start();
             console.log(a)
         });
     },
     service_prev: function () {
-        var ths=this;
+        var ths = this;
         this.stop();
         return this.prevPage().then(function (info) {
             return ths.then(info);
-        },function () {
+        }, function () {
             ths.start();
         });
     },
     service_next: function () {
-        var ths=this;
+        var ths = this;
         this.stop();
         return this.nextPage().then(function (info) {
             return ths.then(info);
-        },function (a) {
+        }, function (a) {
             ths.start();
         });
+    }
+});
+Module({
+    name: "cacheservice",
+    extend: "@.nocacheservice",
+    action_clean: function () {
+        this.data.list = [];
+        this.data.current = 1;
+    },
+    then: function (info) {
+        try {
+            this.data = {
+                list: this.data.list.concat(info.list),
+                total: info.total,
+                current: info.current,
+                isend:info.isend
+            };
+            this.start();
+            this.trigger();
+        } catch (e) {
+            this.trigger();
+        }
     }
 });

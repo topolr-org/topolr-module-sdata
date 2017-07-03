@@ -217,4 +217,19 @@
             background:white;
         }
     }
+    .loading{
+        line-height:40px;
+        background:#F1F1F1;
+        text-align: center;
+        .licon{
+            width:30px;
+            text-align: center;
+            display: inline-block;
+            vertical-align: top;
+        }
+        .ldesc{
+            display: inline-block;
+            vertical-align: top;
+        }
+    }
 }

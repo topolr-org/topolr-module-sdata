@@ -128,3 +128,56 @@
     {{/if}}
 </div>
 {{/if}}
+<!--[appendlist]-->
+<div class="btnscon">
+    {{if data.tools.length>0}}
+    <div class="btns">
+        {{list data.tools as item}}
+        <div class="btn" data-bind="click:tool" @cache(item)>
+            <div class="label"><svg class=":mt-icon"><use xlink:href="#{{item.icon}}"></use></svg></div>
+            <div class="title">{{item.name}}</div>
+        </div>
+        {{/list}}
+    </div>
+    {{/if}}
+</div>
+<div class="table">
+    {{if data.list&&data.list.length>0}}
+        {{list data.list as item}}
+        <div class="srow">
+            <div class="row">
+                {{list data.cols as sub subindex}}
+                <div class="col" style="width:{{data.winwidth?sub.width:100}}%">
+                    <span class="colname">{{data.cols[subindex].name}}:</span>
+                    <span class="colvalue">{{item[sub.key]}}</span>
+                </div>
+                {{/list}}
+            </div>
+            <div class="deals" style="width:{{data.deals.length*40}}px" @cache(item)>
+                {{list data.deals as deal}}
+                <div class="deal" title="{{deal.name}}" data-bind="click:deal" @cache(deal)>
+                    <svg class=":mt-icon"><use xlink:href="#{{deal.icon}}"></use></svg>
+                </div>
+                {{/list}}
+            </div>
+        </div>
+        {{/list}}
+    {{else}}
+        <div class="nodata">
+            <div class="desc">
+                <div class="a"><svg class=":mt-icon"><use xlink:href="#mt-icon-eye-slash"></use></svg></div>
+                <div class="b">没有用于显示的数据</div>
+            </div>
+        </div>
+    {{/if}}
+</div>
+{{if !data.isend&&data.list&&data.list.length}}
+<div class="loading" data-find="loading">
+    <div class="licon"><svg class=":mt-icon :mt-icon-spin"><use xlink:href="#mt-icon-spinner10"></use></svg></div>
+    <div class="ldesc">Loading...</div>
+</div>
+{{else}}
+<div class="loading" data-find="loading">
+    <div class="ldesc">All data loaded</div>
+</div>
+{{/if}}

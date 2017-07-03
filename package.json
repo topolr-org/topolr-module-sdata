@@ -1,6 +1,6 @@
 {
   "name": "topolr-module-sdata",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "structure data modules of topolr",
   "main": "index.js",
   "scripts": {},

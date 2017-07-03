@@ -2,7 +2,7 @@ mock:
   type: pagecount
   rate: 95
   option:
-    total: 210
+    total: 38
     num: page
     size: pagesize
     list: data.list

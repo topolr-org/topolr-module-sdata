@@ -72,32 +72,44 @@ Module({
     },
     gotoPage: function (page) {
         var ths = this;
-        return this.postRequest(this.option.url, this.getParameter(page)).then(function (data) {
-            ths._current = (page <= 0 ? 1 : page);
-            if (data.total) {
-                ths._total = data.total;
-                var a = data.total % ths.option.pageSize;
-                if (a === 0) {
-                    ths._totalPage = data.total / ths.option.pageSize;
-                } else {
-                    ths._totalPage = parseInt(data.total / ths.option.pageSize) + 1;
+        if(!this._end) {
+            return this.postRequest(this.option.url, this.getParameter(page)).then(function (data) {
+                ths._current = (page <= 0 ? 1 : page);
+                if (data.total) {
+                    ths._total = data.total;
+                    var a = data.total % ths.option.pageSize;
+                    if (a === 0) {
+                        ths._totalPage = data.total / ths.option.pageSize;
+                    } else {
+                        ths._totalPage = parseInt(data.total / ths.option.pageSize) + 1;
+                    }
                 }
-            }
-            if (data.list) {
-                if (data.list.length >= ths.option.pageSize) {
-                    ths._end = false;
+                if (data.list) {
+                    if (data.list.length >= ths.option.pageSize) {
+                        ths._end = false;
+                    } else {
+                        ths._end = true;
+                    }
                 } else {
                     ths._end = true;
                 }
-            } else {
-                ths._end = true;
-            }
-            return {
-                list: data.list,
-                total: ths._totalPage,
-                current: ths._current
-            };
-        });
+                return {
+                    list: data.list,
+                    total: ths._totalPage,
+                    current: ths._current,
+                    isend:ths._end
+                };
+            });
+        }else{
+            return $.promise(function (a) {
+                a({
+                    list: [],
+                    total: ths._totalPage,
+                    current: ths._current,
+                    isend:ths._end
+                });
+            });
+        }
     },
     getPagesData: function (current, total) {
         var r = [];

@@ -32,6 +32,7 @@ Module({
     },
     service_gotopage: function (num) {
         var ths = this;
+        this._end=false;
         this.stop();
         return this.gotoPage(num).then(function (info) {
             return ths.then(info);

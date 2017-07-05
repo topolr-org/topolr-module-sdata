@@ -63,7 +63,7 @@ Module({
     }
 });
 Module({
-    name: "totalservice",
+    name: "pageservice",
     extend: "@.baseservice",
     init: function () {
         this.superClass("init");
@@ -72,44 +72,33 @@ Module({
     },
     gotoPage: function (page) {
         var ths = this;
-        if(!this._end) {
-            return this.postRequest(this.option.url, this.getParameter(page)).then(function (data) {
-                ths._current = (page <= 0 ? 1 : page);
-                if (data.total) {
-                    ths._total = data.total;
-                    var a = data.total % ths.option.pageSize;
-                    if (a === 0) {
-                        ths._totalPage = data.total / ths.option.pageSize;
-                    } else {
-                        ths._totalPage = parseInt(data.total / ths.option.pageSize) + 1;
-                    }
+        return this.postRequest(this.option.url, this.getParameter(page)).then(function (data) {
+            ths._current = (page <= 0 ? 1 : page);
+            if (data.total) {
+                ths._total = data.total;
+                var a = data.total % ths.option.pageSize;
+                if (a === 0) {
+                    ths._totalPage = data.total / ths.option.pageSize;
+                } else {
+                    ths._totalPage = parseInt(data.total / ths.option.pageSize) + 1;
                 }
-                if (data.list) {
-                    if (data.list.length >= ths.option.pageSize) {
-                        ths._end = false;
-                    } else {
-                        ths._end = true;
-                    }
+            }
+            if (data.list) {
+                if (data.list.length >= ths.option.pageSize) {
+                    ths._end = false;
                 } else {
                     ths._end = true;
                 }
-                return {
-                    list: data.list,
-                    total: ths._totalPage,
-                    current: ths._current,
-                    isend:ths._end
-                };
-            });
-        }else{
-            return $.promise(function (a) {
-                a({
-                    list: [],
-                    total: ths._totalPage,
-                    current: ths._current,
-                    isend:ths._end
-                });
-            });
-        }
+            } else {
+                ths._end = true;
+            }
+            return {
+                list: data.list,
+                total: ths._totalPage,
+                current: ths._current,
+                isend:ths._end
+            };
+        });
     },
     getPagesData: function (current, total) {
         var r = [];
@@ -208,5 +197,55 @@ Module({
             nextpage.disabled = false
         }
         return [prevpage, btns.page0, dots1, btns.page1, btns.page2, btns.page3, dots2, btns.page4, nextpage];
+    }
+});
+Module({
+    name: "totalservice",
+    extend: "@.baseservice",
+    init: function () {
+        this.superClass("init");
+        this._total = 0;
+        this._totalPage = 0;
+    },
+    gotoPage: function (page) {
+        var ths = this;
+        if(!this._end) {
+            return this.postRequest(this.option.url, this.getParameter(page)).then(function (data) {
+                ths._current = (page <= 0 ? 1 : page);
+                if (data.total) {
+                    ths._total = data.total;
+                    var a = data.total % ths.option.pageSize;
+                    if (a === 0) {
+                        ths._totalPage = data.total / ths.option.pageSize;
+                    } else {
+                        ths._totalPage = parseInt(data.total / ths.option.pageSize) + 1;
+                    }
+                }
+                if (data.list) {
+                    if (data.list.length >= ths.option.pageSize) {
+                        ths._end = false;
+                    } else {
+                        ths._end = true;
+                    }
+                } else {
+                    ths._end = true;
+                }
+                return {
+                    list: data.list,
+                    total: ths._totalPage,
+                    current: ths._current,
+                    isend:ths._end
+                };
+            });
+        }else{
+            return $.promise(function (a) {
+                a({
+                    list: [],
+                    total: ths._totalPage,
+                    current: ths._current,
+                    isend:ths._end
+                });
+            });
+        }
     }
 });

@@ -134,6 +134,7 @@ Module({
         var ths = this;
         this._end = false;
         this._size = 0;
+        this._loading=false;
         var et = function () {
             if (!ths._end) {
                 var b = ths.dom.get(0).getBoundingClientRect().bottom;
@@ -164,15 +165,20 @@ Module({
         });
     },
     nextPage: function () {
-        this.dispatchEvent("startloading");
-        this.triggerService("list.next").scope(this).then(function () {
-            this.dispatchEvent("endloading", {
-                size: this._size,
-                isend: this._end
+        if(!this._loading) {
+            this._loading=true;
+            this.dispatchEvent("startloading");
+            this.triggerService("list.next").scope(this).then(function () {
+                this._loading=false;
+                this.dispatchEvent("endloading", {
+                    size: this._size,
+                    isend: this._end
+                });
+            }, function () {
+                this._loading=false;
+                this.dispatchEvent("errorloading");
             });
-        }, function () {
-            this.dispatchEvent("errorloading");
-        });
+        }
     },
     retry: function () {
         this.dispatchEvent("startloading");

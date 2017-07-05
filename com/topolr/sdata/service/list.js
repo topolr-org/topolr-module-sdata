@@ -3,8 +3,7 @@
  * @require sdata.service.page;
  */
 Module({
-    name: "nocacheservice",
-    extend: "@page.totalservice",
+    name: "listservice",
     action_set: function (option) {
         this.option = $.extend(true, {}, this.option, option);
         this.data = {
@@ -16,32 +15,7 @@ Module({
         this.start();
         this.trigger();
     },
-    then: function (info) {
-        try {
-            this.data = {
-                list: info.list,
-                total: info.total,
-                current: info.current,
-                pages: this.getPagesData(info.current, info.total)
-            };
-            this.start();
-            this.trigger();
-        } catch (e) {
-            this.trigger();
-        }
-    },
-    service_gotopage: function (num) {
-        var ths = this;
-        this._end=false;
-        this.stop();
-        return this.gotoPage(num).then(function (info) {
-            return ths.then(info);
-        }, function (a) {
-            ths.start();
-            console.log(a)
-        });
-    },
-    service_retry:function () {
+    service_retry: function () {
         return this.service_gotopage(this._current);
     },
     service_prev: function () {
@@ -61,15 +35,43 @@ Module({
         }, function (a) {
             ths.start();
         });
+    },
+    service_gotopage: function (num) {
+        var ths = this;
+        this.stop();
+        return this.gotoPage(num).then(function (info) {
+            return ths.then(info);
+        }, function (a) {
+            ths.start();
+            console.log(a)
+        });
+    }
+});
+Module({
+    name: "nocacheservice",
+    extend: ["@page.pageservice", "@.listservice"],
+    then: function (info) {
+        try {
+            this.data = {
+                list: info.list,
+                total: info.total,
+                current: info.current,
+                pages: this.getPagesData(info.current, info.total)
+            };
+            this.start();
+            this.trigger();
+        } catch (e) {
+            this.trigger();
+        }
     }
 });
 Module({
     name: "cacheservice",
-    extend: "@.nocacheservice",
+    extend: ["@page.totalservice", "@.listservice"],
     action_clean: function () {
         this.data.list = [];
         this.data.current = 1;
-        this._end=false;
+        this._end = false;
     },
     then: function (info) {
         try {
@@ -77,12 +79,15 @@ Module({
                 list: this.data.list.concat(info.list),
                 total: info.total,
                 current: info.current,
-                isend:info.isend
+                isend: info.isend
             };
             this.start();
             this.trigger();
         } catch (e) {
             this.trigger();
         }
+    },
+    action_reset: function () {
+        this._end = false;
     }
 });

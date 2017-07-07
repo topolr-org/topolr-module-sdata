@@ -45,6 +45,7 @@
         flex-grow: 1;
         line-height:40px;
         display: flex;
+        overflow: hidden;
         .col{
             padding:0 10px 0 10px;
             overflow: hidden;
@@ -53,7 +54,11 @@
             .colname{
                 display: none;
             }
-            .colvalue{}
+            .colvalue{
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
         }
         &.header{
             line-height:30px;
@@ -187,12 +192,14 @@
             border-bottom: 1px solid #F1F1F1;
             display: block;
             padding:5px 0 5px 0;
+            overflow: hidden;
             .col{
                 padding:0 10px 0 10px;
                 overflow: hidden;
                 white-space: nowrap;
                 text-overflow: ellipsis;
                 line-height: 25px;
+                box-sizing: border-box;
                 .colname{
                     display: inline-block;
                 }

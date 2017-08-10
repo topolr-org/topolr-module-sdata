@@ -4,7 +4,7 @@
     <div class="mt-simpletree-item-head" @cache(item)>
         {{if item.list.length>0}}
         <div class="mt-simpletree-item-arrow" data-bind="click:arrow">
-            <svg class="mt-icon"><use xlink:href="#mt-icon-chevron-down"></use></svg>
+            <svg class="t-icon"><use xlink:href="#t-icon-keyboard_arrow_down"></use></svg>
         </div>
         {{/if}}
         <div class="mt-simpletree-item-namec{{item['__state__'].active?' mt-simpletree-item-nameactive':''}}" data-bind="click:active">
@@ -25,14 +25,14 @@
     <div class="mt-simpletree-item-head" @cache(item)>
         {{if item.list.length>0}}
         <div class="mt-simpletree-item-arrow" data-bind="click:arrow">
-            <svg class="mt-icon"><use xlink:href="#mt-icon-chevron-down"></use></svg>
+            <svg class="t-icon"><use xlink:href="#t-icon-keyboard_arrow_down"></use></svg>
         </div>
         {{/if}}
         <div class="mt-simpletree-item-select" data-bind="click:select">
             {{if item['__state__'].select}}
-            <svg class="mt-icon"><use xlink:href="#mt-icon-checkbox-checked"></use></svg>
+            <svg class="mt-icon"><use xlink:href="#t-icon-check_box"></use></svg>
             {{else}}
-            <svg class="mt-icon"><use xlink:href="#mt-icon-checkbox-unchecked"></use></svg>
+            <svg class="mt-icon"><use xlink:href="#t-icon-check_box_outline_blank"></use></svg>
             {{/if}}
         </div>
         <div class="mt-simpletree-item-name{{item['__state__'].active?' mt-simpletree-item-nameactive':''}}" data-bind="click:active">

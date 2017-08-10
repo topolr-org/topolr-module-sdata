@@ -53,13 +53,14 @@
                 "sdata.service.table": "bf3e839ba9",
                 "sdata.service.tree": "bfa0da1a1b",
                 "sdata.table": "6b548b8379",
-                "sdata.test": "34b7ccfc9f",
-                "sdata.tree": "f63c7ddee5"
+                "sdata.test": "64440f7724",
+                "sdata.tree": "c6c7849d0f",
+                "sdata.icons.treeicons.icon": "3019e0a79f"
             },
             "y": {
                 "baseui.style.msgbox": "c5ad56b10b",
                 "sdata.style.listcon": "646223c9cf",
-                "sdata.style.liststyle": "868cfde8b1"
+                "sdata.style.liststyle": "ebe8199071"
             },
             "c": {
                 "baseui.style.ui": "3a011eec58",
@@ -71,9 +72,9 @@
             "t": {
                 "baseui.template.temp": "0ba5726be9",
                 "icon.template.temp": "8397de88de",
-                "sdata.template.listtemp": "2f8f4de8f5",
+                "sdata.template.listtemp": "165ade9116",
                 "sdata.template.tabletemp": "249c52d751",
-                "sdata.template.treetemp": "568cf230dc"
+                "sdata.template.treetemp": "2d7bf8d93b"
             }
         },
         "c": {
@@ -89,28 +90,21 @@
                     "icon.loading",
                     "sdata.tree",
                     "sdata.service.tree",
+                    "sdata.icons.treeicons.icon",
                     "sdata.list",
-                    "sdata.service.list",
-                    "icon.iconpreviewer",
-                    "icon.editor",
-                    "icon.files",
-                    "icon.player",
-                    "icon.tm",
-                    "icon.weather"
+                    "sdata.service.list"
                 ],
                 "c": [
                     "icon.style.icon",
                     "baseui.style.ui",
                     "sdata.style.tablestyle",
-                    "sdata.style.treestyle",
-                    "icon.style.style"
+                    "sdata.style.treestyle"
                 ],
                 "t": [
                     "baseui.template.temp",
                     "sdata.template.tabletemp",
                     "sdata.template.treetemp",
-                    "sdata.template.listtemp",
-                    "icon.template.temp"
+                    "sdata.template.listtemp"
                 ],
                 "y": [
                     "sdata.style.liststyle",
@@ -125,7 +119,7 @@
 </head>
 <body>
     <div style="width:100%;height:300px;margin:0 auto;position:relative;" data-find="container"></div>
-    <!--<div style="width:100%;height:300px;margin:0 auto;position:relative;" data-find="container1"></div>-->
+    <div style="width:100%;height:300px;margin:0 auto;position:relative;" data-find="container1"></div>
     <!--<div style="width:100%;height:300px;margin:0 auto;position:relative;" data-find="container2"></div>-->
 </body>
 </html>

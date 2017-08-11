@@ -1,7 +1,7 @@
 <!--[tools]-->
 {{list data as item}}
 <div class="table-tabletools-tool" data-bind="click:btnclick" @cache(item)>
-    <svg class="mt-icon"><use xlink:href="#{{item.icon}}"></use></svg>
+    <svg class="t-icon"><use xlink:href="#{{item.icon}}"></use></svg>
 </div>
 {{/list}}
 <!--[header]-->
@@ -11,7 +11,7 @@
         {{if item.checkbox===true}}
         <div class="table-tableheader-col" style="width:{{item.width}}px;">
             <div data-bind="click:checkall" @cache(item.isall)>
-                <svg class="mt-icon"><use xlink:href="#{{item.isall===true?'mt-icon-checkbox-checked':'mt-icon-checkbox-unchecked'}}"></use></svg>
+                <svg class="t-icon"><use xlink:href="#{{item.isall===true?'t-icon-check_box':'t-icon-check_box_outline_blank'}}"></use></svg>
             </div>
         </div>
         {{elseif item.disable!==true}}
@@ -22,14 +22,14 @@
 </div>
 <div class="table-tableheader-dropdown">
     <div class="table-tableheader-dropdown-arrow">
-        <svg class="mt-icon"><use xlink:href="#mt-icon-chevron-up"></use></svg>
+        <svg class="t-icon"><use xlink:href="#t-icon-keyboard_arrow_down"></use></svg>
     </div>
     <div class="table-tableheader-dropdown-list">
         {{list data.cols as item}}
             {{if item.isCol}}
             <div class="table-tableheader-dropdown-list-item" data-bind="click:itemclick" @cache({key:item.key,state:item.disable})>
                 <div class="table-tableheader-dropdown-list-item-a">
-                    <svg class="mt-icon"><use xlink:href="#{{item.disable!==true?'mt-icon-checkbox-checked':'mt-icon-checkbox-unchecked'}}"></use></svg>
+                    <svg class="t-icon"><use xlink:href="#{{item.disable!==true?'t-icon-check_box':'t-icon-check_box_outline_blank'}}"></use></svg>
                 </div>
                 <div class="table-tableheader-dropdown-list-item-b">{{item.value}}</div>
             </div>
@@ -45,7 +45,7 @@
             {{if item.checkbox}}
             <div class="table-tableheader-col" style="width:{{item.width}}px;">
                 <div data-bind="click:checkall" @cache(item.isall)>
-                    <svg class="mt-icon"><use xlink:href="#{{item.isall===true?'mt-icon-checkbox-checked':'mt-icon-checkbox-unchecked'}}"></use></svg>
+                    <svg class="t-icon"><use xlink:href="#{{item.isall===true?'t-icon-check_box':'t-icon-check_box_outline_blank'}}"></use></svg>
                 </div>
             </div>
             {{else}}
@@ -87,12 +87,12 @@
                 <div class="table-tablebody-col table-col-num" style="width:{{col.width}}px;">{{$index+1}}</div>
             {{elseif col.key==='__checkbox__'}}
                 <div class="table-tablebody-col table-col-checkbox"  style="width:{{col.width}}px;">
-                    <svg class="mt-icon"><use xlink:href="#{{row.selected===true?'mt-icon-checkbox-checked':'mt-icon-checkbox-unchecked'}}"></use></svg>
+                    <svg class="t-icon"><use xlink:href="#{{row.selected===true?'t-icon-check_box':'t-icon-check_box_outline_blank'}}"></use></svg>
                 </div>
             {{elseif col.key==='__deals__'}}
                 <div class="table-tablebody-col table-col-deal" style="width:{{col.width}}px;">
                     <div data-bind="click:deal" @cache(col.value)>
-                        <svg class="mt-icon"><use xlink:href="#{{col.value.icon}}"></use></svg>
+                        <svg class="t-icon"><use xlink:href="#{{col.value.icon}}"></use></svg>
                     </div>
                 </div>
             {{elseif col.disable!==true}}
@@ -113,12 +113,12 @@
                     <div class="table-tablebody-col table-col-num" style="width:{{col.width}}px;">{{$index+1}}</div>
                 {{elseif col.key==='__checkbox__'}}
                     <div class="table-tablebody-col table-col-checkbox"  style="width:{{col.width}}px;">
-                        <svg class="mt-icon"><use xlink:href="#{{row.selected===true?'mt-icon-checkbox-checked':'mt-icon-checkbox-unchecked'}}"></use></svg>
+                        <svg class="t-icon"><use xlink:href="#{{row.selected===true?'t-icon-check_box':'t-icon-check_box_outline_blank'}}"></use></svg>
                     </div>
                 {{elseif col.key==='__deals__'}}
                     <div class="table-tablebody-col table-col-deal" style="width:{{col.width}}px;">
                         <div data-bind="click:deal" @cache(col)>
-                            <svg class="mt-icon"><use xlink:href="#{{col.value.icon}}"></use></svg>
+                            <svg class="t-icon"><use xlink:href="#{{col.value.icon}}"></use></svg>
                         </div>
                     </div>
                 {{/if}}
@@ -155,11 +155,11 @@
             {{list data.pages as page}}
                 {{if page.name==='prev'}}
                     <div class="table-tablefoot-pages-page{{page.disabled===true?' table-page-disabled':''}}" data-bind="click:prev">
-                        <svg class="mt-icon" style="transform:rotate(-90deg)"><use xlink:href="#mt-icon-chevron-up"></use></svg>
+                        <svg class="t-icon" style="transform:rotate(-90deg)"><use xlink:href="#t-icon-keyboard_arrow_down"></use></svg>
                     </div>
                 {{elseif page.name==='next'}}
                     <div class="table-tablefoot-pages-page{{page.disabled===true?' table-page-disabled':''}}" data-bind="click:next">
-                        <svg class="mt-icon" style="transform:rotate(90deg)"><use xlink:href="#mt-icon-chevron-up"></use></svg>
+                        <svg class="t-icon" style="transform:rotate(90deg)"><use xlink:href="#t-icon-keyboard_arrow_down"></use></svg>
                     </div>
                 {{elseif page.name==='btn'}}
                     {{if page.none===true}}
@@ -184,7 +184,7 @@
         <div class="table-tablefoot-btns">
             <div class="table-tablefoot-btns-num"><input type="text"/></div>
             <div class="table-tablefoot-btns-btn">
-                <svg class="mt-icon" style="transform:rotate(90deg)"><use xlink:href="#mt-icon-chevron-up"></use></svg>
+                <svg class="t-icon" style="transform:rotate(90deg)"><use xlink:href="#t-icon-keyboard_arrow_down"></use></svg>
             </div>
         </div>
     {{/if}}

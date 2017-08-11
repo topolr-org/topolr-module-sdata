@@ -47,15 +47,15 @@
                 "icon.test": "6cf91847ad",
                 "icon.tm": "e56fe701bb",
                 "icon.weather": "a0fbd27b12",
-                "sdata.list": "12eb7090ce",
-                "sdata.service.list": "9abb35ad55",
-                "sdata.service.page": "ab2b03f5f8",
-                "sdata.service.table": "bf3e839ba9",
-                "sdata.service.tree": "bfa0da1a1b",
-                "sdata.table": "6b548b8379",
-                "sdata.test": "64440f7724",
-                "sdata.tree": "c6c7849d0f",
-                "sdata.icons.treeicons.icon": "3019e0a79f"
+                "sdata.list": "328836fe48",
+                "sdata.service.list": "791d25ff21",
+                "sdata.service.page": "9360019912",
+                "sdata.service.table": "490ee9dec8",
+                "sdata.service.tree": "bfec32f7a1",
+                "sdata.table": "95d5708d73",
+                "sdata.icons.icon": "257b4b00fc",
+                "sdata.test": "fb0476e3af",
+                "sdata.tree": "3c5ae229f7"
             },
             "y": {
                 "baseui.style.msgbox": "c5ad56b10b",
@@ -67,14 +67,14 @@
                 "icon.style.icon": "312bbc92d8",
                 "icon.style.style": "1a26c51a6b",
                 "sdata.style.tablestyle": "1e1a30716a",
-                "sdata.style.treestyle": "6965058a62"
+                "sdata.style.treestyle": "a1c79bd930"
             },
             "t": {
                 "baseui.template.temp": "0ba5726be9",
                 "icon.template.temp": "8397de88de",
                 "sdata.template.listtemp": "165ade9116",
-                "sdata.template.tabletemp": "249c52d751",
-                "sdata.template.treetemp": "2d7bf8d93b"
+                "sdata.template.tabletemp": "a36f47f748",
+                "sdata.template.treetemp": "5a00727326"
             }
         },
         "c": {
@@ -84,13 +84,12 @@
                     "sdata.table",
                     "sdata.service.table",
                     "sdata.service.page",
-                    "icon.action",
-                    "icon.direct",
                     "baseui.loading",
                     "icon.loading",
+                    "icon.action",
+                    "sdata.icons.icon",
                     "sdata.tree",
                     "sdata.service.tree",
-                    "sdata.icons.treeicons.icon",
                     "sdata.list",
                     "sdata.service.list"
                 ],
@@ -112,7 +111,7 @@
                 ]
             }
         },
-        "id": "90af7e603467da7b197f8b2641760f50"
+        "id": "f326c53470c6fca6f1282f9a0ee21746"
     }
 }).boot(true);
     </script>

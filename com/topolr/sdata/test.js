@@ -37,43 +37,43 @@ Option({
                 //     },
                 //     container:this.finders("container")
                 // });
-                this.addChild({
-                    type:"@tree.simpletree",
-                    option:{
-                        url:sitePath+"mock/tree"
-                    },
-                    container:this.finders("container")
-                });
-                this.addChild({
-                    type:"@tree.selecttree",
-                    option:{
-                        url:sitePath+"mock/tree",
-                        override:{
-                            event_itemclick:function (e) {
-                                this.setNum(e.data.id,10);
-                            }
-                        }
-                    },
-                    container:this.finders("container1")
-                });
+                // this.addChild({
+                //     type:"@tree.simpletree",
+                //     option:{
+                //         url:sitePath+"mock/tree"
+                //     },
+                //     container:this.finders("container")
+                // });
+                // this.addChild({
+                //     type:"@tree.selecttree",
+                //     option:{
+                //         url:sitePath+"mock/tree",
+                //         override:{
+                //             event_itemclick:function (e) {
+                //                 this.setNum(e.data.id,10);
+                //             }
+                //         }
+                //     },
+                //     container:this.finders("container1")
+                // });
                 // this.postRequest({
                 //     url:sitePath+"mock/tree"
                 // }).then(function (a) {
                 //     console.log(a)
                 // });
-                // this.addChild({
-                //     type:"@table.simpletable",
-                //     option:{
-                //         url:sitePath+"/test/page",
-                //         cols:[
-                //             {name:"name",key:"name",width:200,disable:false},
-                //             {name:"birth",key:"birth",width:200,disable:false},
-                //             {name:"id",key:"id",width:200,disable:true}
-                //         ],
-                //         selectType:"single"
-                //     },
-                //     container:this.finders("container")
-                // });
+                this.addChild({
+                    type:"@table.simpletable",
+                    option:{
+                        url:sitePath+"/test/page",
+                        cols:[
+                            {name:"name",key:"name",width:200,disable:false},
+                            {name:"birth",key:"birth",width:200,disable:false},
+                            {name:"id",key:"id",width:200,disable:false}
+                        ],
+                        selectType:"single"
+                    },
+                    container:this.finders("container")
+                });
                 // this.addChild({
                 //     type:"@table.fntable",
                 //     option:{
@@ -86,13 +86,13 @@ Option({
                 //         checkbox: true,
                 //         num: true,
                 //         deals: [
-                //             {name:"A",action:"a",icon:"icon-image"},
-                //             {name:"B",action:"b",icon:"icon-image"},
-                //             {name:"C",action:"c",icon:"icon-image"}
+                //             {name:"A",action:"a",icon:"t-icon-keyboard_arrow_down"},
+                //             {name:"B",action:"b",icon:"t-icon-keyboard_arrow_down"},
+                //             {name:"C",action:"c",icon:"t-icon-keyboard_arrow_down"}
                 //         ],
                 //         tools:[
-                //             {name:"refresh",action:"refresh",icon:"icon-loop2"},
-                //             {name:"removeall",action:"removeall",icon:"icon-cross"}
+                //             {name:"refresh",action:"refresh",icon:"t-icon-keyboard_arrow_down"},
+                //             {name:"removeall",action:"removeall",icon:"t-icon-keyboard_arrow_down"}
                 //         ]
                 //     },
                 //     container:this.finders("container1")
@@ -109,16 +109,16 @@ Option({
                 //         checkbox: true,
                 //         num: true,
                 //         deals: [
-                //             {name:"A",action:"a",icon:"icon-eye"},
-                //             {name:"B",action:"b",icon:"icon-eye"},
-                //             {name:"C",action:"c",icon:"icon-eye"}
+                //             {name:"A",action:"a",icon:"t-icon-keyboard_arrow_down"},
+                //             {name:"B",action:"b",icon:"t-icon-keyboard_arrow_down"},
+                //             {name:"C",action:"c",icon:"t-icon-keyboard_arrow_down"}
                 //         ],
                 //         tools:[
-                //             {name:"refresh",action:"refresh",icon:"icon-loop2"},
-                //             {name:"removeall",action:"removeall",icon:"icon-cross"}
+                //             {name:"refresh",action:"refresh",icon:"t-icon-keyboard_arrow_down"},
+                //             {name:"removeall",action:"removeall",icon:"t-icon-keyboard_arrow_down"}
                 //         ]
                 //     },
-                //     container:this.finders("container2")
+                //     container:this.finders("container1")
                 // });
             }
         }

@@ -3,7 +3,7 @@
  * @template sdata.template.treetemp;
  * @css sdata.style.treestyle;
  * @require sdata.service.tree;
- * @icon sdata.icons.treeicons;
+ * @icon sdata.icons;
  */
 Module({
     name:'simpletree',

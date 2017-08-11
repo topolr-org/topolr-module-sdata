@@ -5,7 +5,7 @@
     right:0;
     bottom:0;
     overflow:auto;
-    font-size:13px;
+    font-size:14px;
     background:#f9f2f4;
     padding:10px 0 0 10px;
     .mt-simpletree-item {
@@ -96,7 +96,9 @@
         &.mt-simpletree-item-close {
             & > .mt-simpletree-item-head {
                 .mt-simpletree-item-arrow {
-                    transform: rotate(-90deg);
+                    svg {
+                        transform: rotate(-90deg);
+                    }
                 }
             }
             & > .mt-simpletree-item-bodyc {

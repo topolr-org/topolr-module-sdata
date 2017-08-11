@@ -2,10 +2,9 @@
  * @packet sdata.table;
  * @template sdata.template.tabletemp;
  * @require sdata.service.table;
- * @require icon.action;
- * @require icon.direct;
  * @css sdata.style.tablestyle;
  * @require baseui.loading;
+ * @icon sdata.icons;
  */
 Module({
     name:"basetable",

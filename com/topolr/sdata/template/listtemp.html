@@ -10,11 +10,11 @@
         {{list data.pages as page}}
         {{if page.name==='prev'}}
         <div class="table-tablefoot-pages-page{{page.disabled===true?' table-page-disabled':''}}" data-bind="click:prev">
-            <svg class="mt-icon" style="transform:rotate(-90deg)"><use xlink:href="#mt-icon-chevron-up"></use></svg>
+            <svg class="t-icon"><use xlink:href="#t-icon-navigate_before"></use></svg>
         </div>
         {{elseif page.name==='next'}}
         <div class="table-tablefoot-pages-page{{page.disabled===true?' table-page-disabled':''}}" data-bind="click:next">
-            <svg class="mt-icon" style="transform:rotate(90deg)"><use xlink:href="#mt-icon-chevron-up"></use></svg>
+            <svg class="t-icon"><use xlink:href="#t-icon-navigate_next"></use></svg>
         </div>
         {{elseif page.name==='btn'}}
         {{if page.none===true}}
@@ -44,7 +44,7 @@
     <div class="btns">
         {{list data.tools as item}}
         <div class="btn" data-bind="click:tool" @cache(item)>
-            <div class="label"><svg class=":mt-icon"><use xlink:href="#{{item.icon}}"></use></svg></div>
+            <div class="label"><svg class=":t-icon"><use xlink:href="#{{item.icon}}"></use></svg></div>
             <div class="title">{{item.name}}</div>
         </div>
         {{/list}}
@@ -74,7 +74,7 @@
         <div class="deals" style="width:{{data.deals.length*40}}px" @cache(item)>
             {{list data.deals as deal}}
             <div class="deal" title="{{deal.name}}" data-bind="click:deal" @cache(deal)>
-                <svg class=":mt-icon"><use xlink:href="#{{deal.icon}}"></use></svg>
+                <svg class=":t-icon"><use xlink:href="#{{deal.icon}}"></use></svg>
             </div>
             {{/list}}
         </div>
@@ -83,7 +83,7 @@
     {{else}}
     <div class="nodata">
         <div class="desc">
-            <div class="a"><svg class=":mt-icon"><use xlink:href="#mt-icon-eye-slash"></use></svg></div>
+            <div class="a"><svg class=":t-icon"><use xlink:href="#t-icon-restore"></use></svg></div>
             <div class="b">没有用于显示的数据</div>
         </div>
     </div>
@@ -96,14 +96,14 @@
         {{list data.pages as page}}
         {{if page.name==='prev'}}
         <div class="page{{page.disabled===true?' disabled':''}}" data-bind="click:prev">
-            <svg class=":mt-icon" style="transform:rotate(-90deg)">
-                <use xlink:href="#mt-icon-chevron-up"></use>
+            <svg class=":t-icon">
+                <use xlink:href="#t-icon-navigate_before"></use>
             </svg>
         </div>
         {{elseif page.name==='next'}}
         <div class="page{{page.disabled===true?' disabled':''}}" data-bind="click:next">
-            <svg class=":mt-icon" style="transform:rotate(90deg)">
-                <use xlink:href="#mt-icon-chevron-up"></use>
+            <svg class=":t-icon">
+                <use xlink:href="#t-icon-navigate_next"></use>
             </svg>
         </div>
         {{elseif page.name==='btn'}}
@@ -135,7 +135,7 @@
     <div class="btns">
         {{list data.tools as item}}
         <div class="btn" data-bind="click:tool" @cache(item)>
-            <div class="label"><svg class=":mt-icon"><use xlink:href="#{{item.icon}}"></use></svg></div>
+            <div class="label"><svg class=":t-icon"><use xlink:href="#{{item.icon}}"></use></svg></div>
             <div class="title">{{item.name}}</div>
         </div>
         {{/list}}
@@ -157,7 +157,7 @@
             <div class="deals" style="width:{{data.deals.length*40}}px" @cache(item)>
                 {{list data.deals as deal}}
                 <div class="deal" title="{{deal.name}}" data-bind="click:deal" @cache(deal)>
-                    <svg class=":mt-icon"><use xlink:href="#{{deal.icon}}"></use></svg>
+                    <svg class=":t-icon"><use xlink:href="#{{deal.icon}}"></use></svg>
                 </div>
                 {{/list}}
             </div>
@@ -169,7 +169,7 @@
 <div data-find="list"></div>
 {{if data.state==="loading"}}
 <div class="loading" data-find="loading">
-    <div class="licon"><svg class=":mt-icon :mt-icon-spin"><use xlink:href="#mt-icon-spinner10"></use></svg></div>
+    <div class="licon"><svg class=":t-icon :t-icon-spin"><use xlink:href="#t-icon-autorenew"></use></svg></div>
     <div class="ldesc">正在加载数据...</div>
 </div>
 {{elseif data.state==="error"}}

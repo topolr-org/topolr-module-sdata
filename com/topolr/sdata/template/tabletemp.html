@@ -155,11 +155,11 @@
             {{list data.pages as page}}
                 {{if page.name==='prev'}}
                     <div class="table-tablefoot-pages-page{{page.disabled===true?' table-page-disabled':''}}" data-bind="click:prev">
-                        <svg class="t-icon" style="transform:rotate(-90deg)"><use xlink:href="#t-icon-keyboard_arrow_down"></use></svg>
+                        <svg class="t-icon"><use xlink:href="#t-icon-navigate_before"></use></svg>
                     </div>
                 {{elseif page.name==='next'}}
                     <div class="table-tablefoot-pages-page{{page.disabled===true?' table-page-disabled':''}}" data-bind="click:next">
-                        <svg class="t-icon" style="transform:rotate(90deg)"><use xlink:href="#t-icon-keyboard_arrow_down"></use></svg>
+                        <svg class="t-icon"><use xlink:href="#t-icon-navigate_next"></use></svg>
                     </div>
                 {{elseif page.name==='btn'}}
                     {{if page.none===true}}
@@ -184,7 +184,7 @@
         <div class="table-tablefoot-btns">
             <div class="table-tablefoot-btns-num"><input type="text"/></div>
             <div class="table-tablefoot-btns-btn">
-                <svg class="t-icon" style="transform:rotate(90deg)"><use xlink:href="#t-icon-keyboard_arrow_down"></use></svg>
+                <svg class="t-icon"><use xlink:href="#t-icon-arrow_forward"></use></svg>
             </div>
         </div>
     {{/if}}

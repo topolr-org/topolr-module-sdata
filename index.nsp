@@ -34,46 +34,34 @@
         "d": true,
         "m": {
             "p": {
-                "baseui.loading": "0ca65860ec",
+                "baseui.loading": "06ea406188",
                 "baseui.popup": "521e25866f",
-                "baseui.test": "d146e398af",
-                "icon.action": "2aeea686c3",
-                "icon.direct": "6a838ec33c",
-                "icon.editor": "d3f12ab642",
-                "icon.files": "ad163495d5",
-                "icon.iconpreviewer": "0d79a6d356",
-                "icon.loading": "40745a51c2",
-                "icon.player": "3f93170ca6",
-                "icon.test": "6cf91847ad",
-                "icon.tm": "e56fe701bb",
-                "icon.weather": "a0fbd27b12",
-                "sdata.list": "328836fe48",
-                "sdata.service.list": "791d25ff21",
-                "sdata.service.page": "9360019912",
-                "sdata.service.table": "490ee9dec8",
-                "sdata.service.tree": "bfec32f7a1",
-                "sdata.table": "95d5708d73",
-                "sdata.icons.icon": "257b4b00fc",
-                "sdata.test": "fb0476e3af",
-                "sdata.tree": "3c5ae229f7"
+                "baseui.test": "72c74439dd",
+                "sdata.list": "4a86e95b1b",
+                "sdata.service.list": "9abb35ad55",
+                "sdata.service.page": "3be658875d",
+                "sdata.service.table": "bf3e839ba9",
+                "sdata.service.tree": "bfa0da1a1b",
+                "sdata.table": "64131bc069",
+                "sdata.test": "e7bb078964",
+                "sdata.tree": "f4c39c9e29",
+                "baseui.icons.icon": "2045f51cf6",
+                "sdata.icons.icon": "99d533553b"
             },
             "y": {
-                "baseui.style.msgbox": "c5ad56b10b",
+                "baseui.style.msgbox": "a773ca4f36",
                 "sdata.style.listcon": "646223c9cf",
                 "sdata.style.liststyle": "ebe8199071"
             },
             "c": {
                 "baseui.style.ui": "3a011eec58",
-                "icon.style.icon": "312bbc92d8",
-                "icon.style.style": "1a26c51a6b",
-                "sdata.style.tablestyle": "1e1a30716a",
-                "sdata.style.treestyle": "a1c79bd930"
+                "sdata.style.tablestyle": "eb9e1dfce3",
+                "sdata.style.treestyle": "24e93156f7"
             },
             "t": {
-                "baseui.template.temp": "0ba5726be9",
-                "icon.template.temp": "8397de88de",
-                "sdata.template.listtemp": "165ade9116",
-                "sdata.template.tabletemp": "a36f47f748",
+                "baseui.template.temp": "19bf69a61f",
+                "sdata.template.listtemp": "ded10d76ba",
+                "sdata.template.tabletemp": "11b450934c",
                 "sdata.template.treetemp": "5a00727326"
             }
         },
@@ -85,16 +73,13 @@
                     "sdata.service.table",
                     "sdata.service.page",
                     "baseui.loading",
-                    "icon.loading",
-                    "icon.action",
-                    "sdata.icons.icon",
+                    "baseui.icons.icon",
                     "sdata.tree",
                     "sdata.service.tree",
                     "sdata.list",
                     "sdata.service.list"
                 ],
                 "c": [
-                    "icon.style.icon",
                     "baseui.style.ui",
                     "sdata.style.tablestyle",
                     "sdata.style.treestyle"
@@ -111,7 +96,7 @@
                 ]
             }
         },
-        "id": "f326c53470c6fca6f1282f9a0ee21746"
+        "id": "90af7e603467da7b197f8b2641760f50"
     }
 }).boot(true);
     </script>

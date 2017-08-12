@@ -201,7 +201,7 @@ Module({
 });
 Module({
     name: "totalservice",
-    extend: "@.baseservice",
+    extend: "@.pageservice",
     init: function () {
         this.superClass("init");
         this._total = 0;

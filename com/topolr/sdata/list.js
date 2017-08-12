@@ -2,10 +2,10 @@
  * @packet sdata.list;
  * @require sdata.service.list;
  * @template sdata.template.listtemp;
- * @require icon.action;
  * @require baseui.loading;
  * @style sdata.style.liststyle;
  * @style sdata.style.listcon;
+ * @icon sdata.icons;
  */
 Module({
     name: 'simplelist',

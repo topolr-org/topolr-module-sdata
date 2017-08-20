@@ -63,7 +63,7 @@
     {{if data.list&&data.list.length>0}}
     {{list data.list as item}}
     <div class="srow">
-        <div class="row">
+        <div class="row" data-bind="click:rowclick" @cache(item)>
             {{list data.cols as sub subindex}}
             <div class="col" style="width:{{data.winwidth?sub.width:100}}%">
                 <span class="colname">{{data.cols[subindex].name}}:</span>
@@ -144,25 +144,25 @@
 </div>
 <div class="table">
     {{if data.list&&data.list.length>0}}
-        {{list data.list as item}}
-        <div class="srow" unquie="{{item.id}}">
-            <div class="row">
-                {{list data.cols as sub subindex}}
-                <div class="col" style="width:{{data.winwidth?sub.width:100}}%">
-                    <span class="colname">{{data.cols[subindex].name}}:</span>
-                    <span class="colvalue">{{item[sub.key]}}</span>
-                </div>
-                {{/list}}
+    {{list data.list as item}}
+    <div class="srow" unquie="{{item.id}}" data-bind="click:rowclick" @cache(item)>
+        <div class="row">
+            {{list data.cols as sub subindex}}
+            <div class="col" style="width:{{data.winwidth?sub.width:100}}%">
+                <span class="colname">{{data.cols[subindex].name}}:</span>
+                <span class="colvalue">{{item[sub.key]}}</span>
             </div>
-            <div class="deals" style="width:{{data.deals.length*40}}px" @cache(item)>
-                {{list data.deals as deal}}
-                <div class="deal" title="{{deal.name}}" data-bind="click:deal" @cache(deal)>
-                    <svg class=":t-icon"><use xlink:href="#{{deal.icon}}"></use></svg>
-                </div>
-                {{/list}}
-            </div>
+            {{/list}}
         </div>
-        {{/list}}
+        <div class="deals" style="width:{{data.deals.length*40}}px" @cache(item)>
+            {{list data.deals as deal}}
+            <div class="deal" title="{{deal.name}}" data-bind="click:deal" @cache(deal)>
+                <svg class=":t-icon"><use xlink:href="#{{deal.icon}}"></use></svg>
+            </div>
+            {{/list}}
+        </div>
+    </div>
+    {{/list}}
     {{/if}}
 </div>
 <!--[appendlist]-->
@@ -177,11 +177,11 @@
     <div class="ldesc" data-bind="click:refresh">加载数据出错,点击重试</div>
 </div>
 {{else}}
-    {{if data.size>0}}
-    <div class="loading" data-find="loading">
-        <div class="ldesc">全部数据加载完成</div>
-    </div>
-    {{else}}
-    <div class="loading" data-find="loading">没有用于显示的数据</div>
-    {{/if}}
+{{if data.size>0}}
+<div class="loading" data-find="loading">
+    <div class="ldesc">全部数据加载完成</div>
+</div>
+{{else}}
+<div class="loading" data-find="loading">没有用于显示的数据</div>
+{{/if}}
 {{/if}}

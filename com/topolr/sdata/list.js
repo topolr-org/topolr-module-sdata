@@ -99,6 +99,9 @@ Module({
         console.log(deal)
         this.dispatchEvent("deal_" + deal.action, data);
     },
+    bind_rowclick:function (dom) {
+        this.dispatchEvent("rowclick",dom.cache());
+    },
     service_schange: function (data) {
         if (this.option.parsefn) {
             data = this.option.parsefn(data);
@@ -199,6 +202,9 @@ Module({
         var deal = dom.cache();
         var data = dom.parent().cache();
         this.dispatchEvent("deal_" + deal.action, data);
+    },
+    bind_rowclick:function (dom) {
+        this.dispatchEvent("rowclick",dom.cache());
     },
     service_schange: function (data) {
         if (this.option.parsefn) {

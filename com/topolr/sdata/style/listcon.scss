@@ -12,9 +12,10 @@
     left: 0;
     right: 0;
     top: 0;
+    padding:0 5px 0 5px;
     .btnscon {
         //text-align: right;
-        margin-bottom: 5px;
+        //margin-bottom: 5px;
         display: flex;
         .searchcon {
             flex-grow: 1;
@@ -55,6 +56,7 @@
             border-right: 0;
             border-radius: 5px;
             overflow: hidden;
+            background:white;
         }
         .btn {
             display: inline-block;

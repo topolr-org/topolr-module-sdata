@@ -37,7 +37,7 @@
                 "baseui.loading": "06ea406188",
                 "baseui.popup": "521e25866f",
                 "baseui.test": "72c74439dd",
-                "sdata.list": "d3ba7762b2",
+                "sdata.list": "88f66bf0b7",
                 "sdata.service.list": "e368cfd453",
                 "sdata.service.page": "9ca50a8e14",
                 "sdata.service.table": "bf3e839ba9",
@@ -50,8 +50,8 @@
             },
             "y": {
                 "baseui.style.msgbox": "c5ad56b10b",
-                "sdata.style.listcon": "d9396203e2",
-                "sdata.style.liststyle": "964e3c20db"
+                "sdata.style.listcon": "f5e9a322e9",
+                "sdata.style.liststyle": "4050cddb33"
             },
             "c": {
                 "baseui.style.ui": "3a011eec58",
@@ -60,7 +60,7 @@
             },
             "t": {
                 "baseui.template.temp": "19bf69a61f",
-                "sdata.template.listtemp": "5707bd083f",
+                "sdata.template.listtemp": "2e70443649",
                 "sdata.template.tabletemp": "11b450934c",
                 "sdata.template.treetemp": "5a00727326"
             }
@@ -101,8 +101,8 @@
 }).boot(true);
     </script>
 </head>
-<body>
-    <div style="width:500px;height:500px;margin:50px auto;position:relative;" data-find="container"></div>
+<body style="background:#f1f1f1">
+    <div style="height:500px;margin:50px auto;position:relative;" data-find="container"></div>
     <div style="width:100%;height:300px;margin:0 auto;position:relative;" data-find="container1"></div>
     <!--<div style="width:100%;height:300px;margin:0 auto;position:relative;" data-find="container2"></div>-->
 </body>

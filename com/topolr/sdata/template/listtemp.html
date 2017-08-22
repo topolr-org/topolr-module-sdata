@@ -139,6 +139,7 @@
 </div>
 {{/if}}
 <!--[appendlistinner]-->
+{{if data.tools.length>0&&data.queryBtn.show}}
 <div class="btnscon">
     {{if data.tools.length>0}}
     <div class="btns">
@@ -159,6 +160,7 @@
     </div>
     {{/if}}
 </div>
+{{/if}}
 <div class="table">
     {{if data.list&&data.list.length>0}}
     {{list data.list as item}}

@@ -107,7 +107,6 @@ Module({
     bind_deal: function (dom) {
         var deal = dom.cache();
         var data = dom.parent().cache();
-        console.log(deal)
         this.dispatchEvent("deal_" + deal.action, data);
     },
     bind_rowclick: function (dom) {
@@ -276,27 +275,40 @@ Module({
     style: "@listcon",
     option: {},
     init: function () {
+        this._data = {
+            tools: this.option.tools,
+            queryBtn: this.option.queryBtn
+        };
+        this.option.tools = [];
+        this.option.queryBtn = {show: false};
         this.addChild({
             type: "@.appendlistinner",
             option: this.option,
             container: this.finders("list")
         });
     },
+    bind_tool: function (dom, e) {
+        this.getChildAt(0)["bind_tool"](dom, e);
+    },
     bind_refresh: function () {
         this.getChildAt(0).retry(1);
     },
     event_startloading: function (e) {
-        this.update({state: "loading"});
+        this._data.state = "loading";
+        this.update(this._data);
         e.stopPropagation();
     },
     event_endloading: function (e) {
         if (e.data.isend) {
-            this.update({state: "nomore", size: e.data.size});
+            this._data.state = "nomore";
+            this._data.size = e.data.size;
+            this.update(this._data);
         }
         e.stopPropagation();
     },
     event_errorloading: function (e) {
-        this.update({state: "error"});
+        this._data.state = "error";
+        this.update(this._data);
         e.stopPropagation();
     },
     gotoPage: function (num) {
@@ -313,16 +325,18 @@ Module({
         parsefn: null
     },
     init: function () {
+        var _data=$.extend({},this.option);
+        _data.override={};
         if ($(window).width() <= 480) {
             this.addChild({
                 type: "@.appendlist",
-                option: this.option,
+                option: _data,
                 container: this.dom
             });
         } else {
             this.addChild({
                 type: "@.tablelist",
-                option: this.option,
+                option: _data,
                 container: this.dom
             });
         }

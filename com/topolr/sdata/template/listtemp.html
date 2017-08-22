@@ -139,7 +139,6 @@
 </div>
 {{/if}}
 <!--[appendlistinner]-->
-{{log data}}
 <div class="btnscon">
     {{if data.tools.length>0}}
     <div class="btns">
@@ -184,22 +183,45 @@
     {{/if}}
 </div>
 <!--[appendlist]-->
-<div data-find="list"></div>
-{{if data.state==="loading"}}
-<div class="loading" data-find="loading">
-    <div class="licon"><svg class=":t-icon :t-icon-spin"><use xlink:href="#t-icon-autorenew"></use></svg></div>
-    <div class="ldesc">正在加载数据...</div>
+<div class="head">
+    <div class="btnscon">
+        {{if data.tools.length>0}}
+        <div class="btns">
+            {{list data.tools as item}}
+            <div class="btn" data-bind="click:tool" @cache(item)>
+                <div class="label"><svg class=":t-icon"><use xlink:href="#{{item.icon}}"></use></svg></div>
+                <div class="title">{{item.name}}</div>
+            </div>
+            {{/list}}
+        </div>
+        {{/if}}
+        {{if data.queryBtn.show}}
+        <div class="searchcon">
+            <div class="search">
+                <div class="input"><input type="text" data-find="queryinput" data-bind="keyup:query"/></div>
+                <div class="icon" data-bind="click:query"><svg class=":t-icon"><use xlink:href="#t-icon-search"></use></svg></div>
+            </div>
+        </div>
+        {{/if}}
+    </div>
 </div>
-{{elseif data.state==="error"}}
-<div class="loading" data-find="loading">
-    <div class="ldesc" data-bind="click:refresh">加载数据出错,点击重试</div>
+<div class="listcon">
+    <div data-find="list"></div>
+    {{if data.state==="loading"}}
+        <div class="loading" data-find="loading">
+            <div class="licon"><svg class=":t-icon :t-icon-spin"><use xlink:href="#t-icon-autorenew"></use></svg></div>
+            <div class="ldesc">正在加载数据...</div>
+        </div>
+    {{elseif data.state==="error"}}
+        <div class="loading" data-find="loading">
+            <div class="ldesc" data-bind="click:refresh">加载数据出错,点击重试</div>
+        </div>
+    {{/if}}
+    {{if data.size>0}}
+        <div class="loading" data-find="loading">
+            <div class="ldesc">全部数据加载完成</div>
+        </div>
+    {{else}}
+        <div class="loading" data-find="loading">没有用于显示的数据</div>
+    {{/if}}
 </div>
-{{else}}
-{{if data.size>0}}
-<div class="loading" data-find="loading">
-    <div class="ldesc">全部数据加载完成</div>
-</div>
-{{else}}
-<div class="loading" data-find="loading">没有用于显示的数据</div>
-{{/if}}
-{{/if}}

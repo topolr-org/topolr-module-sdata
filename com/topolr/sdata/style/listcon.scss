@@ -1,23 +1,110 @@
-.appendlistcon{
-  position:absolute;
-  left:0;
-  top:0;
-  right:0;
-  bottom:0;
-  overflow:auto;
+.appendlistcon {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    overflow: auto;
 }
-.loading{
-  line-height:40px;
-  background:#F1F1F1;
-  text-align: center;
-  .licon{
-    width:30px;
+
+.head {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    .btnscon {
+        //text-align: right;
+        margin-bottom: 5px;
+        display: flex;
+        .searchcon {
+            flex-grow: 1;
+            text-align: right;
+        }
+        .search {
+            line-height: 30px;
+            display: inline-block;
+            vertical-align: top;
+            border: 1px solid #D7D7D7;
+            background: white;
+            border-radius: 5px;
+            overflow: hidden;
+            box-sizing: border-box;
+            .input {
+                display: inline-block;
+                vertical-align: top;
+                input {
+                    height: 30px;
+                    outline: none;
+                    border: 0;
+                    padding: 0 0 0 8px;
+                    vertical-align: top;
+                }
+            }
+            .icon {
+                display: inline-block;
+                vertical-align: top;
+                width: 30px;
+                text-align: center;
+            }
+        }
+        .btns {
+            display: inline-block;
+            vertical-align: top;
+            line-height: 30px;
+            border: 1px solid #E5E3E3;
+            border-right: 0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .btn {
+            display: inline-block;
+            vertical-align: top;
+            border-right: 1px solid #E5E3E3;
+            cursor: default;
+            .label {
+                width: 30px;
+                text-align: center;
+                display: inline-block;
+                vertical-align: top;
+            }
+            .title {
+                display: inline-block;
+                padding: 0 10px 0 0;
+                font-size: 12px;
+                vertical-align: top;
+            }
+            &:hover {
+                background: #F7F7F7;
+            }
+            &:active {
+                background: #E5E3E3;
+            }
+        }
+    }
+}
+
+.listcon {
+    position: absolute;
+    left: 0;
+    top: 37px;
+    right: 0;
+    bottom: 0;
+    overflow: auto;
+    border-top: 1px solid #D7D7D7;
+}
+
+.loading {
+    line-height: 40px;
+    background: #F1F1F1;
     text-align: center;
-    display: inline-block;
-    vertical-align: top;
-  }
-  .ldesc{
-    display: inline-block;
-    vertical-align: top;
-  }
+    .licon {
+        width: 30px;
+        text-align: center;
+        display: inline-block;
+        vertical-align: top;
+    }
+    .ldesc {
+        display: inline-block;
+        vertical-align: top;
+    }
 }

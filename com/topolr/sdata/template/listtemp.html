@@ -39,6 +39,7 @@
 </div>
 
 <!--[traditionlist]-->
+{{if data.tools.length>0||(data.queryBtn&&data.queryBtn.show)}}
 <div class="btnscon">
     {{if data.tools.length>0}}
     <div class="btns">
@@ -61,6 +62,7 @@
     </div>
     {{/if}}
 </div>
+{{/if}}
 <div class="table">
     <div class="srow">
         <div class="row header">
@@ -154,7 +156,7 @@
     {{if data.queryBtn.show}}
     <div class="searchcon">
         <div class="search">
-            <div class="input"><input type="text" data-find="queryinput" data-bind="keyup:query"/></div>
+            <div class="input"><input placeholder="{{data.queryBtn.placeholder}}" type="text" data-find="queryinput" data-bind="keyup:query"/></div>
             <div class="icon" data-bind="click:query"><svg class=":t-icon"><use xlink:href="#t-icon-search"></use></svg></div>
         </div>
     </div>
@@ -201,7 +203,7 @@
         {{if data.queryBtn.show}}
         <div class="searchcon">
             <div class="search">
-                <div class="input"><input type="text" data-find="queryinput" data-bind="keyup:query"/></div>
+                <div class="input"><input placeholder="{{data.queryBtn.placeholder}}" type="text" data-find="queryinput" data-bind="keyup:query"/></div>
                 <div class="icon" data-bind="click:query"><svg class=":t-icon"><use xlink:href="#t-icon-search"></use></svg></div>
             </div>
         </div>

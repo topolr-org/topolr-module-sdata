@@ -37,7 +37,7 @@
                 "baseui.loading": "06ea406188",
                 "baseui.popup": "521e25866f",
                 "baseui.test": "72c74439dd",
-                "sdata.list": "88f66bf0b7",
+                "sdata.list": "83fab38c09",
                 "sdata.service.list": "e368cfd453",
                 "sdata.service.page": "9ca50a8e14",
                 "sdata.service.table": "bf3e839ba9",
@@ -50,7 +50,7 @@
             },
             "y": {
                 "baseui.style.msgbox": "c5ad56b10b",
-                "sdata.style.listcon": "f5e9a322e9",
+                "sdata.style.listcon": "c24bf6fb76",
                 "sdata.style.liststyle": "4050cddb33"
             },
             "c": {

@@ -12,7 +12,8 @@
     left: 0;
     right: 0;
     top: 0;
-    padding:0 5px 0 5px;
+    padding:5px;
+    background:white;
     .btnscon {
         //text-align: right;
         //margin-bottom: 5px;
@@ -88,7 +89,7 @@
 .listcon {
     position: absolute;
     left: 0;
-    top: 37px;
+    top: 42px;
     right: 0;
     bottom: 0;
     overflow: auto;

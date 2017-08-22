@@ -294,7 +294,19 @@ Module({
         this.getChildAt(0).retry(1);
     },
     bind_query: function (dom, e) {
-        this.getChildAt(0).bind_query(dom,e);
+        var isquery = false;
+        if (e.type === "keyup" && e.keyCode === 13) {
+            isquery = true;
+        } else if (e.type === "click") {
+            isquery = true;
+        }
+        if (isquery) {
+            var val = this.finders("queryinput").val();
+            var data = {};
+            data[this.option.queryBtn.keyName || "query"] = val;
+            this.getChildAt(0).excuteService("list.setparameters", data);
+            this.gotoPage(1);
+        }
     },
     event_startloading: function (e) {
         this._data.state = "loading";

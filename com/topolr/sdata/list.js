@@ -86,7 +86,7 @@ Module({
         deals: [],
         parsefn: null,
         queryBtn: {
-            show: true,
+            show: false,
             keyName: "query",
             placeholder: "搜索"
         }

@@ -293,6 +293,9 @@ Module({
     bind_refresh: function () {
         this.getChildAt(0).retry(1);
     },
+    bind_query: function (dom, e) {
+        this.getChildAt(0).bind_query(dom,e);
+    },
     event_startloading: function (e) {
         this._data.state = "loading";
         this.update(this._data);

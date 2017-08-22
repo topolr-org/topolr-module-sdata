@@ -216,12 +216,13 @@
         <div class="loading" data-find="loading">
             <div class="ldesc" data-bind="click:refresh">加载数据出错,点击重试</div>
         </div>
-    {{/if}}
-    {{if data.size>0}}
-        <div class="loading" data-find="loading">
-            <div class="ldesc">全部数据加载完成</div>
-        </div>
-    {{else}}
-        <div class="loading" data-find="loading">没有用于显示的数据</div>
+    {{elseif data.state==="nomore"}}
+        {{if data.size>0}}
+            <div class="loading" data-find="loading">
+                <div class="ldesc">全部数据加载完成</div>
+            </div>
+        {{else}}
+            <div class="loading" data-find="loading">没有用于显示的数据</div>
+        {{/if}}
     {{/if}}
 </div>

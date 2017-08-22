@@ -51,7 +51,7 @@
         {{/list}}
     </div>
     {{/if}}
-    {{if data.queryBtn.show}}
+    {{if data.queryBtn&&data.queryBtn.show}}
     <div class="searchcon">
         <div class="search">
             <div class="input">
@@ -153,7 +153,7 @@
         {{/list}}
     </div>
     {{/if}}
-    {{if data.queryBtn.show}}
+    {{if data.queryBtn&&data.queryBtn.show}}
     <div class="searchcon">
         <div class="search">
             <div class="input"><input placeholder="{{data.queryBtn.placeholder}}" type="text" data-find="queryinput" data-bind="keyup:query"/></div>
@@ -200,7 +200,7 @@
             {{/list}}
         </div>
         {{/if}}
-        {{if data.queryBtn.show}}
+        {{if data.queryBtn&&data.queryBtn.show}}
         <div class="searchcon">
             <div class="search">
                 <div class="input"><input placeholder="{{data.queryBtn.placeholder}}" type="text" data-find="queryinput" data-bind="keyup:query"/></div>

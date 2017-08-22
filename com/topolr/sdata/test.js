@@ -26,6 +26,11 @@ Option({
                             {name:"A",action:"a",icon:"mt-icon-ban"},
                             {name:"B",action:"b",icon:"mt-icon-ban"}
                         ],
+                        queryBtn:{
+                            show:true,
+                            keyName:"query",
+                            placeholder:"搜索2"
+                        },
                         override:{
                             event_tool_a:function (e) {
                                 console.log("===>",e);

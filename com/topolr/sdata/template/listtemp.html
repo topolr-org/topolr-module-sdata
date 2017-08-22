@@ -50,6 +50,16 @@
         {{/list}}
     </div>
     {{/if}}
+    {{if data.queryBtn.show}}
+    <div class="searchcon">
+        <div class="search">
+            <div class="input">
+                <input placeholder="{{data.queryBtn.placeholder}}" type="text" data-find="queryinput" data-bind="keyup:query"/>
+            </div>
+            <div class="icon" data-bind="click:query"><svg class=":t-icon"><use xlink:href="#t-icon-search"></use></svg></div>
+        </div>
+    </div>
+    {{/if}}
 </div>
 <div class="table">
     <div class="srow">
@@ -139,6 +149,14 @@
             <div class="title">{{item.name}}</div>
         </div>
         {{/list}}
+    </div>
+    {{/if}}
+    {{if data.queryBtn.show}}
+    <div class="searchcon">
+        <div class="search">
+            <div class="input"><input type="text" data-find="queryinput" data-bind="keyup:query"/></div>
+            <div class="icon" data-bind="click:query"><svg class=":t-icon"><use xlink:href="#t-icon-search"></use></svg></div>
+        </div>
     </div>
     {{/if}}
 </div>

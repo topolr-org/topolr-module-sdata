@@ -45,6 +45,12 @@ Module({
             ths.start();
             console.log(a)
         });
+    },
+    action_setparameters:function (data) {
+        this.setParameters(data);
+    },
+    service_refresh:function () {
+        this.refresh();
     }
 });
 Module({

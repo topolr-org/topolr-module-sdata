@@ -14,6 +14,7 @@ Module({
     init: function () {
         this._current = 1;
         this._end = false;
+        this._parameters={};
     },
     getParameter: function (page) {
         if (page <= 0) {
@@ -22,7 +23,7 @@ Module({
         var paras = {}, ths = this;
         paras[this.option.fromName] = this.option.from + (page - 1) * this.option.pageSize;
         paras[this.option.sizeName] = this.option.pageSize;
-        return paras;
+        return $.extend(paras,this._parameters);
     },
     gotoPage: function (page) {
         var ths = this;
@@ -60,6 +61,12 @@ Module({
     resetPageSize: function (size) {
         this.option.pageSize = size;
         return this.gotoPage(1);
+    },
+    setParameters:function (data) {
+        $.extend(this._parameters,data);
+    },
+    refresh:function () {
+        this.gotoPage(1);
     }
 });
 Module({

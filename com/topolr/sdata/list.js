@@ -84,10 +84,21 @@ Module({
         cols: [],
         tools: [],
         deals: [],
-        parsefn: null
+        parsefn: null,
+        queryBtn: {
+            show: true,
+            keyName: "query",
+            placeholder: "搜索"
+        }
     },
     init: function () {
-        this.superClass("init");
+        this.excuteService("list.set", this.option);
+        if (this.option.queryBtn && this.option.queryBtn.show) {
+            var a = {};
+            a[this.option.queryBtn.keyName || "query"] = "";
+            this.excuteService("list.setparameters", a);
+        }
+        this.gotoPage(1);
     },
     bind_tool: function (dom) {
         var data = dom.cache();
@@ -99,8 +110,23 @@ Module({
         console.log(deal)
         this.dispatchEvent("deal_" + deal.action, data);
     },
-    bind_rowclick:function (dom) {
-        this.dispatchEvent("rowclick",dom.cache());
+    bind_rowclick: function (dom) {
+        this.dispatchEvent("rowclick", dom.cache());
+    },
+    bind_query: function (dom, e) {
+        var isquery = false;
+        if (e.type === "keyup" && e.keyCode === 13) {
+            isquery = true;
+        } else if (e.type === "click") {
+            isquery = true;
+        }
+        if (isquery) {
+            var val = this.finders("queryinput").val();
+            var data = {};
+            data[this.option.queryBtn.keyName || "query"] = val;
+            this.excuteService("list.setparameters", data);
+            this.gotoPage(1);
+        }
     },
     service_schange: function (data) {
         if (this.option.parsefn) {
@@ -129,15 +155,25 @@ Module({
         deals: [],
         parsefn: null,
         offsetHeight: 0,
-        scrollTop: true
+        scrollTop: true,
+        queryBtn: {
+            show: false,
+            keyName: "query",
+            placeholder: "搜索"
+        }
     },
     init: function () {
         this.excuteService("list.set", this.option);
+        if (this.option.queryBtn && this.option.queryBtn.show) {
+            var a = {};
+            a[this.option.queryBtn.keyName || "query"] = "";
+            this.excuteService("list.setparameters", a);
+        }
         this.gotoPage(1);
         var ths = this;
         this._end = false;
         this._size = 0;
-        this._loading=false;
+        this._loading = false;
         var et = function () {
             if (!ths._end) {
                 var b = ths.dom.get(0).getBoundingClientRect().bottom;
@@ -168,17 +204,17 @@ Module({
         });
     },
     nextPage: function () {
-        if(!this._loading) {
-            this._loading=true;
+        if (!this._loading) {
+            this._loading = true;
             this.dispatchEvent("startloading");
             this.triggerService("list.next").scope(this).then(function () {
-                this._loading=false;
+                this._loading = false;
                 this.dispatchEvent("endloading", {
                     size: this._size,
                     isend: this._end
                 });
             }, function () {
-                this._loading=false;
+                this._loading = false;
                 this.dispatchEvent("errorloading");
             });
         }
@@ -203,8 +239,23 @@ Module({
         var data = dom.parent().cache();
         this.dispatchEvent("deal_" + deal.action, data);
     },
-    bind_rowclick:function (dom) {
-        this.dispatchEvent("rowclick",dom.cache());
+    bind_rowclick: function (dom) {
+        this.dispatchEvent("rowclick", dom.cache());
+    },
+    bind_query: function (dom, e) {
+        var isquery = false;
+        if (e.type === "keyup" && e.keyCode === 13) {
+            isquery = true;
+        } else if (e.type === "click") {
+            isquery = true;
+        }
+        if (isquery) {
+            var val = this.finders("queryinput").val();
+            var data = {};
+            data[this.option.queryBtn.keyName || "query"] = val;
+            this.excuteService("list.setparameters", data);
+            this.gotoPage(1);
+        }
     },
     service_schange: function (data) {
         if (this.option.parsefn) {

@@ -98,8 +98,8 @@
 
 .loading {
     line-height: 40px;
-    background: #F1F1F1;
     text-align: center;
+    color:#d7d7d7;
     .licon {
         width: 30px;
         text-align: center;
@@ -109,5 +109,21 @@
     .ldesc {
         display: inline-block;
         vertical-align: top;
+    }
+}
+.loadingb{
+    display: -webkit-box;
+    -webkit-box-pack: center;
+    -webkit-box-align: center;
+    -webkit-box-orient: vertical;
+    border-bottom:1px solid #F1F1F1;
+    height:100%;
+    color:#d7d7d7;
+    .liconb{
+        font-size:80px;
+        line-height:100px;
+    }
+    .ldescb{
+        font-size:12px;
     }
 }

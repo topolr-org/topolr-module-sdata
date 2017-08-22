@@ -139,7 +139,7 @@
 </div>
 {{/if}}
 <!--[appendlistinner]-->
-{{if data.tools.length>0&&data.queryBtn.show}}
+{{if data.tools.length>0&&data.queryBtn&&data.queryBtn.show}}
 <div class="btnscon">
     {{if data.tools.length>0}}
     <div class="btns">
@@ -185,6 +185,7 @@
     {{/if}}
 </div>
 <!--[appendlist]-->
+{{if data.tools.length>0&&data.queryBtn&&data.queryBtn.show}}
 <div class="head">
     <div class="btnscon">
         {{if data.tools.length>0}}
@@ -207,24 +208,29 @@
         {{/if}}
     </div>
 </div>
-<div class="listcon">
+{{/if}}
+<div class="listcon" style="top:{{(data.tools.length>0&&data.queryBtn&&data.queryBtn.show)?'':0}}">
     <div data-find="list"></div>
     {{if data.state==="loading"}}
-        <div class="loading" data-find="loading">
-            <div class="licon"><svg class=":t-icon :t-icon-spin"><use xlink:href="#t-icon-autorenew"></use></svg></div>
-            <div class="ldesc">正在加载数据...</div>
-        </div>
+    <div class="loading" data-find="loading">
+        <div class="licon"><svg class=":t-icon :t-icon-spin"><use xlink:href="#t-icon-autorenew"></use></svg></div>
+        <div class="ldesc">正在加载数据...</div>
+    </div>
     {{elseif data.state==="error"}}
-        <div class="loading" data-find="loading">
-            <div class="ldesc" data-bind="click:refresh">加载数据出错,点击重试</div>
-        </div>
+    <div class="loading" data-find="loading">
+        <div class="ldesc" data-bind="click:refresh">加载数据出错,点击重试</div>
+    </div>
     {{elseif data.state==="nomore"}}
-        {{if data.size>0}}
-            <div class="loading" data-find="loading">
-                <div class="ldesc">全部数据加载完成</div>
-            </div>
-        {{else}}
-            <div class="loading" data-find="loading">没有用于显示的数据</div>
-        {{/if}}
+    {{if data.size>0}}
+    <div class="loading" data-find="loading">
+        <div class="licon"><svg class=":t-icon"><use xlink:href="#t-icon-checkbox"></use></svg></div>
+        <div class="ldesc">全部数据加载完成</div>
+    </div>
+    {{else}}
+    <div class="loadingb" data-find="loading">
+        <div class="liconb"><svg class=":t-icon"><use xlink:href="#t-icon-restore"></use></svg></div>
+        <div class="ldescb">没有用于显示的数据</div>
+    </div>
+    {{/if}}
     {{/if}}
 </div>

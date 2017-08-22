@@ -139,7 +139,7 @@
 </div>
 {{/if}}
 <!--[appendlistinner]-->
-{{if data.tools.length>0&&data.queryBtn&&data.queryBtn.show}}
+{{if data.tools.length>0||(data.queryBtn&&data.queryBtn.show)}}
 <div class="btnscon">
     {{if data.tools.length>0}}
     <div class="btns">
@@ -185,7 +185,7 @@
     {{/if}}
 </div>
 <!--[appendlist]-->
-{{if data.tools.length>0&&data.queryBtn&&data.queryBtn.show}}
+{{if (data.tools.length>0||(data.queryBtn&&data.queryBtn.show))}}
 <div class="head">
     <div class="btnscon">
         {{if data.tools.length>0}}
@@ -209,7 +209,7 @@
     </div>
 </div>
 {{/if}}
-<div class="listcon" style="top:{{(data.tools.length>0&&data.queryBtn&&data.queryBtn.show)?'':0}}">
+<div class="listcon" style="top:{{(data.tools.length>0||(data.queryBtn&&data.queryBtn.show))?'':0}}">
     <div data-find="list"></div>
     {{if data.state==="loading"}}
     <div class="loading" data-find="loading">

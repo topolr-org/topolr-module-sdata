@@ -24,22 +24,23 @@
         }
         .search {
             line-height: 30px;
-            display: inline-block;
+            display: flex;
             vertical-align: top;
             border: 1px solid #D7D7D7;
             background: white;
             border-radius: 5px;
             overflow: hidden;
             box-sizing: border-box;
+            width:100%;
             .input {
-                display: inline-block;
-                vertical-align: top;
+                flex-grow: 1;
                 input {
                     height: 30px;
                     outline: none;
                     border: 0;
                     padding: 0 0 0 8px;
                     vertical-align: top;
+                    width:100%;
                 }
             }
             .icon {
@@ -58,6 +59,7 @@
             border-radius: 5px;
             overflow: hidden;
             background:white;
+            margin-right:5px;
         }
         .btn {
             display: inline-block;

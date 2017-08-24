@@ -193,7 +193,7 @@ Module({
         }
         this.excuteService("list.clean");
         this.dispatchEvent("startloading");
-        this.triggerService("list.gotopage", num).scope(this).then(function () {
+        this.triggerService("list.gotopage", num).scope(this).then(function (a) {
             this.dispatchEvent("endloading", {
                 size: this._size,
                 isend: this._end
@@ -249,6 +249,8 @@ Module({
             isquery = true;
         }
         if (isquery) {
+            this._size=0;
+            this._end=false;
             var val = this.finders("queryinput").val();
             var data = {};
             data[this.option.queryBtn.keyName || "query"] = val;
@@ -262,7 +264,7 @@ Module({
         }
         $.extend(data, this.option, {winwidth: $(window).width() > 480});
         this._end = data.isend;
-        this._size += data.list.length;
+        this._size = data.list.length;
         this.update(data);
     }
 });
@@ -314,6 +316,7 @@ Module({
         e.stopPropagation();
     },
     event_endloading: function (e) {
+        console.log(e.data)
         if (e.data.isend) {
             this._data.state = "nomore";
             this._data.size = e.data.size;

@@ -5,6 +5,7 @@
     right: 0;
     bottom: 0;
     overflow: auto;
+    background:#ecece9;
 }
 
 .head {
@@ -14,6 +15,7 @@
     top: 0;
     padding:5px;
     background:white;
+    z-index:99;
     .btnscon {
         //text-align: right;
         //margin-bottom: 5px;
@@ -48,6 +50,7 @@
                 vertical-align: top;
                 width: 30px;
                 text-align: center;
+                font-size: 18px;
             }
         }
         .btns {
@@ -71,12 +74,15 @@
                 text-align: center;
                 display: inline-block;
                 vertical-align: top;
+                color:#1f8ca5;
+                font-size: 18px;
             }
             .title {
                 display: inline-block;
                 padding: 0 10px 0 0;
                 font-size: 12px;
                 vertical-align: top;
+                display: none;
             }
             &:hover {
                 background: #F7F7F7;
@@ -127,5 +133,10 @@
     }
     .ldescb{
         font-size:12px;
+    }
+}
+@media only screen and (max-width: 480px) {
+    .head {
+        box-shadow: 0 1px 3px rgba(0,0,0,.3);
     }
 }

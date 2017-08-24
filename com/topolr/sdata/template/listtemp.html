@@ -166,8 +166,8 @@
 <div class="table">
     {{if data.list&&data.list.length>0}}
     {{list data.list as item}}
-    <div class="srow" unquie="{{item.id}}" data-bind="click:rowclick" @cache(item)>
-        <div class="row">
+    <div class="srow" unquie="{{item.id}}">
+        <div class="row" data-bind="click:rowclick" @cache(item)>
             {{list data.cols as sub subindex}}
             <div class="col" style="width:{{data.winwidth?sub.width:100}}%">
                 <span class="colname">{{data.cols[subindex].name}}:</span>

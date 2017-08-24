@@ -111,6 +111,9 @@
         .deal{
             width:40px;
             text-align: center;
+            font-size: 18px;
+            color: #5f5c5c;
+            background: transparent;
             &:hover{
                 background:#F7F7F7;
             }
@@ -221,17 +224,20 @@
     }
     .table{
         text-align: right;
+        overflow: inherit;
         .srow{
             display: block;
-            background:#fffbfb;
-            margin:5px 0 5px 0;
+            background:#FAFAFA;
+            margin:5px 0 0 0;
+            border:0;
+            box-shadow: 0 1px 3px rgba(0,0,0,.3);
         }
         .row{
             text-align: left;
             background: white;
-            border-bottom: 1px solid #F1F1F1;
+            border-bottom: 1px solid #F2F2F2;
             display: block;
-            padding:5px 0 5px 0;
+            padding:15px 0 5px 0;
             overflow: hidden;
             .col{
                 padding:0 10px 0 10px;
@@ -254,6 +260,9 @@
             .deal{
                 display: inline-block;
                 vertical-align: top;
+                font-size: 18px;
+                color: #1f8ca5;
+                background: #FAFAFA;
             }
         }
         .nodata{

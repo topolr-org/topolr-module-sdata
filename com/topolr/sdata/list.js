@@ -340,7 +340,8 @@ Module({
         cols: [],
         tools: [],
         deals: [],
-        parsefn: null
+        parsefn: null,
+        height:"200px"
     },
     init: function () {
         var _data=$.extend({},this.option);
@@ -358,6 +359,7 @@ Module({
                 container: this.dom
             });
         }
+        this.dom.height(this.option.height);
     },
     gotoPage: function (num) {
         this.getChildAt(0).gotoPage(num);

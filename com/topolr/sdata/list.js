@@ -352,6 +352,7 @@ Module({
                 option: _data,
                 container: this.dom
             });
+            this.dom.height(this.option.height);
         } else {
             this.addChild({
                 type: "@.tablelist",
@@ -359,7 +360,6 @@ Module({
                 container: this.dom
             });
         }
-        this.dom.height(this.option.height);
     },
     gotoPage: function (num) {
         this.getChildAt(0).gotoPage(num);

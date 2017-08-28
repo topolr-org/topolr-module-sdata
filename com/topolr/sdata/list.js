@@ -316,7 +316,6 @@ Module({
         e.stopPropagation();
     },
     event_endloading: function (e) {
-        console.log(e.data)
         if (e.data.isend) {
             this._data.state = "nomore";
             this._data.size = e.data.size;

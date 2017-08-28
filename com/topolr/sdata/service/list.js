@@ -62,6 +62,7 @@ Module({
                 list: info.list,
                 total: info.total,
                 current: info.current,
+                totalsize:info.totalsize,
                 pages: this.getPagesData(info.current, info.total)
             };
             this.start();
@@ -85,6 +86,7 @@ Module({
                 list: this.data.list.concat(info.list),
                 total: info.total,
                 current: info.current,
+                totalsize:info.totalsize,
                 isend: info.isend
             };
             this.start();

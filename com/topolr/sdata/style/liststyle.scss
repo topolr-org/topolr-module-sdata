@@ -149,6 +149,7 @@
 }
 .footer{
     margin-top:20px;
+    position:relative;
     .pages{
         line-height:30px;
         text-align: center;
@@ -183,6 +184,12 @@
                 background:#1f8ca4;;
             }
         }
+    }
+    .pages-total{
+        position:absolute;
+        top:5px;
+        right:10px;
+        line-height:30px;
     }
 }
 

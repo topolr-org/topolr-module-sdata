@@ -7,7 +7,7 @@
 <!--[header]-->
 <div class="table-tableheader-con">
     <div class="table-tableheader-rows">
-    {{list data.cols as item}}
+        {{list data.cols as item}}
         {{if item.checkbox===true}}
         <div class="table-tableheader-col" style="width:{{item.width}}px;">
             <div data-bind="click:checkall" @cache(item.isall)>
@@ -17,7 +17,7 @@
         {{elseif item.disable!==true}}
         <div class="table-tableheader-col" style="width:{{item.width}}px;">{{item.value}}</div>
         {{/if}}
-    {{/list}}
+        {{/list}}
     </div>
 </div>
 <div class="table-tableheader-dropdown">
@@ -26,14 +26,14 @@
     </div>
     <div class="table-tableheader-dropdown-list">
         {{list data.cols as item}}
-            {{if item.isCol}}
-            <div class="table-tableheader-dropdown-list-item" data-bind="click:itemclick" @cache({key:item.key,state:item.disable})>
-                <div class="table-tableheader-dropdown-list-item-a">
-                    <svg class="t-icon"><use xlink:href="#{{item.disable!==true?'t-icon-check_box':'t-icon-check_box_outline_blank'}}"></use></svg>
-                </div>
-                <div class="table-tableheader-dropdown-list-item-b">{{item.value}}</div>
+        {{if item.isCol}}
+        <div class="table-tableheader-dropdown-list-item" data-bind="click:itemclick" @cache({key:item.key,state:item.disable})>
+            <div class="table-tableheader-dropdown-list-item-a">
+                <svg class="t-icon"><use xlink:href="#{{item.disable!==true?'t-icon-check_box':'t-icon-check_box_outline_blank'}}"></use></svg>
             </div>
-            {{/if}}
+            <div class="table-tableheader-dropdown-list-item-b">{{item.value}}</div>
+        </div>
+        {{/if}}
         {{/list}}
     </div>
 </div>
@@ -42,15 +42,15 @@
 <div class="table-tableheader-left" style="width:{{data.leftWidth}}px">
     <div class="table-tableheader-rows">
         {{list data.left.cols as item}}
-            {{if item.checkbox}}
-            <div class="table-tableheader-col" style="width:{{item.width}}px;">
-                <div data-bind="click:checkall" @cache(item.isall)>
-                    <svg class="t-icon"><use xlink:href="#{{item.isall===true?'t-icon-check_box':'t-icon-check_box_outline_blank'}}"></use></svg>
-                </div>
+        {{if item.checkbox}}
+        <div class="table-tableheader-col" style="width:{{item.width}}px;">
+            <div data-bind="click:checkall" @cache(item.isall)>
+                <svg class="t-icon"><use xlink:href="#{{item.isall===true?'t-icon-check_box':'t-icon-check_box_outline_blank'}}"></use></svg>
             </div>
-            {{else}}
-            <div class="table-tableheader-col" style="width:{{item.width}}px;">{{item.value}}</div>
-            {{/if}}
+        </div>
+        {{else}}
+        <div class="table-tableheader-col" style="width:{{item.width}}px;">{{item.value}}</div>
+        {{/if}}
         {{/list}}
     </div>
 </div>
@@ -70,9 +70,9 @@
     {{list data as row}}
     <div class="table-tablebody-rows{{row.selected?' table-row-selected':''}}" unique="{{row.id}}" data-bind="click:row" @cache(row)>
         {{list row.cols as col}}
-            {{if col.disable!=true}}
-            <div class="table-tablebody-col{{' table-col-'+col.textAlign}}" style="width:{{col.width}}px;">{{col.value}}</div>
-            {{/if}}
+        {{if col.disable!=true}}
+        <div class="table-tablebody-col{{' table-col-'+col.textAlign}}" style="width:{{col.width}}px;">{{col.value}}</div>
+        {{/if}}
         {{/list}}
     </div>
     {{/list}}
@@ -80,113 +80,113 @@
 {{/if}}
 <!--[bodyfn]-->
 {{if data}}
-    {{list data as row}}
-    <div class="table-tablebody-rows{{row.selected?' table-row-selected':''}}{{row.warn?' table-row-warn':''}}{{row.error?' table-row-error':''}}" unique="{{row.id}}" data-bind="click:row" @cache(row)>
-        {{list row.cols as col t}}
-            {{if col.key==='__num__'}}
-                <div class="table-tablebody-col table-col-num" style="width:{{col.width}}px;">{{$index+1}}</div>
-            {{elseif col.key==='__checkbox__'}}
-                <div class="table-tablebody-col table-col-checkbox"  style="width:{{col.width}}px;">
-                    <svg class="t-icon"><use xlink:href="#{{row.selected===true?'t-icon-check_box':'t-icon-check_box_outline_blank'}}"></use></svg>
-                </div>
-            {{elseif col.key==='__deals__'}}
-                <div class="table-tablebody-col table-col-deal" style="width:{{col.width}}px;">
-                    <div data-bind="click:deal" @cache(col.value)>
-                        <svg class="t-icon"><use xlink:href="#{{col.value.icon}}"></use></svg>
-                    </div>
-                </div>
-            {{elseif col.disable!==true}}
-                <div class="table-tablebody-col{{' table-col-'+col.textAlign}}" style="width:{{col.width}}px;">{{col.value}}</div>
-            {{/if}}
-        {{/list}}
+{{list data as row}}
+<div class="table-tablebody-rows{{row.selected?' table-row-selected':''}}{{row.warn?' table-row-warn':''}}{{row.error?' table-row-error':''}}" unique="{{row.id}}" data-bind="click:row" @cache(row)>
+    {{list row.cols as col t}}
+    {{if col.key==='__num__'}}
+    <div class="table-tablebody-col table-col-num" style="width:{{col.width}}px;">{{$index+1}}</div>
+    {{elseif col.key==='__checkbox__'}}
+    <div class="table-tablebody-col table-col-checkbox"  style="width:{{col.width}}px;">
+        <svg class="t-icon"><use xlink:href="#{{row.selected===true?'t-icon-check_box':'t-icon-check_box_outline_blank'}}"></use></svg>
     </div>
+    {{elseif col.key==='__deals__'}}
+    <div class="table-tablebody-col table-col-deal" style="width:{{col.width}}px;">
+        <div data-bind="click:deal" @cache(col.value)>
+            <svg class="t-icon"><use xlink:href="#{{col.value.icon}}"></use></svg>
+        </div>
+    </div>
+    {{elseif col.disable!==true}}
+    <div class="table-tablebody-col{{' table-col-'+col.textAlign}}" style="width:{{col.width}}px;">{{col.value}}</div>
+    {{/if}}
     {{/list}}
+</div>
+{{/list}}
 {{/if}}
 <!--[doublebodyfn]-->
 {{if data}}
-    <div class="table-tablebody-left" style="width:{{data.leftWidth}}px;" data-find="left">
-        <div style="height:{{data.left.length*data.leftWidth+100}}px">
+<div class="table-tablebody-left" style="width:{{data.leftWidth}}px;" data-find="left">
+    <div style="height:{{data.left.length*data.leftWidth+100}}px">
         {{list data.left as row}}
         <div class="table-tablebody-rows{{row.selected?' table-row-selected':''}}{{row.warn?' table-row-warn':''}}{{row.error?' table-row-error':''}}" unique="{{row.id}}" data-bind="click:row" @cache(row)>
             {{list row.cols as col m}}
-                {{if col.key==='__num__'}}
-                    <div class="table-tablebody-col table-col-num" style="width:{{col.width}}px;">{{$index+1}}</div>
-                {{elseif col.key==='__checkbox__'}}
-                    <div class="table-tablebody-col table-col-checkbox"  style="width:{{col.width}}px;">
-                        <svg class="t-icon"><use xlink:href="#{{row.selected===true?'t-icon-check_box':'t-icon-check_box_outline_blank'}}"></use></svg>
-                    </div>
-                {{elseif col.key==='__deals__'}}
-                    <div class="table-tablebody-col table-col-deal" style="width:{{col.width}}px;">
-                        <div data-bind="click:deal" @cache(col)>
-                            <svg class="t-icon"><use xlink:href="#{{col.value.icon}}"></use></svg>
-                        </div>
-                    </div>
-                {{/if}}
+            {{if col.key==='__num__'}}
+            <div class="table-tablebody-col table-col-num" style="width:{{col.width}}px;">{{$index+1}}</div>
+            {{elseif col.key==='__checkbox__'}}
+            <div class="table-tablebody-col table-col-checkbox"  style="width:{{col.width}}px;">
+                <svg class="t-icon"><use xlink:href="#{{row.selected===true?'t-icon-check_box':'t-icon-check_box_outline_blank'}}"></use></svg>
+            </div>
+            {{elseif col.key==='__deals__'}}
+            <div class="table-tablebody-col table-col-deal" style="width:{{col.width}}px;">
+                <div data-bind="click:deal" @cache(col)>
+                    <svg class="t-icon"><use xlink:href="#{{col.value.icon}}"></use></svg>
+                </div>
+            </div>
+            {{/if}}
             {{/list}}
         </div>
         {{/list}}
-        </div>
     </div>
-    <div class="table-tablebody-right" style="left:{{data.leftWidth}}px;" data-find="body" data-bind="scroll:body">
-        <div class="table-tablebody-right-con">
-            {{list data.right as row}}
-            <div class="table-tablebody-rows{{row.selected?' table-row-selected':''}}{{row.warn?' table-row-warn':''}}{{row.error?' table-row-error':''}}" unique="{{row.id}}" data-bind="click:row" @cache(row)>
-                {{list row.cols as col}}
-                <div class="table-tablebody-col{{' table-col-'+col.textAlign}}" style="width:{{col.width}}px;">{{col.value}}</div>
-                {{/list}}
-            </div>
+</div>
+<div class="table-tablebody-right" style="left:{{data.leftWidth}}px;" data-find="body" data-bind="scroll:body">
+    <div class="table-tablebody-right-con">
+        {{list data.right as row}}
+        <div class="table-tablebody-rows{{row.selected?' table-row-selected':''}}{{row.warn?' table-row-warn':''}}{{row.error?' table-row-error':''}}" unique="{{row.id}}" data-bind="click:row" @cache(row)>
+            {{list row.cols as col}}
+            <div class="table-tablebody-col{{' table-col-'+col.textAlign}}" style="width:{{col.width}}px;">{{col.value}}</div>
             {{/list}}
         </div>
+        {{/list}}
     </div>
+</div>
 {{/if}}
 <!--[footer]-->
 <div class="table-tablefoot">
     {{if data}}
-        <div class="table-tablefoot-sizes" title="每页显示条数">
-            <div class="table-tablefoot-sizes-num">{{data.size.current}}</div>
-            <div class="table-tablefoot-sizes-list">
-                {{list data.size.map as item}}
-                <div class="table-tablefoot-sizes-list-item" data-bind="click:pagesize" @cache(item)>{{item}}</div>
-                {{/list}}
-            </div>
-        </div>
-        {{if data.pages}}
-        <div class="table-tablefoot-pages">
-            {{list data.pages as page}}
-                {{if page.name==='prev'}}
-                    <div class="table-tablefoot-pages-page{{page.disabled===true?' table-page-disabled':''}}" data-bind="click:prev">
-                        <svg class="t-icon"><use xlink:href="#t-icon-navigate_before"></use></svg>
-                    </div>
-                {{elseif page.name==='next'}}
-                    <div class="table-tablefoot-pages-page{{page.disabled===true?' table-page-disabled':''}}" data-bind="click:next">
-                        <svg class="t-icon"><use xlink:href="#t-icon-navigate_next"></use></svg>
-                    </div>
-                {{elseif page.name==='btn'}}
-                    {{if page.none===true}}
-                    <div class="table-tablefoot-pages-page table-page-none" data-bind="click:goto" @cache(page)>{{page.num}}</div>
-                    {{else}}
-                        {{if page.iscurrent===true}}
-                        <div class="table-tablefoot-pages-page table-page-current" data-bind="click:goto" @cache(page)>{{page.num}}</div>
-                        {{else}}
-                        <div class="table-tablefoot-pages-page" data-bind="click:goto" @cache(page)>{{page.num}}</div>
-                        {{/if}}
-                    {{/if}}
-                {{elseif page.name==='dot'}}
-                    {{if page.none===true}}
-                    <div class="table-tablefoot-pages-page table-page-none">...</div>
-                    {{else}}
-                    <div class="table-tablefoot-pages-page">...</div>
-                    {{/if}}
-                {{/if}}
+    <div class="table-tablefoot-sizes" title="每页显示条数">
+        <div class="table-tablefoot-sizes-num">{{data.size.current}}</div>
+        <div class="table-tablefoot-sizes-list">
+            {{list data.size.map as item}}
+            <div class="table-tablefoot-sizes-list-item" data-bind="click:pagesize" @cache(item)>{{item}}</div>
             {{/list}}
         </div>
-        {{/if}}
-        <div class="table-tablefoot-btns">
-            <div class="table-tablefoot-btns-num"><input type="text"/></div>
-            <div class="table-tablefoot-btns-btn">
-                <svg class="t-icon"><use xlink:href="#t-icon-arrow_forward"></use></svg>
-            </div>
+    </div>
+    {{if data.pages}}
+    <div class="table-tablefoot-pages">
+        {{list data.pages as page}}
+        {{if page.name==='prev'}}
+        <div class="table-tablefoot-pages-page{{page.disabled===true?' table-page-disabled':''}}" data-bind="click:prev">
+            <svg class="t-icon"><use xlink:href="#t-icon-navigate_before"></use></svg>
         </div>
+        {{elseif page.name==='next'}}
+        <div class="table-tablefoot-pages-page{{page.disabled===true?' table-page-disabled':''}}" data-bind="click:next">
+            <svg class="t-icon"><use xlink:href="#t-icon-navigate_next"></use></svg>
+        </div>
+        {{elseif page.name==='btn'}}
+        {{if page.none===true}}
+        <div class="table-tablefoot-pages-page table-page-none" data-bind="click:goto" @cache(page)>{{page.num}}</div>
+        {{else}}
+        {{if page.iscurrent===true}}
+        <div class="table-tablefoot-pages-page table-page-current" data-bind="click:goto" @cache(page)>{{page.num}}</div>
+        {{else}}
+        <div class="table-tablefoot-pages-page" data-bind="click:goto" @cache(page)>{{page.num}}</div>
+        {{/if}}
+        {{/if}}
+        {{elseif page.name==='dot'}}
+        {{if page.none===true}}
+        <div class="table-tablefoot-pages-page table-page-none">...</div>
+        {{else}}
+        <div class="table-tablefoot-pages-page">...</div>
+        {{/if}}
+        {{/if}}
+        {{/list}}
+    </div>
+    {{/if}}
+    <div class="table-tablefoot-btns">
+        <div class="table-tablefoot-btns-num"><input type="text"/></div>
+        <div class="table-tablefoot-btns-btn">
+            <svg class="t-icon"><use xlink:href="#t-icon-arrow_forward"></use></svg>
+        </div>
+    </div>
     {{/if}}
 </div>
 <!--[table]-->

@@ -137,6 +137,7 @@
         {{/if}}
         {{/list}}
     </div>
+    <div class="pages-total">共<span>{{data.totalsize}}</span>条数据</div>
     {{/if}}
 </div>
 {{/if}}
@@ -236,3 +237,6 @@
     {{/if}}
     {{/if}}
 </div>
+{{if data.size}}
+<div class="table-total">共<span>{{data.size}}</span>条数据</div>
+{{/if}}

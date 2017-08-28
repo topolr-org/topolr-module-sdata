@@ -103,7 +103,17 @@
     overflow: auto;
     border-top: 1px solid #D7D7D7;
 }
-
+.table-total{
+    position:absolute;
+    bottom:10px;
+    left:5px;
+    background:rgba(0,0,0,.3);
+    line-height:25px;
+    font-size:12px;
+    padding:0 10px 0 10px;
+    border-radius: 5px;
+    color:white;
+}
 .loading {
     line-height: 40px;
     text-align: center;

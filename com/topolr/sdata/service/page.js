@@ -103,7 +103,8 @@ Module({
                 list: data.list,
                 total: ths._totalPage,
                 current: ths._current,
-                isend:ths._end
+                isend:ths._end,
+                totalsize:ths._total
             };
         });
     },
@@ -241,7 +242,8 @@ Module({
                     list: data.list,
                     total: ths._totalPage,
                     current: ths._current,
-                    isend:ths._end
+                    isend:ths._end,
+                    totalsize:ths._total
                 };
             });
         }else{
@@ -250,7 +252,8 @@ Module({
                     list: [],
                     total: ths._totalPage,
                     current: ths._current,
-                    isend:ths._end
+                    isend:ths._end,
+                    totalsize:0
                 });
             });
         }

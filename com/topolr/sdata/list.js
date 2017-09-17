@@ -266,6 +266,7 @@ Module({
         this._end = data.isend;
         this._size = data.list.length;
         this.update(data);
+        this.dispatchEvent("totalnum",data.totalsize);
     }
 });
 Module({
@@ -321,6 +322,11 @@ Module({
             this._data.size = e.data.size;
             this.update(this._data);
         }
+        e.stopPropagation();
+    },
+    event_totalnum:function (e) {
+        this._data.size = e.data;
+        this.update(this._data);
         e.stopPropagation();
     },
     event_errorloading: function (e) {
